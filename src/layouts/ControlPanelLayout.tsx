@@ -1,7 +1,5 @@
 import { ReactElement } from "react";
-import Header from "../components/Header";
 import { Container } from "@mui/material";
-import Footer from "../components/Footer";
 
 const styles = {
   root: {
@@ -10,17 +8,14 @@ const styles = {
   } as const,
 };
 
-const MainLayout = ({ children }: Child): ReactElement => {
-
+const ControlPanelLayout = ({ children }: Child): ReactElement => {
   return (
     <>
-      <Header />
       <Container disableGutters sx={styles.root} maxWidth={false}>
         <>{children}</>
       </Container>
-      <Footer />
     </>
   );
 };
 
-export default MainLayout;
+export default ControlPanelLayout;

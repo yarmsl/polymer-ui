@@ -1,18 +1,16 @@
-import { ReactElement } from "react";
 import { useForm, Controller } from "react-hook-form";
 import {
   Box,
   Container,
   TextField,
-  ButtonGroup,
   Button,
   Typography,
   LinearProgress,
 } from "@mui/material";
 import HelmetTitle from "../layouts/Helmet";
 import { useAppDispatch } from "../store";
-import { setAuth, useSignInMutation, useSignUpMutation } from "../store/Auth";
-import { batch } from "react-redux";
+import { setAuth, useSignInMutation } from "../store/Auth";
+import { showErrorSnackbar } from "../store/Notifications";
 
 const styles = {
   root: {
@@ -21,11 +19,7 @@ const styles = {
     flexDirection: "column",
   } as const,
   title: {
-    display: "flex",
-    justifyContent: "flex-end",
-    flexWrap: "wrap",
     mb: "15px",
-    transform: "rotate(1deg)",
     userSelect: "none",
   } as const,
   form: {
@@ -38,39 +32,29 @@ const styles = {
   },
 };
 
-const Auth = (): ReactElement => {
+const Auth = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const { handleSubmit, control } = useForm<formLogin>();
+  const { handleSubmit, control } = useForm<formSignIn>();
   const [signIn, { isLoading: signInLoading }] = useSignInMutation();
-  const [signUp, { isLoading: signUpLoading }] = useSignUpMutation();
 
   const handleSignIn = handleSubmit(async (data) => {
     try {
-      const { token, id, avatar, name } = await signIn(data).unwrap();
-      dispatch(setAuth(token));
+      const user = await signIn(data).unwrap();
+      dispatch(setAuth(user));
     } catch (e) {
-      console.log(e);
-    }
-  });
-
-  const handleSignUp = handleSubmit(async (data) => {
-    try {
-      const { token, id } = await signUp(data).unwrap();
-      dispatch(setAuth(token));
-    } catch (e) {
-      console.log(e);
+      dispatch(
+        showErrorSnackbar((e as IQueryError).data.message || "sign in error")
+      );
     }
   });
 
   return (
     <>
-      <HelmetTitle title="Sign" />
+      <HelmetTitle title="Авторизация" />
       <Container sx={styles.root} maxWidth="xs">
-        <Box sx={styles.title}>
-          <Typography>Welcome to&nbsp;</Typography>
-          <Typography color="secondary">Console.logbook&nbsp;</Typography>
-          <Typography>- a simple notebook</Typography>
-        </Box>
+        <Typography sx={styles.title}>
+          Добро пожаловать в панель управления
+        </Typography>
         <Box sx={styles.form} component="form">
           <Controller
             name="email"
@@ -91,11 +75,11 @@ const Auth = (): ReactElement => {
               />
             )}
             rules={{
-              required: "Enter your email",
+              required: "Введите почту",
               pattern: {
                 value:
                   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                message: "Incorrect email",
+                message: "Введите корректный email",
               },
             }}
           />
@@ -107,7 +91,7 @@ const Auth = (): ReactElement => {
               <TextField
                 tabIndex={2}
                 sx={styles.input}
-                label="Password"
+                label="Пароль"
                 fullWidth
                 type="password"
                 autoComplete="current-password"
@@ -125,19 +109,16 @@ const Auth = (): ReactElement => {
               },
             }}
           />
-          <ButtonGroup
-            fullWidth
+          <Button
             variant="contained"
             color="primary"
-            disabled={signInLoading || signUpLoading}
+            disabled={signInLoading}
+            onClick={handleSignIn}
           >
-            <Button onClick={handleSignUp}>Sign up</Button>
-            <Button onClick={handleSignIn}>Sign in</Button>
-          </ButtonGroup>
+            Sign in
+          </Button>
         </Box>
-        {(signInLoading || signUpLoading) && (
-          <LinearProgress color="secondary" />
-        )}
+        {signInLoading && <LinearProgress color="secondary" />}
       </Container>
     </>
   );

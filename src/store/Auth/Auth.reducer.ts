@@ -3,17 +3,28 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState: IAuth = {
   isAuth: false,
   token: "",
+  name: "",
+  role: "user",
+  articles: [],
+  companies: [],
+  presentationFile: '',
+  productions: [],
+  projects: [],
+  steps: [],
+  stories: [],
+  storyArticles: [],
+  tags: [],
+  vacancies: [],
 };
 
 export const authSlice = createSlice({
   name: "auth",
   initialState: initialState,
   reducers: {
-    setAuth(state, action: PayloadAction<string>) {
-      state.isAuth = true;
-      state.token = action.payload;
+    setAuth: (state, action: PayloadAction<IUser>) => {
+      Object.assign(state, {...action.payload, isAuth: true});
     },
-    resetAuth(state) {
+    resetAuth: (state) => {
       Object.assign(state, initialState);
     },
   },

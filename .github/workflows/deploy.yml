@@ -2,7 +2,7 @@ name: Deploy ConsoleLogbook Front
 
 on:
   push:
-    branches: [ main ]
+    branches: [ dev ]
 
 jobs:
   build:

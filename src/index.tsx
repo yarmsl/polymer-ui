@@ -6,14 +6,17 @@ import { Provider as StoreProvider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import App from "./App";
 import appStore, { persistor } from "./store";
+import { SnackbarProvider } from "notistack";
 
 ReactDOM.render(
   <React.StrictMode>
     <StoreProvider store={appStore}>
       <PersistGate persistor={persistor}>
-        <HelmetProvider>
-          <App />
-        </HelmetProvider>
+        <SnackbarProvider maxSnack={5} autoHideDuration={5000}>
+          <HelmetProvider>
+            <App />
+          </HelmetProvider>
+        </SnackbarProvider>
       </PersistGate>
     </StoreProvider>
   </React.StrictMode>,

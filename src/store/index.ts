@@ -2,6 +2,8 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { authReducer, authAPI } from "./Auth";
+import { notificationsReducer } from "./Notifications";
+import { usersAPI } from "./Users";
 
 const authPersistConfig = {
   key: "auth",
@@ -11,7 +13,9 @@ const authPersistConfig = {
 
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
+  notifications: notificationsReducer,
   [authAPI.reducerPath]: authAPI.reducer,
+  [usersAPI.reducerPath]: usersAPI.reducer
 });
 
 const appStore = configureStore({
@@ -19,6 +23,7 @@ const appStore = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat(
       authAPI.middleware,
+      usersAPI.middleware
     ),
 });
 

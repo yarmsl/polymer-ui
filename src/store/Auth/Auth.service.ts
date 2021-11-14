@@ -15,26 +15,19 @@ export const authAPI = createApi({
     }
   }),
   endpoints: (build) => ({
-    signIn: build.mutation<ISignInResponse, formLogin>({
+    signIn: build.mutation<IUser, formSignIn>({
       query: (signData) => ({
         url: "/signin",
         method: "POST",
         body: signData,
       }),
     }),
-    signUp: build.mutation<ISignUpResponse, formLogin>({
-      query: (signData) => ({
-        url: "/signup",
-        method: "POST",
-        body: signData,
-      }),
-    }),
     checkAuth: build.query<IUser, string>({
       query: () => ({
-        url: "/checkauth",
+        url: "/",
       })
     })
   }),
 });
 
-export const { useSignInMutation, useSignUpMutation, useCheckAuthQuery } = authAPI;
+export const { useSignInMutation, useCheckAuthQuery } = authAPI;

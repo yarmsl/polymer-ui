@@ -1,6 +1,5 @@
 import { ReactElement, useEffect, useMemo } from "react";
-import { useRoutes } from "./Routes";
-import MainLayout from "./layouts/MainLayout";
+import Routes from "./Routes";
 import {
   CssBaseline,
   ThemeProvider,
@@ -9,22 +8,24 @@ import {
 import { BrowserRouter as Router } from "react-router-dom";
 import theme from "./UI/theme";
 import { useAppSelector, useAppDispatch } from "./store";
-import { logout, useCheckAuthQuery } from "./store/Auth";
+import { logout, setAuth, useCheckAuthQuery } from "./store/Auth";
+import useNotifier from "./lib/Notifer";
 
 const App = (): ReactElement => {
+  useNotifier();
   const dispatch = useAppDispatch();
   const { isAuth, token } = useAppSelector((st) => st.auth);
-
-  const routes = useRoutes(isAuth);
-  const skipQuery = useMemo(() => !!token, [token]);
-  const { data, isError } = useCheckAuthQuery("", { skip: skipQuery });
+  const skipQuery = useMemo(() => !!token && isAuth === true, [isAuth, token]);
+  const { data, isError } = useCheckAuthQuery("", {
+    skip: skipQuery,
+  });
 
   useEffect(() => {
     if (data) {
-      console.log('checkauth - ok')
+      dispatch(setAuth(data));
     }
     if (isError) {
-      dispatch(logout())
+      dispatch(logout());
     }
   }, [data, dispatch, isError]);
   return (
@@ -32,7 +33,7 @@ const App = (): ReactElement => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Router>
-          <MainLayout>{routes}</MainLayout>
+          <Routes isAuth={isAuth} />
         </Router>
       </ThemeProvider>
     </StyledEngineProvider>
