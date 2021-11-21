@@ -4,8 +4,7 @@ import {
   Container,
   TextField,
   Button,
-  Typography,
-  LinearProgress,
+  CircularProgress,
 } from "@mui/material";
 import { useAppDispatch } from "../../store";
 import { useSignUpMutation } from "../../store/Users";
@@ -20,10 +19,6 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-  } as const,
-  title: {
-    mb: "15px",
-    userSelect: "none",
   } as const,
   form: {
     width: "100%",
@@ -59,7 +54,6 @@ const CreateUser = (): JSX.Element => {
 
   return (
     <Container sx={styles.root} maxWidth="xs">
-      <Typography variant="h5" sx={styles.title}>Создание нового пользователя</Typography>
       <Box sx={styles.form} component="form">
         <Controller
           name="name"
@@ -67,6 +61,7 @@ const CreateUser = (): JSX.Element => {
           defaultValue=""
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <TextField
+              color={"info"}
               tabIndex={1}
               sx={styles.input}
               label="Имя"
@@ -89,6 +84,7 @@ const CreateUser = (): JSX.Element => {
           defaultValue=""
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <TextField
+              color={"warning"}
               tabIndex={1}
               sx={styles.input}
               label="Email"
@@ -141,12 +137,17 @@ const CreateUser = (): JSX.Element => {
           color="success"
           disabled={signUpLoading}
           onClick={handleSignUp}
-          endIcon={<AddRoundedIcon />}
+          endIcon={
+            signUpLoading ? (
+              <CircularProgress color="inherit" size={20} />
+            ) : (
+              <AddRoundedIcon />
+            )
+          }
         >
           Создать
         </Button>
       </Box>
-      {signUpLoading && <LinearProgress color="secondary" />}
     </Container>
   );
 };

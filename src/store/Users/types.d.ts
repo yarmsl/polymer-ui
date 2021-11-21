@@ -1,5 +1,6 @@
 interface IUserResponse extends IEditUserById {
-  created_on: string;
+  createdAt: string;
+  updatedAt: string;
   email: string;
 }
 

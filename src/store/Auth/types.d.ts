@@ -18,4 +18,4 @@ interface IUser {
   vacancies: string[];
 }
 
-type RoleTypes = 'admin' | 'user';
+type RoleTypes = 'admin' | 'user' | 'dev';

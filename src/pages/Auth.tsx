@@ -5,7 +5,7 @@ import {
   TextField,
   Button,
   Typography,
-  LinearProgress,
+  CircularProgress,
 } from "@mui/material";
 import HelmetTitle from "../layouts/Helmet";
 import { useAppDispatch } from "../store";
@@ -14,19 +14,24 @@ import { showErrorSnackbar } from "../store/Notifications";
 
 const styles = {
   root: {
-    height: "280px",
+    height: "100%",
     display: "flex",
     flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   } as const,
   title: {
     mb: "15px",
-    userSelect: "none",
-  } as const,
+  },
   form: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-end",
     "&>*": {
       mb: "15px",
     },
-  },
+  } as const,
   input: {
     height: "82px",
   },
@@ -62,6 +67,7 @@ const Auth = (): JSX.Element => {
             defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <TextField
+                color="warning"
                 tabIndex={1}
                 sx={styles.input}
                 label="Email"
@@ -114,11 +120,13 @@ const Auth = (): JSX.Element => {
             color="primary"
             disabled={signInLoading}
             onClick={handleSignIn}
+            startIcon={
+              signInLoading && <CircularProgress color="inherit" size={20} />
+            }
           >
-            Sign in
+            Войти
           </Button>
         </Box>
-        {signInLoading && <LinearProgress color="secondary" />}
       </Container>
     </>
   );

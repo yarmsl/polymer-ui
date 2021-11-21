@@ -10,6 +10,7 @@ import theme from "./UI/theme";
 import { useAppSelector, useAppDispatch } from "./store";
 import { logout, setAuth, useCheckAuthQuery } from "./store/Auth";
 import useNotifier from "./lib/Notifer";
+import ModalStack from "./components/ModalStack";
 
 const App = (): ReactElement => {
   useNotifier();
@@ -28,6 +29,7 @@ const App = (): ReactElement => {
       dispatch(logout());
     }
   }, [data, dispatch, isError]);
+
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
@@ -35,6 +37,7 @@ const App = (): ReactElement => {
         <Router>
           <Routes isAuth={isAuth} />
         </Router>
+        <ModalStack />
       </ThemeProvider>
     </StyledEngineProvider>
   );

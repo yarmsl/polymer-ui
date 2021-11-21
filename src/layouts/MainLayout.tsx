@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
-import Header from "../components/Header";
+import Header from "./Header";
 import { Container } from "@mui/material";
-import Footer from "../components/Footer";
+import Footer from "./Footer";
 
 const styles = {
   root: {
