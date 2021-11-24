@@ -13,26 +13,7 @@ import {
   showSuccessSnackbar,
 } from "../../store/Notifications";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-
-const styles = {
-  root: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  } as const,
-  form: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    "&>*": {
-      mb: "15px",
-    },
-  } as const,
-  input: {
-    height: "82px",
-  },
-};
+import { SxProps } from "@mui/system";
 
 const CreateUser = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -150,6 +131,26 @@ const CreateUser = (): JSX.Element => {
       </Box>
     </Container>
   );
+};
+
+const styles: Record<string, SxProps> = {
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  form: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    "&>*": {
+      mb: "15px",
+    },
+  },
+  input: {
+    height: "82px",
+  },
 };
 
 export default CreateUser;

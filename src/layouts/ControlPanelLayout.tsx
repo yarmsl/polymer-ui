@@ -18,6 +18,7 @@ import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import { useHistory, useRouteMatch } from "react-router";
 import { useAppSelector } from "../store";
+import { SxProps } from "@mui/system";
 
 const pages = [
   {
@@ -93,12 +94,12 @@ const ControlPanelLayout = ({ children }: Child): ReactElement => {
   );
 };
 
-const styles = {
+const styles: Record<string, SxProps> = {
   root: {
     width: "100%",
     height: "auto",
     pt: "64px",
-  } as const,
+  },
   back: {
     height: "56px",
     display: "flex",

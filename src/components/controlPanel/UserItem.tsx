@@ -8,6 +8,7 @@ import { useRemoveUserMutation } from "../../store/Users";
 import { showErrorSnackbar, showSuccessSnackbar } from "../../store/Notifications";
 import { openModal } from "../../store/ModalStack";
 import { useAppDispatch } from "../../store";
+
 interface IUserItemProps {
     user: IUserResponse;
   }

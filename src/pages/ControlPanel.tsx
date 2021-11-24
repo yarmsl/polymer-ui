@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 import HelmetTitle from "../layouts/Helmet";
 import { Box, Typography } from "@mui/material";
+import { SxProps } from "@mui/system";
 
 const ControlPanel = (): ReactElement => {
   return (
@@ -13,10 +14,10 @@ const ControlPanel = (): ReactElement => {
   );
 };
 
-const styles = {
+const styles: Record<string, SxProps> = {
   root: {
     width: "100%",
-  } as const,
+  },
 };
 
 export default ControlPanel;

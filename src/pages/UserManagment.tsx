@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import { SxProps } from "@mui/system";
 import { ReactElement } from "react";
 import CreateUser from "../components/controlPanel/CreateUser";
 import EditUsers from "../components/controlPanel/EditUsers";
@@ -16,7 +17,7 @@ const UserManagment = (): ReactElement => {
   );
 };
 
-const styles = {
+const styles: Record<string, SxProps> = {
   root: {
     width: "100%",
     display: 'flex',
@@ -25,7 +26,7 @@ const styles = {
     "&>*": {
       m: "24px 0",
     },
-  } as const,
+  },
 };
 
 export default UserManagment;

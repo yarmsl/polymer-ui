@@ -2,16 +2,9 @@ import { ReactElement } from "react";
 import Header from "./Header";
 import { Container } from "@mui/material";
 import Footer from "./Footer";
-
-const styles = {
-  root: {
-    width: "100%",
-    height: "100%",
-  } as const,
-};
+import { SxProps } from "@mui/system";
 
 const MainLayout = ({ children }: Child): ReactElement => {
-
   return (
     <>
       <Header />
@@ -21,6 +14,13 @@ const MainLayout = ({ children }: Child): ReactElement => {
       <Footer />
     </>
   );
+};
+
+const styles: Record<string, SxProps> = {
+  root: {
+    width: "100%",
+    height: "100%",
+  },
 };
 
 export default MainLayout;

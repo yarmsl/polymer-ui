@@ -11,31 +11,7 @@ import HelmetTitle from "../layouts/Helmet";
 import { useAppDispatch } from "../store";
 import { setAuth, useSignInMutation } from "../store/Auth";
 import { showErrorSnackbar } from "../store/Notifications";
-
-const styles = {
-  root: {
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-  } as const,
-  title: {
-    mb: "15px",
-  },
-  form: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-end",
-    "&>*": {
-      mb: "15px",
-    },
-  } as const,
-  input: {
-    height: "82px",
-  },
-};
+import { SxProps } from "@mui/system";
 
 const Auth = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -130,6 +106,31 @@ const Auth = (): JSX.Element => {
       </Container>
     </>
   );
+};
+
+const styles: Record<string, SxProps> = {
+  root: {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  title: {
+    mb: "15px",
+  },
+  form: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-end",
+    "&>*": {
+      mb: "15px",
+    },
+  },
+  input: {
+    height: "82px",
+  },
 };
 
 export default Auth;
