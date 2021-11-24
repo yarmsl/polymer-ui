@@ -27,7 +27,7 @@ const EditUsers = (): JSX.Element => {
             <TableRow>
               <TableCell>Имя</TableCell>
               <TableCell>Email</TableCell>
-              <TableCell>Роль</TableCell>
+              <TableCell>Доступ</TableCell>
               <TableCell>Создан</TableCell>
               <TableCell>Изменен</TableCell>
               <TableCell>Изменить</TableCell>

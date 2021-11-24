@@ -4,7 +4,6 @@ import storage from "redux-persist/lib/storage";
 import { authReducer, authAPI } from "./Auth";
 import { ModalStackReducer } from "./ModalStack";
 import { notificationsReducer } from "./Notifications";
-import { UIReducer } from "./UI";
 import { usersAPI } from "./Users";
 
 const authPersistConfig = {
@@ -17,7 +16,6 @@ const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
   notifications: notificationsReducer,
   modalStack: ModalStackReducer,
-  UI: UIReducer,
   [authAPI.reducerPath]: authAPI.reducer,
   [usersAPI.reducerPath]: usersAPI.reducer
 });

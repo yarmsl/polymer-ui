@@ -46,7 +46,7 @@ const CreateUser = (): JSX.Element => {
     } catch (e) {
       dispatch(
         showErrorSnackbar(
-          (e as IQueryError).data.message || "failed to add user"
+          (e as IQueryError)?.data?.message || "failed to add user"
         )
       );
     }

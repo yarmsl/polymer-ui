@@ -1,7 +1,6 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
-
-const theme = createTheme({
+const defaultTheme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -14,8 +13,8 @@ const theme = createTheme({
   typography: {
     fontFamily: "PT Root UI",
     button: {
-      textTransform: 'none'
-    }
+      textTransform: "none",
+    },
   },
   palette: {
     primary: {
@@ -105,5 +104,7 @@ const theme = createTheme({
     },
   },
 });
+
+const theme = responsiveFontSizes(defaultTheme);
 
 export default theme;

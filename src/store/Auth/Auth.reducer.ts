@@ -6,7 +6,7 @@ const initialState: IAuth = {
   name: "",
   role: "user",
   articles: [],
-  companies: [],
+  customers: [],
   presentationFile: '',
   productions: [],
   projects: [],

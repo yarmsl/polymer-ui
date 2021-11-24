@@ -15,7 +15,7 @@ import ModalStack from "./components/ModalStack";
 const App = (): ReactElement => {
   useNotifier();
   const dispatch = useAppDispatch();
-  const { isAuth, token } = useAppSelector((st) => st.auth);
+  const { isAuth, token, role } = useAppSelector((st) => st.auth);
   const skipQuery = useMemo(() => !!token && isAuth === true, [isAuth, token]);
   const { data, isError } = useCheckAuthQuery("", {
     skip: skipQuery,
@@ -35,7 +35,7 @@ const App = (): ReactElement => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Router>
-          <Routes isAuth={isAuth} />
+          <Routes isAuth={isAuth} role={role} />
         </Router>
         <ModalStack />
       </ThemeProvider>

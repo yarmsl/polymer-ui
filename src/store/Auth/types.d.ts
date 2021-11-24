@@ -7,7 +7,7 @@ interface IUser {
   name: string;
   role: RoleTypes;
   articles: string[];
-  companies: string[];
+  customers: string[];
   presentationFile: string;
   productions: string[];
   projects: string[];

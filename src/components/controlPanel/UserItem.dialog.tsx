@@ -32,7 +32,7 @@ const UserItemDialog = ({ user }: IUserItemDialogProps): JSX.Element => {
       const res = await editUser(sendData).unwrap();
       dispatch(showSuccessSnackbar(res.message || "success"));
     } catch (e) {
-      dispatch(showErrorSnackbar((e as IQueryError).data.message || "fail"));
+      dispatch(showErrorSnackbar((e as IQueryError)?.data?.message || "fail"));
     }
   });
   return (
