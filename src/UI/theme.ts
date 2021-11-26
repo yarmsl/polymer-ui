@@ -1,5 +1,4 @@
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
-import { SxProps } from "@mui/system";
 
 const defaultTheme = createTheme({
   breakpoints: {

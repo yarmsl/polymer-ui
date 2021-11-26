@@ -20,7 +20,6 @@ const App = (): ReactElement => {
   const { data, isError } = useCheckAuthQuery("", {
     skip: skipQuery,
   });
-
   useEffect(() => {
     if (data) {
       dispatch(setAuth(data));
