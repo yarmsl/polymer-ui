@@ -42,7 +42,7 @@ const FooterCarousel = (): JSX.Element => {
   return (
     <Box sx={styles.root}>
       <Box sx={styles.feedback}>
-        {match.path !== "/about" && <FeedBackDownload />}
+        {match.path !== "/contacts" && <FeedBackDownload />}
       </Box>
       <Swiper
         effect="fade"
@@ -127,7 +127,6 @@ const styles: Record<string, SxProps> = {
     margin: "0 50%",
     bottom: 40,
     left: 250,
-    textShadow: "0 0 2px #000",
     zIndex: 3,
     "&>p": {
       overflow: "hidden",
