@@ -5,7 +5,7 @@ const defaultTheme = createTheme({
     values: {
       xs: 0,
       sm: 600,
-      md: 1024,
+      md: 900,
       lg: 1366,
       xl: 1920,
     },
@@ -14,6 +14,18 @@ const defaultTheme = createTheme({
     fontFamily: "PT Root UI",
     button: {
       textTransform: "none",
+    },
+    h6: {
+      fontSize: 24,
+      fontWeight: 500,
+      userSelect: 'none'
+    },
+    body1: {
+      fontSize: 14,
+    },
+    body2: {
+      fontSize: 10,
+      fontWeight: 500,
     },
   },
   palette: {
@@ -26,7 +38,7 @@ const defaultTheme = createTheme({
     secondary: {
       // dark: "#00a152",
       main: "#C4C4C4",
-      // light: "#33eb91",
+      light: "#F9F9F9",
       contrastText: "#fff",
     },
   },
@@ -68,6 +80,36 @@ const defaultTheme = createTheme({
         },
       },
     },
+    MuiButton: {
+      styleOverrides: {
+        containedPrimary: {
+          "&:hover": {
+            backgroundColor: "#FF1C26",
+          },
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#fff",
+        },
+      },
+    },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          textDecoration: "none",
+        },
+      },
+    },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#fff",
+        },
+      },
+    },
     MuiCssBaseline: {
       styleOverrides: {
         "::-webkit-scrollbar": {
@@ -96,9 +138,11 @@ const defaultTheme = createTheme({
           userSelect: "none",
         },
         "#root": {
+          display: "flex",
+          flexDirection: "column",
           width: "100%",
           minWidth: "320px",
-          height: "100%",
+          minHeight: "100%",
         },
       },
     },

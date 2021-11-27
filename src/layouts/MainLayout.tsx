@@ -4,6 +4,17 @@ import { Container } from "@mui/material";
 import Footer from "./Footer";
 import { SxProps } from "@mui/system";
 
+export const pages = [
+  {
+    title: "Промышленный дизайн и инжиниринг",
+    path: "/indastrial_design_and_engineering",
+  },
+  { title: "Производство", path: "/production" },
+  { title: "Проекты", path: "/projects" },
+  { title: "О компании", path: "/about" },
+  { title: "Контакты", path: "/contacts" },
+];
+
 const MainLayout = ({ children }: Child): ReactElement => {
   return (
     <>
@@ -18,8 +29,7 @@ const MainLayout = ({ children }: Child): ReactElement => {
 
 const styles: Record<string, SxProps> = {
   root: {
-    width: "100%",
-    height: "100%",
+    flexGrow: 1
   },
 };
 
