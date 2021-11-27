@@ -30,7 +30,7 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
           "/production",
           "/about",
           "/contacts",
-          "/projects/:id",
+          "/projects",
         ]}
       >
         <MainLayout>
@@ -44,10 +44,11 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
             <Route exact path="/production" component={Production} />
             <Route exact path="/about" component={About} />
             <Route exact path="/contacts" component={Contacts} />
-            <Route path="/projects/:id" component={Projects} />
+            <Route path="/projects" component={Projects} />
           </Switch>
         </MainLayout>
       </Route>
+      <Route component={NotFound} />
       {isAuth ? (
         <Route exact path={["/control_panel", "/user_managment"]}>
           <ControlPanelLayout>
@@ -63,7 +64,7 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
       ) : (
         <Route component={Auth} />
       )}
-      <Route component={NotFound} />
+      
     </Switch>
   );
 };

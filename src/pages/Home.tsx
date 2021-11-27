@@ -6,7 +6,23 @@ const Home = (): ReactElement => {
   return (
     <>
       <HelmetTitle title="Главная" />
-      <Container>Главная</Container>
+      <Container sx={{display: 'block', '&>*':{ mb: '50px'}}}>
+        <div>Главная</div>
+        <div>Главная</div>
+        <div>Главная</div>
+        <div>Главная</div>
+        <div>Главная</div>
+        <div>Главная</div>
+        <div>Главная</div>
+        <div>Главная</div>
+        <div>Главная</div>
+        <div>Главная</div>
+        <div>Главная</div>
+        <div>Главная</div>
+        <div>Главная</div>
+        <div>Главная</div>
+ 
+      </Container>
     </>
   );
 };
