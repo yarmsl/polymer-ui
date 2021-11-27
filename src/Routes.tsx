@@ -3,7 +3,6 @@ import { Switch, Route } from "react-router-dom";
 import ControlPanelLayout from "./layouts/ControlPanelLayout";
 import MainLayout from "./layouts/MainLayout";
 import NotFound from "./pages/404";
-import NotFoundCP from "./pages/404Cp";
 import About from "./pages/About";
 import Auth from "./pages/Auth";
 import Contacts from "./pages/Contacts";
@@ -48,23 +47,23 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
           </Switch>
         </MainLayout>
       </Route>
-      <Route component={NotFound} />
-      {isAuth ? (
-        <Route exact path={["/control_panel", "/user_managment"]}>
+      
+
+      <Route exact path={["/control_panel", "/user_managment"]}>
+        {isAuth ? (
           <ControlPanelLayout>
             <Switch>
               <Route exact path="/control_panel" component={ControlPanel} />
               {role !== "user" && (
                 <Route exact path="/user_managment" component={UserManagment} />
               )}
-              <Route component={NotFoundCP} />
             </Switch>
           </ControlPanelLayout>
-        </Route>
-      ) : (
-        <Route component={Auth} />
-      )}
-      
+        ) : (
+          <Route component={Auth} />
+        )}
+      </Route>
+      <Route component={NotFound} />
     </Switch>
   );
 };

@@ -9,7 +9,7 @@ import FooterCarousel from "../components/FooterCarousel";
 const Footer = (): JSX.Element => {
   return (
     <Box sx={styles.root} component="footer">
-      <FooterCarousel/>
+      <FooterCarousel />
       <Container maxWidth="md" sx={styles.footer}>
         <Box sx={styles.main}>
           <Box sx={styles.nav}>
@@ -56,14 +56,12 @@ const styles: Record<string, SxProps> = {
   },
   nav: {
     height: "86px",
-    mb: '48px',
+    mb: "48px",
     display: "flex",
     flexDirection: "column",
     flexWrap: "wrap",
-    alignContent: "flex-start",
   },
   link: {
-    minWidth: "280px",
     color: "#777777",
     fontSize: "14px",
     mb: "4px",
@@ -73,20 +71,20 @@ const styles: Record<string, SxProps> = {
     },
   },
   logo: {
-    height: '26px',
+    height: "26px",
     display: "flex",
     alignItems: "center",
-    userSelect: 'none',
+    userSelect: "none",
     "&>div": {
-      height: '100%',
+      height: "100%",
       display: "flex",
       flexDirection: "column",
-      justifyContent: 'space-between',
+      justifyContent: "space-between",
       ml: "6px",
       "& p": {
         fontSize: "12px",
         lineHeight: "12px",
-        color: '#777'
+        color: "#777",
       },
       "& p:first-of-type": {
         fontWeight: 700,

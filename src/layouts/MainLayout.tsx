@@ -1,8 +1,10 @@
-import { ReactElement } from "react";
+import { ReactElement, useMemo } from "react";
 import Header from "./Header";
 import { Container } from "@mui/material";
 import Footer from "./Footer";
 import { SxProps } from "@mui/system";
+import MainBanner from "../components/MainBanner";
+import { useRouteMatch } from "react-router";
 
 export const pages = [
   {
@@ -16,10 +18,21 @@ export const pages = [
 ];
 
 const MainLayout = ({ children }: Child): ReactElement => {
+  const match = useRouteMatch();
+  const showBanner = useMemo(
+    () =>
+      [
+        "/",
+        ...pages
+          .map((page) => page.path)
+          .filter((path) => path !== "/contacts"),
+      ].includes(match.path) && match.isExact,
+    [match]
+  );
   return (
     <>
       <Header />
-      
+      {showBanner && <MainBanner />}
       <Container disableGutters sx={styles.root} maxWidth={false}>
         <>{children}</>
       </Container>
@@ -30,7 +43,7 @@ const MainLayout = ({ children }: Child): ReactElement => {
 
 const styles: Record<string, SxProps> = {
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
 };
 
