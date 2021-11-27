@@ -15,8 +15,13 @@ const defaultTheme = createTheme({
     button: {
       textTransform: "none",
     },
-    h6: {
+    h5: {
       fontSize: 24,
+      fontWeight: 500,
+      userSelect: 'none'
+    },
+    h6: {
+      fontSize: 18,
       fontWeight: 500,
       userSelect: 'none'
     },

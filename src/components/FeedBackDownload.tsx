@@ -4,7 +4,7 @@ import { SxProps } from "@mui/system";
 const FeedBackDownload = (): JSX.Element => {
   return (
     <Box sx={styles.root}>
-      <Typography variant="h6" color="white">
+      <Typography variant="h5" component='p' color="white">
         Хотите узнать о нас больше?
       </Typography>
       <Button size="large" variant="contained" color="primary">
