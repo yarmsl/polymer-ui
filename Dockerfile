@@ -1,16 +1,13 @@
-FROM node:8.12-alpine AS builder
+FROM node:14-alpine AS builder
 ENV NODE_ENV production
 WORKDIR /web
 ADD package.json package.json
 ADD package-lock.json package-lock.json
-RUN apk add --no-cache --virtual .gyp \
-        py3-pip \
-        make \
-        g++ \
-    && npm install \
-    && apk del .gyp
+RUN apk add --no-cache g++ make py3-pip
+RUN npm install
 ADD . .
 RUN npm run build
+RUN apk del .gyp
 
 FROM nginx:1.21.0-alpine as production
 ENV NODE_ENV production
