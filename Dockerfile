@@ -3,11 +3,15 @@ ENV NODE_ENV production
 WORKDIR /web
 ADD package.json package.json
 ADD package-lock.json package-lock.json
-RUN apk add --no-cache --virtual g++ make py3-pip
-RUN npm install
+RUN apk add --no-cache --virtual .gyp \
+        py3-pip \
+        make \
+        g++ \
+    && npm install \
+    && apk del .gyp
 ADD . .
 RUN npm run build
-RUN apk del .gyp
+
 
 FROM nginx:1.21.0-alpine as production
 ENV NODE_ENV production
