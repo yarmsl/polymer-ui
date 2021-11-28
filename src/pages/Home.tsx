@@ -1,28 +1,14 @@
 import { ReactElement } from "react";
 import HelmetTitle from "../layouts/Helmet";
-import { Container } from "@mui/material";
+import MainAbout from "../components/MainAbout";
+import TrustUs from "../components/TrustUs";
 
 const Home = (): ReactElement => {
   return (
     <>
       <HelmetTitle title="Главная" />
-      <Container sx={{display: 'block', '&>*':{ mb: '50px'}}}>
-        <div>Главная</div>
-        <div>Главная</div>
-        <div>Главная</div>
-        <div>Главная</div>
-        <div>Главная</div>
-        <div>Главная</div>
-        <div>Главная</div>
-        <div>Главная</div>
-        <div>Главная</div>
-        <div>Главная</div>
-        <div>Главная</div>
-        <div>Главная</div>
-        <div>Главная</div>
-        <div>Главная</div>
- 
-      </Container>
+      <MainAbout />
+      {/* <TrustUs /> */}
     </>
   );
 };

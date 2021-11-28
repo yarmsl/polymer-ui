@@ -7,6 +7,7 @@ import About from "./pages/About";
 import Auth from "./pages/Auth";
 import Contacts from "./pages/Contacts";
 import ControlPanel from "./pages/ControlPanel";
+import Customer from "./pages/Customer";
 import Home from "./pages/Home";
 import IndDesEngineering from "./pages/IndDesEngineering";
 import Production from "./pages/Production";
@@ -30,6 +31,7 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
           "/about",
           "/contacts",
           "/projects",
+          "/customer/:id"
         ]}
       >
         <MainLayout>
@@ -43,7 +45,8 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
             <Route exact path="/production" component={Production} />
             <Route exact path="/about" component={About} />
             <Route exact path="/contacts" component={Contacts} />
-            <Route path="/projects" component={Projects} />
+            <Route exact path="/projects" component={Projects} />
+            <Route exact path="/customer/:id" component={Customer} />
           </Switch>
         </MainLayout>
       </Route>

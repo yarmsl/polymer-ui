@@ -45,6 +45,7 @@ const FooterCarousel = (): JSX.Element => {
         {match.path !== "/contacts" && <FeedBackDownload />}
       </Box>
       <Swiper
+        loop={true}
         effect="fade"
         autoplay={{
           delay: 15000,

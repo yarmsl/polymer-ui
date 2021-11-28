@@ -42,6 +42,7 @@ const CreateUser = (): JSX.Element => {
           defaultValue=""
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <TextField
+              size="small"
               color={"info"}
               tabIndex={1}
               sx={styles.input}
@@ -65,6 +66,7 @@ const CreateUser = (): JSX.Element => {
           defaultValue=""
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <TextField
+              size="small"
               color={"warning"}
               tabIndex={1}
               sx={styles.input}
@@ -93,6 +95,7 @@ const CreateUser = (): JSX.Element => {
           defaultValue=""
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <TextField
+              size="small"
               tabIndex={2}
               sx={styles.input}
               label="Пароль"
@@ -149,7 +152,7 @@ const styles: Record<string, SxProps> = {
     },
   },
   input: {
-    height: "82px",
+    height: "68px",
   },
 };
 

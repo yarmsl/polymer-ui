@@ -1,8 +1,8 @@
-name: Deploy ConsoleLogbook Front
+name: Deploy Polymer Front
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -13,7 +13,7 @@ jobs:
           uses: elgohr/Publish-Docker-Github-Action@master
           with:
             registry: docker.pkg.github.com
-            name: docker.pkg.github.com/yarmsl/console.logbook/console-logbook-front
+            name: docker.pkg.github.com/yarmsl/frontend-ural_polymer/frontend-uralpolymer
             username: ${{ secrets.DOCKER_USERNAME }}
             password: ${{ secrets.DOCKER_PASSWORD }}
             tags: "develop"

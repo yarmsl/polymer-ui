@@ -5,11 +5,13 @@ import GetPresentationByEmail from "../components/GetPresentationByEmail";
 import { pages } from "./MainLayout";
 import { ReactComponent as Logo } from "../assets/LogoGrey.svg";
 import FooterCarousel from "../components/FooterCarousel";
+import { useRouteMatch } from "react-router";
 
 const Footer = (): JSX.Element => {
+  const match = useRouteMatch();
   return (
     <Box sx={styles.root} component="footer">
-      <FooterCarousel />
+      {match.isExact && <FooterCarousel />}
       <Container maxWidth="md" sx={styles.footer}>
         <Box sx={styles.main}>
           <Box sx={styles.nav}>

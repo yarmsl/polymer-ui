@@ -49,6 +49,7 @@ const UserItemDialog = ({ user }: IUserItemDialogProps): JSX.Element => {
           defaultValue={user.name}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <TextField
+              size="small"
               tabIndex={1}
               sx={styles.input}
               label="Имя"
@@ -70,6 +71,7 @@ const UserItemDialog = ({ user }: IUserItemDialogProps): JSX.Element => {
           defaultValue={user.role}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <TextField
+              size="small"
               tabIndex={2}
               sx={styles.input}
               label="Уровень доступа"
@@ -143,7 +145,7 @@ const styles: Record<string, SxProps> = {
     },
   },
   input: {
-    height: "82px",
+    height: "68px",
   },
 };
 

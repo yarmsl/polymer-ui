@@ -35,7 +35,7 @@ const defaultTheme = createTheme({
       fontSize: 14,
     },
     body2: {
-      fontSize: 10,
+      fontSize: 12,
       fontWeight: 500,
     },
   },

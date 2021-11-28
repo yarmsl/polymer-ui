@@ -19,6 +19,7 @@ import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import { useHistory, useRouteMatch } from "react-router";
 import { useAppSelector } from "../store";
 import { SxProps } from "@mui/system";
+import { ReactComponent as Logo } from "../assets/Logo.svg";
 
 const pages = [
   {
@@ -51,14 +52,10 @@ const ControlPanelLayout = ({ children }: Child): ReactElement => {
     <Container disableGutters sx={styles.root} maxWidth={false}>
       <AppBar>
         <Toolbar>
-          <IconButton
-            onClick={() => setBurger((p) => !p)}
-            color="inherit"
-            size="large"
-          >
+          <IconButton onClick={() => setBurger((p) => !p)} size="large">
             <MenuRoundedIcon />
           </IconButton>
-          <Typography sx={{ ml: "32px" }} variant="h5">
+          <Typography color="gray" sx={{ ml: "32px" }} variant="h5">
             {title}
           </Typography>
         </Toolbar>
@@ -70,6 +67,9 @@ const ControlPanelLayout = ({ children }: Child): ReactElement => {
       >
         <List>
           <ListItem sx={styles.back}>
+            <IconButton onClick={() => router.push("/")}>
+              <Logo />
+            </IconButton>
             <IconButton onClick={() => setBurger((p) => !p)} size="large">
               <ArrowBackRoundedIcon />
             </IconButton>
@@ -103,7 +103,7 @@ const styles: Record<string, SxProps> = {
   back: {
     height: "56px",
     display: "flex",
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
   } as const,
 };
 

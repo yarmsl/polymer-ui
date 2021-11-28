@@ -22,10 +22,10 @@ const mock = [
 ];
 
 const MainSlider = (): JSX.Element => {
-
   return (
     <Box sx={styles.root}>
       <Swiper
+        loop={true}
         effect="fade"
         autoplay={{
           delay: 15000,
@@ -101,9 +101,9 @@ const styles: Record<string, SxProps> = {
     zIndex: 2,
   },
   article: {
-    width: '100%',
-    maxWidth: '872px',
-    minWidth: '300px',
+    width: "100%",
+    maxWidth: "872px",
+    minWidth: "300px",
     m: "0 10px",
     position: "absolute",
     zIndex: 4,

@@ -44,6 +44,8 @@ const MainLayout = ({ children }: Child): ReactElement => {
 const styles: Record<string, SxProps> = {
   root: {
     flexGrow: 1,
+    flexDirection: "column",
+    alignItems: "center",
   },
 };
 
