@@ -3,6 +3,7 @@ ENV NODE_ENV production
 WORKDIR /web
 ADD package.json package.json
 ADD package-lock.json package-lock.json
+RUN apk update && apk add py3-pip make g++
 RUN npm install
 ADD . .
 RUN npm run build
