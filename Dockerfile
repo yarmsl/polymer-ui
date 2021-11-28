@@ -1,9 +1,9 @@
 FROM node:14-alpine AS builder
-RUN apk add --no-cache --virtual g++ make py3-pip
 ENV NODE_ENV production
 WORKDIR /web
 ADD package.json package.json
 ADD package-lock.json package-lock.json
+RUN apk add --no-cache --virtual g++ make py3-pip
 RUN npm install
 ADD . .
 RUN npm run build
