@@ -149,6 +149,7 @@ const defaultTheme = createTheme({
           userSelect: "none",
         },
         "#root": {
+          fontDisplay: 'auto',
           display: "flex",
           flexDirection: "column",
           width: "100%",
