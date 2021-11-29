@@ -12,6 +12,7 @@ import Home from "./pages/Home";
 import IndDesEngineering from "./pages/IndDesEngineering";
 import Production from "./pages/Production";
 import Projects from "./pages/Projects";
+import Tags from "./pages/Tags";
 import UserManagment from "./pages/UserManagment";
 
 interface IRoutesProps {
@@ -31,7 +32,7 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
           "/about",
           "/contacts",
           "/projects",
-          "/customer/:id"
+          "/customer/:id",
         ]}
       >
         <MainLayout>
@@ -50,9 +51,8 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
           </Switch>
         </MainLayout>
       </Route>
-      
 
-      <Route exact path={["/control_panel", "/user_managment"]}>
+      <Route exact path={["/control_panel", "/user_managment", "/tags"]}>
         {isAuth ? (
           <ControlPanelLayout>
             <Switch>
@@ -60,6 +60,7 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
               {role !== "user" && (
                 <Route exact path="/user_managment" component={UserManagment} />
               )}
+              <Route exact path="/tags" component={Tags} />
             </Switch>
           </ControlPanelLayout>
         ) : (

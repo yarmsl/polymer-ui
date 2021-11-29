@@ -16,6 +16,7 @@ import AdminPanelSettingsRoundedIcon from "@mui/icons-material/AdminPanelSetting
 import GroupRoundedIcon from "@mui/icons-material/GroupRounded";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
+import TagIcon from '@mui/icons-material/Tag';
 import { useHistory, useRouteMatch } from "react-router";
 import { useAppSelector } from "../store";
 import { SxProps } from "@mui/system";
@@ -34,6 +35,12 @@ const pages = [
     icon: <GroupRoundedIcon />,
     access: "admin",
   },
+  {
+    title: "Теги (Проекты)",
+    path: "/tags",
+    icon: <TagIcon />,
+    access: "user",
+  }
 ];
 
 const ControlPanelLayout = ({ children }: Child): ReactElement => {

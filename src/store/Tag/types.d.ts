@@ -1,6 +1,17 @@
 interface ITag {
+  _id: string;
   author: string;
   projects: string[];
+  name: string;
+  slug: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface ITagFull {
+  _id: string;
+  author: IUserResponse;
+  projects: IProject[];
   name: string;
   slug: string;
   createdAt: string;
@@ -14,5 +25,10 @@ interface IAddTag {
 
 interface IEditTag {
   id: string;
-  data: IAddTag;
+  data: IEditTagData;
+}
+
+interface IEditTagData {
+  name?: string;
+  slug?: string;
 }

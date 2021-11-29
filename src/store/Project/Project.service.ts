@@ -16,7 +16,7 @@ export const projectAPI = createApi({
   }),
   tagTypes: ["Project"],
   endpoints: (build) => ({
-    addCustomer: build.mutation<IProject, FormData>({
+    addProject: build.mutation<IProject, FormData>({
       query: (projectData) => ({
         url: "/",
         method: "POST",
@@ -24,7 +24,7 @@ export const projectAPI = createApi({
       }),
       invalidatesTags: ["Project"],
     }),
-    editCustomer: build.mutation<IProject, IEditProject>({
+    editProject: build.mutation<IProject, IEditProject>({
       query: (editTagData) => ({
         url: `/${editTagData.id}`,
         method: "PUT",
@@ -32,14 +32,14 @@ export const projectAPI = createApi({
       }),
       invalidatesTags: ["Project"],
     }),
-    deleteCuscomer: build.mutation<IMessage, string>({
+    deleteProject: build.mutation<IMessage, string>({
       query: (projectId) => ({
         url: `/${projectId}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Project"],
     }),
-    getAllCustomers: build.query<ITag[], string>({
+    getAllProjects: build.query<ITag[], string>({
       query: () => ({
         url: "/cp",
         method: "GET",
@@ -50,8 +50,8 @@ export const projectAPI = createApi({
 });
 
 export const {
-  useAddCustomerMutation,
-  useEditCustomerMutation,
-  useDeleteCuscomerMutation,
-  useGetAllCustomersQuery,
+  useAddProjectMutation,
+  useEditProjectMutation,
+  useDeleteProjectMutation,
+  useGetAllProjectsQuery,
 } = projectAPI;

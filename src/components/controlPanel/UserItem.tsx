@@ -27,7 +27,7 @@ const UserItem = ({user}: IUserItemProps) => {
         },
         [dispatch, removeUser, user]
       );
-    return (<TableRow key={user.id}>
+    return (<TableRow>
         <TableCell>{user.name}</TableCell>
         <TableCell>{user.email}</TableCell>
         <TableCell>{user.role}</TableCell>

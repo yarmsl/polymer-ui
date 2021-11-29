@@ -16,7 +16,7 @@ export const tagAPI = createApi({
   }),
   tagTypes: ["Tag"],
   endpoints: (build) => ({
-    addCustomer: build.mutation<ITag, IAddTag>({
+    addTag: build.mutation<ITag, IAddTag>({
       query: (tagData) => ({
         url: "/",
         method: "POST",
@@ -24,7 +24,7 @@ export const tagAPI = createApi({
       }),
       invalidatesTags: ["Tag"],
     }),
-    editCustomer: build.mutation<ITag, IEditTag>({
+    editTag: build.mutation<ITag, IEditTag>({
       query: (editTagData) => ({
         url: `/${editTagData.id}`,
         method: "PUT",
@@ -32,14 +32,14 @@ export const tagAPI = createApi({
       }),
       invalidatesTags: ["Tag"],
     }),
-    deleteCuscomer: build.mutation<IMessage, string>({
+    deleteTag: build.mutation<IMessage, string>({
       query: (tagId) => ({
         url: `/${tagId}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Tag"],
     }),
-    getAllCustomers: build.query<ITag[], string>({
+    getAllTags: build.query<ITagFull[], string>({
       query: () => ({
         url: "/cp",
         method: "GET",
@@ -50,8 +50,8 @@ export const tagAPI = createApi({
 });
 
 export const {
-  useAddCustomerMutation,
-  useEditCustomerMutation,
-  useDeleteCuscomerMutation,
-  useGetAllCustomersQuery,
+  useAddTagMutation,
+  useEditTagMutation,
+  useDeleteTagMutation,
+  useGetAllTagsQuery,
 } = tagAPI;

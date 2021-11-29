@@ -1,32 +1,32 @@
-import { useForm, Controller } from "react-hook-form";
 import {
   Box,
-  Container,
-  TextField,
   Button,
   CircularProgress,
+  Container,
+  TextField,
   Typography,
 } from "@mui/material";
+import { SxProps } from "@mui/system";
+import { Controller, useForm } from "react-hook-form";
 import { useAppDispatch } from "../../store";
-import { useSignUpMutation } from "../../store/Users";
+import { useAddTagMutation } from "../../store/Tag";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import {
   showErrorSnackbar,
   showSuccessSnackbar,
 } from "../../store/Notifications";
-import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import { SxProps } from "@mui/system";
 
-const CreateUser = (): JSX.Element => {
+const AddTag = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const { handleSubmit, control, reset } = useForm<formSignUp>({
-    defaultValues: { name: "", email: "", password: "" },
+  const { handleSubmit, control, reset } = useForm<IAddTag>({
+    defaultValues: { name: "", slug: "" },
   });
-  const [signUp, { isLoading: signUpLoading }] = useSignUpMutation();
+  const [newTag, { isLoading }] = useAddTagMutation();
 
-  const handleSignUp = handleSubmit(async (data) => {
+  const handleNewTag = handleSubmit(async (data) => {
     try {
-      const res = await signUp(data).unwrap();
-      dispatch(showSuccessSnackbar(res.message || "user successfully created"));
+      const res = await newTag(data).unwrap();
+      dispatch(showSuccessSnackbar(`Тег ${res.name} успешно создан`));
       reset();
     } catch (e) {
       dispatch(
@@ -36,12 +36,11 @@ const CreateUser = (): JSX.Element => {
       );
     }
   });
-
   return (
-    <Container sx={styles.root} maxWidth="xs">
+    <Container maxWidth={"xs"}>
       <Box sx={styles.form} component="form">
         <Typography variant="h6" sx={{ mb: "12px" }}>
-          Создание нового пользователя
+          Создание нового тега
         </Typography>
         <Controller
           name="name"
@@ -52,7 +51,7 @@ const CreateUser = (): JSX.Element => {
               color={"info"}
               tabIndex={1}
               sx={styles.input}
-              label="Имя"
+              label="Тег"
               fullWidth
               type="text"
               autoComplete="off"
@@ -63,19 +62,19 @@ const CreateUser = (): JSX.Element => {
             />
           )}
           rules={{
-            required: "Введите имя",
+            required: "Введите название тега",
           }}
         />
         <Controller
-          name="email"
+          name="slug"
           control={control}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <TextField
               size="small"
-              color={"warning"}
+              color={"info"}
               tabIndex={1}
               sx={styles.input}
-              label="Email"
+              label="URL slug"
               fullWidth
               type="text"
               autoComplete="off"
@@ -86,47 +85,23 @@ const CreateUser = (): JSX.Element => {
             />
           )}
           rules={{
-            required: "Введите почту",
+            required: "Введите url slug",
             pattern: {
-              value:
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              message: "Введите корректный email",
+              value: /^[a-zA-Zа-яА-Я0-9_-]*$/,
+              message: "URL slug может содержать только буквы, цифры, - и _",
             },
           }}
         />
-        <Controller
-          name="password"
-          control={control}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <TextField
-              size="small"
-              tabIndex={2}
-              sx={styles.input}
-              label="Пароль"
-              fullWidth
-              type="password"
-              autoComplete="name"
-              value={value}
-              onChange={onChange}
-              error={!!error}
-              helperText={error ? error.message : null}
-            />
-          )}
-          rules={{
-            required: "Enter password",
-            minLength: {
-              value: 6,
-              message: "min password length 6",
-            },
-          }}
-        />
+        <Typography variant="subtitle2">
+          *URL slug будет отображаться в строке браузера
+        </Typography>
         <Button
           variant="contained"
           color="success"
-          disabled={signUpLoading}
-          onClick={handleSignUp}
+          disabled={isLoading}
+          onClick={handleNewTag}
           endIcon={
-            signUpLoading ? (
+            isLoading ? (
               <CircularProgress color="inherit" size={20} />
             ) : (
               <AddRoundedIcon />
@@ -141,20 +116,18 @@ const CreateUser = (): JSX.Element => {
 };
 
 const styles: Record<string, SxProps> = {
-  root: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
   form: {
     width: "100%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    "& > *": {
+      mb: "8px",
+    },
   },
   input: {
     height: "68px",
   },
 };
 
-export default CreateUser;
+export default AddTag;

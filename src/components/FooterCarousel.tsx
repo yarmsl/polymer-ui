@@ -10,8 +10,8 @@ SwiperCore.use([Autoplay, EffectFade, Pagination]);
 const mock = [
   {
     customer: {
-      name: "ООО Рога и Копыта",
-      description: "Входит в группу пьяным",
+      name: "ООО Алмаз",
+      description: "Входит в группу ГАЗ",
     },
     title: "Вагон",
     done: "Всяческие работы выполнены над вагоном",

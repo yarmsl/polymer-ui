@@ -62,6 +62,7 @@ const styles: Record<string, SxProps> = {
     display: "flex",
     flexDirection: "column",
     flexWrap: "wrap",
+    alignItems: 'flex-start',
   },
   link: {
     color: "#777777",
