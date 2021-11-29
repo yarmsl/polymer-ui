@@ -1,4 +1,5 @@
-import { memo, ReactElement } from "react";
+import { Backdrop, CircularProgress } from "@mui/material";
+import { memo, ReactElement, Suspense, lazy } from "react";
 import { Switch, Route } from "react-router-dom";
 import ControlPanelLayout from "./layouts/ControlPanelLayout";
 import MainLayout from "./layouts/MainLayout";
@@ -6,15 +7,14 @@ import NotFound from "./pages/404";
 import About from "./pages/About";
 import Auth from "./pages/Auth";
 import Contacts from "./pages/Contacts";
-import ControlPanel from "./pages/ControlPanel";
 import Customer from "./pages/Customer";
 import Home from "./pages/Home";
 import IndDesEngineering from "./pages/IndDesEngineering";
 import Production from "./pages/Production";
 import Projects from "./pages/Projects";
-import Tags from "./pages/Tags";
-import UserManagment from "./pages/UserManagment";
-
+const ControlPanel = lazy(() => import("./pages/ControlPanel"));
+const UserManagment = lazy(() => import("./pages/UserManagment"));
+const Tags = lazy(() => import("./pages/Tags"));
 interface IRoutesProps {
   isAuth: boolean;
   role: RoleTypes;
@@ -54,15 +54,27 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
 
       <Route exact path={["/control_panel", "/user_managment", "/tags"]}>
         {isAuth ? (
-          <ControlPanelLayout>
-            <Switch>
-              <Route exact path="/control_panel" component={ControlPanel} />
-              {role !== "user" && (
-                <Route exact path="/user_managment" component={UserManagment} />
-              )}
-              <Route exact path="/tags" component={Tags} />
-            </Switch>
-          </ControlPanelLayout>
+          <Suspense
+            fallback={
+              <Backdrop open={true}>
+                <CircularProgress />
+              </Backdrop>
+            }
+          >
+            <ControlPanelLayout>
+              <Switch>
+                <Route exact path="/control_panel" component={ControlPanel} />
+                {role !== "user" && (
+                  <Route
+                    exact
+                    path="/user_managment"
+                    component={UserManagment}
+                  />
+                )}
+                <Route exact path="/tags" component={Tags} />
+              </Switch>
+            </ControlPanelLayout>
+          </Suspense>
         ) : (
           <Route component={Auth} />
         )}
