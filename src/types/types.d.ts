@@ -21,3 +21,7 @@ interface IQueryError {
     message: string;
   };
 }
+
+interface IMessage {
+  message: string
+}

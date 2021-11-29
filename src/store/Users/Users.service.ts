@@ -16,7 +16,7 @@ export const usersAPI = createApi({
   }),
   tagTypes: ["User"],
   endpoints: (build) => ({
-    signUp: build.mutation<{ message: string }, formSignUp>({
+    signUp: build.mutation<IMessage, formSignUp>({
       query: (signData) => ({
         url: "/signup",
         method: "POST",
@@ -24,7 +24,7 @@ export const usersAPI = createApi({
       }),
       invalidatesTags: ['User']
     }),
-    editUserById: build.mutation<{ message: string }, IEditUserById>({
+    editUserById: build.mutation<IMessage, IEditUserById>({
       query: (data) => ({
         url: "/",
         method: "PUT",
@@ -32,7 +32,7 @@ export const usersAPI = createApi({
       }),
       invalidatesTags: ['User']
     }),
-    changePassword: build.mutation<{ message: string }, IEditPassword>({
+    changePassword: build.mutation<IMessage, IEditPassword>({
       query: (data) => ({
         url: `/${data.id}`,
         method: "PUT",
@@ -46,7 +46,7 @@ export const usersAPI = createApi({
       }),
       providesTags: ['User']
     }),
-    removeUser: build.mutation<{ message: string }, IDeleteUser>({
+    removeUser: build.mutation<IMessage, IDeleteUser>({
       query: (data) => ({
         url: `/${data.id}`,
         method: "DELETE",
