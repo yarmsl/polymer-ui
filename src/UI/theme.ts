@@ -134,6 +134,8 @@ const defaultTheme = createTheme({
         html: {
           width: "100%",
           height: "100%",
+          fontDisplay: "swap",
+          WebkitFontSmoothing: "auto",
         },
         body: {
           width: "100%",
@@ -149,7 +151,6 @@ const defaultTheme = createTheme({
           userSelect: "none",
         },
         "#root": {
-          fontDisplay: 'auto',
           display: "flex",
           flexDirection: "column",
           width: "100%",

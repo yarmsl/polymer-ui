@@ -25,7 +25,7 @@ const Auth = (): JSX.Element => {
       dispatch(setAuth(user));
     } catch (e) {
       dispatch(
-        showErrorSnackbar((e as IQueryError).data.message || "sign in error")
+        showErrorSnackbar((e as IQueryError).data?.message || "sign in error")
       );
     }
   });

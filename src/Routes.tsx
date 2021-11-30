@@ -1,17 +1,18 @@
 import { Backdrop, CircularProgress } from "@mui/material";
 import { memo, ReactElement, Suspense, lazy } from "react";
 import { Switch, Route } from "react-router-dom";
-import ControlPanelLayout from "./layouts/ControlPanelLayout";
 import MainLayout from "./layouts/MainLayout";
 import NotFound from "./pages/404";
 import About from "./pages/About";
-import Auth from "./pages/Auth";
 import Contacts from "./pages/Contacts";
 import Customer from "./pages/Customer";
 import Home from "./pages/Home";
 import IndDesEngineering from "./pages/IndDesEngineering";
 import Production from "./pages/Production";
 import Projects from "./pages/Projects";
+
+const Auth = lazy(() => import("./pages/Auth"));
+const ControlPanelLayout = lazy(() => import("./layouts/ControlPanelLayout"));
 const ControlPanel = lazy(() => import("./pages/ControlPanel"));
 const UserManagment = lazy(() => import("./pages/UserManagment"));
 const Tags = lazy(() => import("./pages/Tags"));
@@ -53,14 +54,14 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
       </Route>
 
       <Route exact path={["/control_panel", "/user_managment", "/tags"]}>
-        {isAuth ? (
-          <Suspense
-            fallback={
-              <Backdrop open={true}>
-                <CircularProgress />
-              </Backdrop>
-            }
-          >
+        <Suspense
+          fallback={
+            <Backdrop open={true}>
+              <CircularProgress />
+            </Backdrop>
+          }
+        >
+          {isAuth ? (
             <ControlPanelLayout>
               <Switch>
                 <Route exact path="/control_panel" component={ControlPanel} />
@@ -74,10 +75,10 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
                 <Route exact path="/tags" component={Tags} />
               </Switch>
             </ControlPanelLayout>
-          </Suspense>
-        ) : (
-          <Route component={Auth} />
-        )}
+          ) : (
+            <Route component={Auth} />
+          )}
+        </Suspense>
       </Route>
       <Route component={NotFound} />
     </Switch>
