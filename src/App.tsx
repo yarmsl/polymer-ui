@@ -1,10 +1,7 @@
 import { ReactElement, useEffect, useMemo } from "react";
 import Routes from "./Routes";
-import {
-  CssBaseline,
-  ThemeProvider,
-  StyledEngineProvider,
-} from "@mui/material";
+import { CssBaseline, StyledEngineProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter as Router } from "react-router-dom";
 import theme from "./UI/theme";
 import { useAppSelector, useAppDispatch } from "./store";
