@@ -16,6 +16,8 @@ import AdminPanelSettingsRoundedIcon from "@mui/icons-material/AdminPanelSetting
 import GroupRoundedIcon from "@mui/icons-material/GroupRounded";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
+import AssignmentIndRoundedIcon from '@mui/icons-material/AssignmentIndRounded';
+import EngineeringRoundedIcon from '@mui/icons-material/EngineeringRounded';
 import TagIcon from '@mui/icons-material/Tag';
 import { useHistory, useRouteMatch } from "react-router";
 import { useAppSelector } from "../store";
@@ -31,14 +33,26 @@ const pages = [
   },
   {
     title: "Управление Пользователями",
-    path: "/user_managment",
+    path: "/control_panel/user_managment",
     icon: <GroupRoundedIcon />,
     access: "admin",
   },
   {
     title: "Теги (Проекты)",
-    path: "/tags",
+    path: "/control_panel/tags",
     icon: <TagIcon />,
+    access: "user",
+  },
+  {
+    title: "Заказчики (Проекты)",
+    path: "/control_panel/customers",
+    icon: <AssignmentIndRoundedIcon />,
+    access: "user",
+  },
+  {
+    title: "Проекты",
+    path: "/control_panel/projects",
+    icon: <EngineeringRoundedIcon />,
     access: "user",
   }
 ];

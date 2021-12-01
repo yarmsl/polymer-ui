@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import HelmetTitle from "../layouts/Helmet";
+import HelmetTitle from "../../layouts/Helmet";
 import { Box, Typography } from "@mui/material";
 import { SxProps } from "@mui/system";
 

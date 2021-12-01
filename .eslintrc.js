@@ -24,5 +24,11 @@ module.exports = {
 	],
 	'rules': {
 		'react/react-in-jsx-scope': 'off',
+		"no-restricted-imports": [
+			"error",
+			{
+				"patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
+			}
+		]
 	},
 };

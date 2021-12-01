@@ -13,9 +13,11 @@ import Projects from "./pages/Projects";
 
 const Auth = lazy(() => import("./pages/Auth"));
 const ControlPanelLayout = lazy(() => import("./layouts/ControlPanelLayout"));
-const ControlPanel = lazy(() => import("./pages/ControlPanel"));
-const UserManagment = lazy(() => import("./pages/UserManagment"));
-const Tags = lazy(() => import("./pages/Tags"));
+const ControlPanel = lazy(() => import("./pages/CP/ControlPanel"));
+const UserManagment = lazy(() => import("./pages/CP/UserManagment"));
+const Tags = lazy(() => import("./pages/CP/Tags"));
+const CustomersCP = lazy(() => import("./pages/CP/CustomersCP"));
+const ProjectsCP = lazy(() => import("./pages/CP/ProjectsCP"));
 interface IRoutesProps {
   isAuth: boolean;
   role: RoleTypes;
@@ -53,7 +55,16 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
         </MainLayout>
       </Route>
 
-      <Route exact path={["/control_panel", "/user_managment", "/tags"]}>
+      <Route
+        exact
+        path={[
+          "/control_panel",
+          "/control_panel/user_managment",
+          "/control_panel/tags",
+          "/control_panel/customers",
+          "/control_panel/projects",
+        ]}
+      >
         <Suspense
           fallback={
             <Backdrop open={true}>
@@ -68,11 +79,21 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
                 {role !== "user" && (
                   <Route
                     exact
-                    path="/user_managment"
+                    path="/control_panel/user_managment"
                     component={UserManagment}
                   />
                 )}
-                <Route exact path="/tags" component={Tags} />
+                <Route exact path="/control_panel/tags" component={Tags} />
+                <Route
+                  exact
+                  path="/control_panel/customers"
+                  component={CustomersCP}
+                />
+                <Route
+                  exact
+                  path="/control_panel/projects"
+                  component={ProjectsCP}
+                />
               </Switch>
             </ControlPanelLayout>
           ) : (

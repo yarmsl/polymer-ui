@@ -12,7 +12,7 @@ import { useAppDispatch } from "../store";
 import { setAuth, useSignInMutation } from "../store/Auth";
 import { showErrorSnackbar } from "../store/Notifications";
 import { SxProps } from "@mui/system";
-import bg from "../assets/production.webp"
+import bg from "../assets/production.webp";
 
 const Auth = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -34,9 +34,10 @@ const Auth = (): JSX.Element => {
     <>
       <HelmetTitle title="Авторизация" />
       <Container disableGutters sx={styles.wrapper} maxWidth={false}>
-        <img src={bg} alt='bg' />
+        <img src={bg} alt="bg" />
+        <Box sx={styles.blackdrop}></Box>
         <Container sx={styles.root} maxWidth="xs">
-          <Typography variant='h6' sx={styles.title}>
+          <Typography variant="h6" sx={styles.title}>
             Добро пожаловать в панель управления
           </Typography>
           <Box sx={styles.form} component="form">
@@ -121,18 +122,23 @@ const Auth = (): JSX.Element => {
 const styles: Record<string, SxProps> = {
   wrapper: {
     flexGrow: 1,
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    position: 'relative',
-    '& img': {
-      position: 'absolute',
-      width: '100%',
-      height: '100%',
-      objectFit: 'cover',
-      objectPosition: 'center',
-      opacity: '.3'
-    }
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    position: "relative",
+    "& img": {
+      position: "absolute",
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      objectPosition: "center",
+    },
+  },
+  blackdrop: {
+    width: "100%",
+    height: "100%",
+    position: "absolute",
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
   },
   root: {
     height: "300px",
@@ -140,9 +146,9 @@ const styles: Record<string, SxProps> = {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: 'rgba(255,255,255,0.8)',
-    borderRadius: '8px',
-    position: 'relative',
+    backgroundColor: "#fff",
+    borderRadius: "8px",
+    position: "relative",
   },
   title: {
     mb: "15px",
