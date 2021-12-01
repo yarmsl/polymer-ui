@@ -1,6 +1,6 @@
-import { Backdrop, CircularProgress } from "@mui/material";
 import { memo, ReactElement, Suspense, lazy } from "react";
 import { Switch, Route } from "react-router-dom";
+import Loading from "./layouts/Loading";
 import MainLayout from "./layouts/MainLayout";
 import NotFound from "./pages/404";
 import About from "./pages/About";
@@ -65,13 +65,7 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
           "/control_panel/projects",
         ]}
       >
-        <Suspense
-          fallback={
-            <Backdrop open={true}>
-              <CircularProgress />
-            </Backdrop>
-          }
-        >
+        <Suspense fallback={<Loading />}>
           {isAuth ? (
             <ControlPanelLayout>
               <Switch>
