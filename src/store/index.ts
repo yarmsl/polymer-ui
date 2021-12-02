@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { authReducer, authAPI } from "./Auth";
+import { bannerAPI } from "./Banner";
 import { customerAPI } from "./Customer";
 import { ModalStackReducer } from "./ModalStack";
 import { notificationsReducer } from "./Notifications";
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   notifications: notificationsReducer,
   modalStack: ModalStackReducer,
   [authAPI.reducerPath]: authAPI.reducer,
+  [bannerAPI.reducerPath]: bannerAPI.reducer,
   [usersAPI.reducerPath]: usersAPI.reducer,
   [customerAPI.reducerPath]: customerAPI.reducer,
   [tagAPI.reducerPath]: tagAPI.reducer,
@@ -31,6 +33,7 @@ const appStore = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat(
       authAPI.middleware,
+      bannerAPI.middleware,
       usersAPI.middleware,
       customerAPI.middleware,
       tagAPI.middleware,
