@@ -1,4 +1,5 @@
 interface Project {
+  _id: string;
   author: string;
   title: string;
   done: string;

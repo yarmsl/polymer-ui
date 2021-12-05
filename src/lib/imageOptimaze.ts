@@ -18,3 +18,60 @@ export const file2img = (file: File): Promise<string> => {
         : reject("onload error");
   });
 };
+
+export const file2optiWebp = (
+  file: File,
+  wide: number,
+  quality: number,
+  format: "webp" | "jpg" | "png"
+): Promise<File> => {
+  return new Promise<File>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (e) => {
+      if (e.target != null && typeof e.target.result === "string") {
+        const img = new Image();
+        img.src = e.target.result;
+        img.onload = () => {
+          const el = document.createElement("canvas");
+          if (img.width >= img.height) {
+            el.width = wide;
+            el.height = img.height * (wide / img.width);
+          } else {
+            el.height = wide;
+            el.width = img.width * (wide / img.height);
+          }
+          const ctx = el.getContext("2d");
+          if (ctx != null) {
+            ctx.drawImage(img, 0, 0, el.width, el.height);
+            ctx.canvas.toBlob(
+              (blob) => {
+                if (blob != null) {
+                  const res = new File(
+                    [blob],
+                    file.name.replace(/\.[^.]+$/, ""),
+                    {
+                      type: `image/${format}`,
+                      lastModified: Date.now(),
+                    }
+                  );
+                  resolve(res);
+                } else {
+                  reject({ message: "blob error" });
+                }
+              },
+              `image/${format}`,
+              quality
+            );
+          } else {
+            reject({ message: "ctx error" });
+          }
+        };
+        img.onerror = () => reject({ message: "image error" });
+      } else {
+        reject({ message: "file read error" });
+      }
+    };
+    reader.onerror = () => reject({ message: "file read error" });
+  });
+};
