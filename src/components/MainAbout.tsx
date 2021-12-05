@@ -5,12 +5,10 @@ import { ReactComponent as ModelIcon } from "../assets/model_icon.svg";
 import { ReactComponent as EngineeringIcon } from "../assets/engineering_icon.svg";
 import { ReactComponent as ProductionIcon } from "../assets/production_icon.svg";
 import { ReactComponent as PerfectIcon } from "../assets/perfect_icon.svg";
-import { EffectCube } from "swiper";
+import { EffectFade } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
 import SwiperCore from "swiper";
-import React, { useCallback, useState } from "react";
-
-SwiperCore.use([EffectCube]);
+import { useCallback, useState } from "react";
 
 const abouts = [
   {
@@ -67,14 +65,11 @@ const MainAbout = (): JSX.Element => {
       </Box>
       <Box sx={styles.slider}>
         <Swiper
+          modules={[EffectFade]}
           onSlideChange={(sl) => setSwiperIndex(sl.realIndex)}
           onSwiper={(swiper) => setSwiper(swiper)}
           loop={true}
-          effect="cube"
-          cubeEffect={{
-            shadow: false,
-            slideShadows: false,
-          }}
+          effect="fade"
         >
           {abouts.map((slide, i) => {
             return (

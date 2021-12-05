@@ -39,7 +39,7 @@ export const customerAPI = createApi({
       }),
       invalidatesTags: ["Customer"],
     }),
-    getAllCustomers: build.query<ICustomer[], string>({
+    getAllCustomers: build.query<ICustomerFull[], string>({
       query: () => ({
         url: "/cp",
         method: "GET",

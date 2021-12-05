@@ -1,12 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import { SxProps } from "@mui/system";
-import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
-import { EffectFade } from "swiper";
-import SwiperCore, { Autoplay, Pagination } from "swiper";
 import FeedBackDownload from "./FeedBackDownload";
 import { useRouteMatch } from "react-router";
+import FadeCarousel from "../UI/FadeCarousel/FadeCarousel";
 
-SwiperCore.use([Autoplay, EffectFade, Pagination]);
 const mock = [
   {
     customer: {
@@ -35,53 +32,46 @@ const mock = [
     done: "Развернули северный поток на юг, а потом на запад, а потом опять на север, а потом на восток, крутили им как хотели Развернули северный поток на юг, а потом на запад, а потом опять на север, а потом на восток, крутили им как хотелиРазвернули северный поток на юг, а потом на запад, а потом опять на север, а потом на восток, крутили им как хотелиРазвернули северный поток на юг, а потом на запад, а потом опять на север, а потом на восток, крутили им как хотелиРазвернули северный поток на юг, а потом на запад, а потом опять на север, а потом на восток, крутили им как хотели",
     images: ["https://picsum.photos/id/55/1920/1080"],
   },
-];
+] as IProjectWithCustomer[];
+
+interface IProjectSlideProps {
+  project: IProjectWithCustomer;
+}
+
+const ProjectSlide = ({ project }: IProjectSlideProps): JSX.Element => {
+  return (
+    <Box sx={styles.slide}>
+      <Box sx={styles.description}>
+        <Typography color="white" variant="body2">
+          Заказчик: {project.customer.name}
+        </Typography>
+        <Typography color="white" variant="body2">
+          {project.customer.description}
+        </Typography>
+        <Typography color="white" variant="body2">
+          Проект: {project.title}
+        </Typography>
+        <Typography color="white" variant="body2">
+          Выполненные работы: {project.done}.
+        </Typography>
+      </Box>
+      <Box sx={styles.blackout}></Box>
+      <img src={project.images?.[0]} alt={project.title} />
+    </Box>
+  );
+};
 
 const FooterCarousel = (): JSX.Element => {
   const match = useRouteMatch();
+  const slides = mock?.map((project, i) => (
+    <ProjectSlide key={`proj-${i}`} project={project} />
+  ));
   return (
     <Box sx={styles.root}>
       <Box sx={styles.feedback}>
         {match.path !== "/contacts" && <FeedBackDownload />}
       </Box>
-      <Swiper
-        loop={true}
-        effect="fade"
-        autoplay={{
-          delay: 15000,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-          dynamicBullets: true,
-          dynamicMainBullets: 3,
-        }}
-      >
-        {mock?.map((project, i) => {
-          return (
-            <SwiperSlide key={i}>
-              <Box sx={styles.slide}>
-                <Box sx={styles.description}>
-                  <Typography color="white" variant="body2">
-                    Заказчик: {project.customer.name}
-                  </Typography>
-                  <Typography color="white" variant="body2">
-                    {project.customer.description}
-                  </Typography>
-                  <Typography color="white" variant="body2">
-                    Проект: {project.title}
-                  </Typography>
-                  <Typography color="white" variant="body2">
-                    Выполненные работы: {project.done}.
-                  </Typography>
-                </Box>
-                <Box sx={styles.blackout}></Box>
-                <img src={project.images?.[0]} alt={project.title} />
-              </Box>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+      <FadeCarousel slides={slides} delay={15000} />
     </Box>
   );
 };
@@ -93,21 +83,6 @@ const styles: Record<string, SxProps> = {
     overflow: "hidden",
     position: "relative",
     display: "flex",
-    "& .swiper-pagination": {
-      "&-bullets-dynamic": {
-        margin: "0 50%",
-        left: "-400px!important",
-        bottom: "40px!important",
-        zIndex: 3,
-      },
-      "&-bullet": {
-        backgroundColor: "#fff",
-        opacity: 1,
-        "&-active": {
-          backgroundColor: "primary.main",
-        },
-      },
-    },
   },
   slide: {
     width: "100%",

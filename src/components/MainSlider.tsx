@@ -1,10 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { SxProps } from "@mui/system";
-import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
-import { EffectFade } from "swiper";
-import SwiperCore, { Autoplay, Pagination } from "swiper";
-
-SwiperCore.use([Autoplay, EffectFade, Pagination]);
+import FadeCarousel from "../UI/FadeCarousel/FadeCarousel";
 
 const mock = [
   {
@@ -21,41 +17,34 @@ const mock = [
   },
 ];
 
+interface IArticleSlide {
+  text: string;
+  image: string;
+}
+
+const ArticleSlide = ({ text, image }: IArticleSlide): JSX.Element => {
+  return (
+    <Box sx={styles.slide}>
+      <Typography variant="h6" component="h2" color="white" sx={styles.article}>
+        {text}
+      </Typography>
+      <Box sx={styles.blackout}></Box>
+      <img src={image} alt="Статья" />
+    </Box>
+  );
+};
+
 const MainSlider = (): JSX.Element => {
+  const slides = mock?.map((article, i) => (
+    <ArticleSlide
+      key={`article-${i}`}
+      text={article.text}
+      image={article.image}
+    />
+  ));
   return (
     <Box sx={styles.root}>
-      <Swiper
-        loop={true}
-        effect="fade"
-        autoplay={{
-          delay: 15000,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-          dynamicBullets: true,
-          dynamicMainBullets: 3,
-        }}
-      >
-        {mock?.map((article, i) => {
-          return (
-            <SwiperSlide key={i}>
-              <Box sx={styles.slide}>
-                <Typography
-                  variant="h6"
-                  component="h2"
-                  color="white"
-                  sx={styles.article}
-                >
-                  {article.text}
-                </Typography>
-                <Box sx={styles.blackout}></Box>
-                <img src={article.image} alt="Статья" />
-              </Box>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+      <FadeCarousel slides={slides} delay={15000} />
     </Box>
   );
 };
@@ -66,21 +55,6 @@ const styles: Record<string, SxProps> = {
     height: "100%",
     position: "relative",
     display: "flex",
-    "& .swiper-pagination": {
-      "&-bullets-dynamic": {
-        margin: "0 50%",
-        left: "-400px!important",
-        bottom: "40px!important",
-        zIndex: 3,
-      },
-      "&-bullet": {
-        backgroundColor: "#fff",
-        opacity: 1,
-        "&-active": {
-          backgroundColor: "primary.main",
-        },
-      },
-    },
   },
   slide: {
     width: "100%",

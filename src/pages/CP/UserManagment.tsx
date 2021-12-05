@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import { SxProps } from "@mui/system";
 import { ReactElement } from "react";
-import CreateUser from "../../components/controlPanel/CreateUser";
-import EditUsers from "../../components/controlPanel/EditUsers";
+import CreateUser from "../../components/controlPanel/User/CreateUser";
+import EditUsers from "../../components/controlPanel/User/EditUsers";
 import HelmetTitle from "../../layouts/Helmet";
 
 const UserManagment = (): ReactElement => {

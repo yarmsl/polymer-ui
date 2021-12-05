@@ -1,15 +1,31 @@
-interface ICustomer {
+interface ICustomer extends IAddCustomer {
+  _id: string;
   author: string;
   projects: string[];
-  name: string;
-  logo: string;
-  description: string;
-  slug: string;
   createdAt: string;
   updatedAt: string;
 }
 
+interface ICustomerFull extends IAddCustomer {
+  _id: string;
+  author: IUserResponse;
+  projects: IProject[];
+  createdAt: string;
+  updatedAt: string;
+}
 interface IEditCustomer {
-    id: string;
-    data: FormData
+  id: string;
+  data: IEditCustomerData;
+}
+
+interface IEditCustomerData {
+  name?: string;
+  description?: string;
+  slug?: string;
+}
+interface IAddCustomer {
+  name: string;
+  logo: string;
+  description: string;
+  slug: string;
 }

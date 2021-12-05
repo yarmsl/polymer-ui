@@ -10,15 +10,15 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { useGetAllUsersQuery } from "../../store/Users";
-import UserItem from "./UserItem";
 import { SxProps } from "@mui/system";
+import { useGetAllCustomersQuery } from "../../../store/Customer";
+import CustomerItem from "./CustomerItem";
 
-const EditUsers = (): JSX.Element => {
-  const { data, isLoading } = useGetAllUsersQuery("");
+const EditCustomer = (): JSX.Element => {
+  const { data, isLoading } = useGetAllCustomersQuery("");
 
   return (
-    <Container sx={styles.root} maxWidth="md">
+    <Container sx={styles.root} maxWidth="lg">
       <TableContainer component={Paper}>
         <Box sx={styles.loader}>
           {isLoading && <LinearProgress color="success" />}
@@ -26,19 +26,20 @@ const EditUsers = (): JSX.Element => {
         <Table size="small">
           <TableHead>
             <TableRow>
-              <TableCell>Имя</TableCell>
-              <TableCell>Email</TableCell>
-              <TableCell>Доступ</TableCell>
+              <TableCell>Автор</TableCell>
+              <TableCell>Лого</TableCell>
+              <TableCell>Заказчик</TableCell>
+              <TableCell>URL slug</TableCell>
+              <TableCell>Описание</TableCell>
               <TableCell>Создан</TableCell>
               <TableCell>Изменен</TableCell>
-              <TableCell>Изменить</TableCell>
               <TableCell>Удалить</TableCell>
             </TableRow>
           </TableHead>
 
           <TableBody>
-            {data?.map((user) => (
-              <UserItem key={user.id} user={user} />
+            {data?.map((customer) => (
+              <CustomerItem key={customer._id} customer={customer} />
             ))}
           </TableBody>
         </Table>
@@ -61,4 +62,4 @@ const styles: Record<string, SxProps> = {
   },
 };
 
-export default EditUsers;
+export default EditCustomer;

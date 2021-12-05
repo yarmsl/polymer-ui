@@ -134,7 +134,6 @@ const defaultTheme = createTheme({
         html: {
           width: "100%",
           height: "100%",
-          fontDisplay: "swap",
           WebkitFontSmoothing: "auto",
         },
         body: {

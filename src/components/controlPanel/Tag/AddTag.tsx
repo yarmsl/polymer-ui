@@ -8,13 +8,13 @@ import {
 } from "@mui/material";
 import { SxProps } from "@mui/system";
 import { Controller, useForm } from "react-hook-form";
-import { useAppDispatch } from "../../store";
-import { useAddTagMutation } from "../../store/Tag";
+import { useAppDispatch } from "../../../store";
+import { useAddTagMutation } from "../../../store/Tag";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import {
   showErrorSnackbar,
   showSuccessSnackbar,
-} from "../../store/Notifications";
+} from "../../../store/Notifications";
 
 const AddTag = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -121,7 +121,7 @@ const styles: Record<string, SxProps> = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    "& > *": {
+    "&>*": {
       mb: "8px",
     },
   },

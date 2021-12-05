@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import { SxProps } from "@mui/system";
 import { ReactElement } from "react";
-import AddTag from "../../components/controlPanel/AddTag";
-import EditTag from "../../components/controlPanel/EditTag";
+import AddTag from "../../components/controlPanel/Tag/AddTag";
+import EditTag from "../../components/controlPanel/Tag/EditTag";
 
 import HelmetTitle from "../../layouts/Helmet";
 

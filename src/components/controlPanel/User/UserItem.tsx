@@ -1,13 +1,13 @@
 import { CircularProgress, IconButton, TableCell, TableRow } from "@mui/material"
 import { memo, useCallback } from "react"
-import { str2rusDate } from "../../lib/Dates"
+import { str2rusDate } from "../../../lib/Dates"
 import UserItemDialog from "./UserItem.dialog"
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
-import { useRemoveUserMutation } from "../../store/Users";
-import { showErrorSnackbar, showSuccessSnackbar } from "../../store/Notifications";
-import { openModal } from "../../store/ModalStack";
-import { useAppDispatch } from "../../store";
+import { useRemoveUserMutation } from "../../../store/Users";
+import { showErrorSnackbar, showSuccessSnackbar } from "../../../store/Notifications";
+import { openModal } from "../../../store/ModalStack";
+import { useAppDispatch } from "../../../store";
 
 interface IUserItemProps {
     user: IUserResponse;

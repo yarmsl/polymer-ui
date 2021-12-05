@@ -10,13 +10,13 @@ import {
 import { Controller, useForm } from "react-hook-form";
 import SaveRoundedIcon from "@mui/icons-material/SaveRounded";
 import { memo } from "react";
-import { useAppDispatch } from "../../store";
-import { useEditUserByIdMutation } from "../../store/Users";
+import { useAppDispatch } from "../../../store";
+import { useEditUserByIdMutation } from "../../../store/Users";
 import {
   showErrorSnackbar,
   showSuccessSnackbar,
-} from "../../store/Notifications";
-import { closeModalAction } from "../../store/ModalStack";
+} from "../../../store/Notifications";
+import { closeModalAction } from "../../../store/ModalStack";
 import { SxProps } from "@mui/system";
 
 interface IUserItemDialogProps {

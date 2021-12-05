@@ -11,7 +11,7 @@ import {
     TableRow,
   } from "@mui/material";
   import { SxProps } from "@mui/system";
-import { useGetAllTagsQuery } from "../../store/Tag";
+import { useGetAllTagsQuery } from "../../../store/Tag";
 import TagItem from "./TagItem";
   
   const EditTag = (): JSX.Element => {
@@ -27,7 +27,6 @@ import TagItem from "./TagItem";
             <TableHead>
               <TableRow>
                 <TableCell>Автор</TableCell>
-                <TableCell>Проекты</TableCell>
                 <TableCell>Тег</TableCell>
                 <TableCell>URL slug</TableCell>
                 <TableCell>Создан</TableCell>

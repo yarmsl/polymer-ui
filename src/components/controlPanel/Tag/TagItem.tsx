@@ -7,15 +7,15 @@ import {
   Tooltip,
 } from "@mui/material";
 import { memo, useCallback } from "react";
-import { str2rusDate } from "../../lib/Dates";
+import { str2rusDate } from "../../../lib/Dates";
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
 import {
   showErrorSnackbar,
   showSuccessSnackbar,
-} from "../../store/Notifications";
-import { openModal } from "../../store/ModalStack";
-import { useAppDispatch } from "../../store";
-import { useDeleteTagMutation } from "../../store/Tag";
+} from "../../../store/Notifications";
+import { openModal } from "../../../store/ModalStack";
+import { useAppDispatch } from "../../../store";
+import { useDeleteTagMutation } from "../../../store/Tag";
 import { SxProps } from "@mui/system";
 import TagItemDialog from "./TagItem.dialog";
 
@@ -39,11 +39,6 @@ const UserItem = ({ tag }: ITagItemProps) => {
     <TableRow>
       <TableCell>
         {tag.author != null ? `${tag.author.name} <${tag.author.email}>` : ""}
-      </TableCell>
-      <TableCell sx={styles.long}>
-        {tag.projects.length > 0
-          ? tag.projects.map((proj) => proj.title).join(", ")
-          : ""}
       </TableCell>
       <TableCell>
         <Tooltip arrow title="Изменить">

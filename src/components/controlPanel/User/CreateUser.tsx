@@ -7,12 +7,12 @@ import {
   CircularProgress,
   Typography,
 } from "@mui/material";
-import { useAppDispatch } from "../../store";
-import { useSignUpMutation } from "../../store/Users";
+import { useAppDispatch } from "../../../store";
+import { useSignUpMutation } from "../../../store/Users";
 import {
   showErrorSnackbar,
   showSuccessSnackbar,
-} from "../../store/Notifications";
+} from "../../../store/Notifications";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { SxProps } from "@mui/system";
 
