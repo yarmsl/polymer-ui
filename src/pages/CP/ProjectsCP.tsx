@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { SxProps } from "@mui/system";
 import { ReactElement } from "react";
 import AddProject from "../../components/controlPanel/Project/AddProject";
+import EditProject from "../../components/controlPanel/Project/EditProject";
 import HelmetTitle from "../../layouts/Helmet";
 
 const ProjectsCP = (): ReactElement => {
@@ -10,6 +11,7 @@ const ProjectsCP = (): ReactElement => {
       <HelmetTitle title="Проекты" />
       <Box sx={styles.root}>
         <AddProject />
+        <EditProject />
       </Box>
     </>
   );

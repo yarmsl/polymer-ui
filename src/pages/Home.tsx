@@ -8,7 +8,7 @@ const Home = (): ReactElement => {
     <>
       <HelmetTitle title="Главная" />
       <MainAbout />
-      {/* <TrustUs /> */}
+      <TrustUs />
     </>
   );
 };

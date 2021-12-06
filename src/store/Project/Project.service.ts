@@ -39,7 +39,7 @@ export const projectAPI = createApi({
       }),
       invalidatesTags: ["Project"],
     }),
-    getAllProjects: build.query<ITag[], string>({
+    getAllProjects: build.query<IProjectFull[], string>({
       query: () => ({
         url: "/cp",
         method: "GET",

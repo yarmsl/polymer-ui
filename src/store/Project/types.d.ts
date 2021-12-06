@@ -19,6 +19,20 @@ interface IProjectWithCustomer extends Project {
   customer: ICustomer;
   tags: string[];
 }
+
+interface IProjectFull {
+  _id: string;
+  author: IUserResponse;
+  title: string;
+  done: string;
+  year: number;
+  images: string[];
+  slug: string;
+  customer: ICustomer;
+  tags: ITag[];
+  createdAt: string;
+  updatedAt: string;
+}
 interface IEditProject {
   id: string;
   data: FormData | ISendProjectData;

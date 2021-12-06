@@ -1,38 +1,25 @@
 import { Box, Typography } from "@mui/material";
 import { SxProps } from "@mui/system";
+import { useGetCustomersDataQuery } from "../store/Data";
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
+import { Navigation } from "swiper";
 import CustomerCard from "./CustomerCard";
-
-const customers = [
-  {
-    name: 'АО "РЖД" ',
-    logo: "2133",
-    projects: ["213213", "sdf23", "d234r2", "d23e2"],
-  },
-  {
-    name: "АО НПК «Уралвагонзавод»",
-    logo: "2133",
-    projects: ["213213", "sdf23", "d234r2", "d23e2"],
-  },
-  {
-    name: "ООО «Уральские локомотивы»",
-    logo: "2133",
-    projects: ["213213", "sdf23", "d234r2", "d23e2"],
-  },
-  {
-    name: "ФГУП ПО «Уральский оптико-механический завод»",
-    logo: "2133",
-    projects: ["213213", "sdf23", "d234r2", "d23e2"],
-  },
-];
-
+//Прописать стили для слайдера @yarmsl
 const TrustUs = (): JSX.Element => {
+  const { data, isLoading } = useGetCustomersDataQuery("");
   return (
     <Box sx={styles.root}>
-      <Typography>Нам доверяют</Typography>
+      <Typography variant="h5">Нам доверяют</Typography>
       <Box sx={styles.customers}>
-        {customers?.map((customer, i) => (
-          <CustomerCard key={i} {...customer} loading={false} />
-        ))}
+        <Swiper modules={[Navigation]} spaceBetween={0} navigation={true} slidesPerView={3} >
+          {data?.map((slide, i) => {
+            return (
+              <SwiperSlide style={{display: 'flex', justifyContent: 'center'}} key={i}> 
+                <CustomerCard customer={slide} />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
       </Box>
     </Box>
   );
@@ -43,11 +30,13 @@ const styles: Record<string, SxProps> = {
     maxWidth: "950px",
     width: "100%",
     display: "flex",
+    padding: "50px 0",
     flexDirection: "column",
+    alignItems: "center",
   },
   customers: {
     width: "100%",
-    display: "flex",
+    pt: "50px",
   },
 };
 
