@@ -1,14 +1,15 @@
 import {
   Box,
   Button,
+  Checkbox,
   CircularProgress,
   Container,
-  IconButton,
-  Paper,
+  ListItemIcon,
+  ListItemText,
+  MenuItem,
   TextField,
   Typography,
 } from "@mui/material";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { SxProps } from "@mui/system";
 import { Controller, useForm } from "react-hook-form";
 import { useAppDispatch } from "../../../store";
@@ -21,23 +22,10 @@ import {
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import { file2optiFile, file2optiDataurl } from "../../../lib/imageOptimaze";
 import { useAddProjectMutation } from "../../../store/Project";
-
-interface IImgItemProps {
-  src: string;
-  n: number;
-  remove: (n: number) => void;
-}
-
-const ImgItem = ({ src, n, remove }: IImgItemProps): JSX.Element => {
-  return (
-    <Box sx={styles.imgitem}>
-      <IconButton onClick={() => remove(n)} sx={styles.remove} size="small">
-        <CloseRoundedIcon color="error" fontSize="small" />
-      </IconButton>
-      <img src={src} alt="Предпросмотр" />
-    </Box>
-  );
-};
+import { useGetAllCustomersQuery } from "../../../store/Customer";
+import { useGetAllTagsQuery } from "../../../store/Tag";
+import ImagesPreview from "../ImagesPreview";
+import { SERVER_URL } from "../../../lib/constants";
 
 const AddProject = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -50,12 +38,16 @@ const AddProject = (): JSX.Element => {
     defaultValues: {
       title: "",
       done: "",
-      year: undefined,
+      year: "" as unknown as number,
       slug: "",
-      images: undefined,
+      images: [],
+      tags: [],
+      customer: "",
     },
   });
   const [newProject, { isLoading }] = useAddProjectMutation();
+  const { data: customers } = useGetAllCustomersQuery("");
+  const { data: tags } = useGetAllTagsQuery("");
 
   const fileUpload = useCallback(
     async (e: ChangeEvent<HTMLInputElement>) => {
@@ -105,8 +97,16 @@ const AddProject = (): JSX.Element => {
       sendData.append("done", data.done);
       sendData.append("year", `${data.year}`);
       sendData.append("slug", data.slug);
+      if (data.customer) {
+        sendData.append("customer", data.customer);
+      }
+      if (data.tags.length > 0) {
+        data.tags.forEach((tag) => sendData.append("tags", tag));
+      }
       const res = await newProject(sendData).unwrap();
       dispatch(showSuccessSnackbar(`Проект ${res.title} успешно создан`));
+      setFiles([]);
+      setPreviews([]);
       reset();
     } catch (e) {
       dispatch(
@@ -136,12 +136,7 @@ const AddProject = (): JSX.Element => {
           ref={inputRef}
           multiple
         />
-        <Paper sx={styles.preview}>
-          {previews.length > 0 &&
-            previews?.map((src, i) => (
-              <ImgItem key={i} src={src} n={i} remove={remove} />
-            ))}
-        </Paper>
+        <ImagesPreview sources={previews} remove={remove} />
         <Controller
           name="images"
           control={control}
@@ -185,6 +180,81 @@ const AddProject = (): JSX.Element => {
           rules={{
             required: "Введите название проекта",
           }}
+        />
+
+        <Controller
+          name="tags"
+          control={control}
+          defaultValue={[]}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <TextField
+              size="small"
+              color={"warning"}
+              tabIndex={1}
+              sx={styles.input}
+              label="Выбирите один или несколько тегов"
+              fullWidth
+              select
+              SelectProps={{
+                multiple: true,
+                renderValue: (selected) => {
+                  const print = (selected as string[])?.map((id) => {
+                    return tags?.find((tag) => tag._id === id)?.name;
+                  });
+                  return <div>{print?.join(", ")}</div>;
+                },
+                MenuProps: {
+                  PaperProps: { style: { maxHeight: 380, marginTop: 5 } },
+                },
+              }}
+              value={value}
+              onChange={onChange}
+              error={!!error}
+              helperText={error ? error.message : null}
+            >
+              {tags?.map((tag, i) => (
+                <MenuItem dense key={i} value={tag._id}>
+                  <Checkbox size="small" checked={value?.includes(tag._id)} />
+                  <ListItemText>{tag.name}</ListItemText>
+                </MenuItem>
+              )) || <p>wait...</p>}
+            </TextField>
+          )}
+        />
+
+        <Controller
+          name="customer"
+          control={control}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <TextField
+              size="small"
+              color={"warning"}
+              tabIndex={2}
+              sx={styles.input}
+              label="Выбирите Заказчика проекта"
+              fullWidth
+              select
+              value={value}
+              onChange={onChange}
+              error={!!error}
+              helperText={error ? error.message : null}
+            >
+              <MenuItem dense value={undefined}></MenuItem>
+              {customers?.map((customer, i) => (
+                <MenuItem dense key={i} value={customer._id}>
+                  <ListItemText>{customer.name}</ListItemText>
+                  <ListItemIcon sx={styles.logo}>
+                    {
+                      <img
+                        src={`${SERVER_URL}/${customer.logo}`}
+                        alt={customer.name}
+                      />
+                    }
+                  </ListItemIcon>
+                </MenuItem>
+              )) || <p>wait...</p>}
+            </TextField>
+          )}
         />
 
         <Controller
@@ -302,33 +372,6 @@ const styles: Record<string, SxProps> = {
       mb: "6px!important",
     },
   },
-  preview: {
-    width: "100%",
-    minHeight: "80px",
-    position: "relative",
-    display: "flex",
-    flexWrap: "wrap",
-  },
-  imgitem: {
-    width: "89px",
-    height: "100px",
-    m: "5px",
-    position: "relative",
-    borderRadius: "4px",
-    overflow: "hidden",
-    "& img": {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      objectPosition: "center",
-    },
-  },
-  remove: {
-    position: "absolute",
-    top: "2px",
-    right: "2px",
-    backgroundColor: "#fff",
-  },
   error: {
     width: "100%",
     height: "18px",
@@ -341,6 +384,13 @@ const styles: Record<string, SxProps> = {
   },
   field: {
     height: "108px",
+  },
+  logo: {
+    width: "60px",
+    "& img": {
+      width: "100%",
+      objectFit: "contain",
+    },
   },
 };
 

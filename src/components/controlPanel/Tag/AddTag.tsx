@@ -40,7 +40,7 @@ const AddTag = (): JSX.Element => {
     <Container maxWidth={"xs"}>
       <Box sx={styles.form} component="form">
         <Typography variant="h6" sx={{ mb: "12px" }}>
-          Создание нового тега
+          Добавление нового тега
         </Typography>
         <Controller
           name="name"
@@ -108,7 +108,7 @@ const AddTag = (): JSX.Element => {
             )
           }
         >
-          Создать
+          Добавить
         </Button>
       </Box>
     </Container>

@@ -32,7 +32,7 @@ export const customerAPI = createApi({
       }),
       invalidatesTags: ["Customer"],
     }),
-    deleteCuscomer: build.mutation<IMessage, string>({
+    deleteCustomer: build.mutation<IMessage, string>({
       query: (customerId) => ({
         url: `/${customerId}`,
         method: "DELETE",
@@ -51,7 +51,7 @@ export const customerAPI = createApi({
 
 export const {
   useAddCustomerMutation,
-  useDeleteCuscomerMutation,
+  useDeleteCustomerMutation,
   useEditCustomerMutation,
   useGetAllCustomersQuery,
 } = customerAPI;

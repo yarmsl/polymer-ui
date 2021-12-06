@@ -18,14 +18,14 @@ import { useAppDispatch } from "../../../store";
 import { SxProps } from "@mui/system";
 import CustomerItemDialog from "./CustomerItem.dialog";
 import { SERVER_URL } from "../../../lib/constants";
-import { useDeleteCuscomerMutation } from "../../../store/Customer";
+import { useDeleteCustomerMutation } from "../../../store/Customer";
 
 interface ICustomerItemProps {
   customer: ICustomerFull;
 }
 
 const UserItem = ({ customer }: ICustomerItemProps) => {
-  const [removeCustomer, { isLoading }] = useDeleteCuscomerMutation();
+  const [removeCustomer, { isLoading }] = useDeleteCustomerMutation();
   const dispatch = useAppDispatch();
 
   const handleDeleteCustomer = useCallback(async () => {
