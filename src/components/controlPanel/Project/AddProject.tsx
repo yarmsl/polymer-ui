@@ -19,14 +19,31 @@ import {
   showSuccessSnackbar,
 } from "../../../store/Notifications";
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
-import { file2optiWebp } from "../../../lib/imageOptimaze";
+import { file2optiFile, file2optiDataurl } from "../../../lib/imageOptimaze";
 import { useAddProjectMutation } from "../../../store/Project";
+
+interface IImgItemProps {
+  src: string;
+  n: number;
+  remove: (n: number) => void;
+}
+
+const ImgItem = ({ src, n, remove }: IImgItemProps): JSX.Element => {
+  return (
+    <Box sx={styles.imgitem}>
+      <IconButton onClick={() => remove(n)} sx={styles.remove} size="small">
+        <CloseRoundedIcon color="error" fontSize="small" />
+      </IconButton>
+      <img src={src} alt="Предпросмотр" />
+    </Box>
+  );
+};
 
 const AddProject = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const [files, setFiles] = useState<File[]>([]);
   const [upLoading, setUpLoading] = useState(false);
-  const [previews, setPreviews] = useState(null);
+  const [previews, setPreviews] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { handleSubmit, control, reset, setValue } = useForm<IProject>({
@@ -49,12 +66,18 @@ const AddProject = (): JSX.Element => {
           inputRef.current.files != null &&
           inputRef.current.files.length > 0
         ) {
-          console.log(Array.from(inputRef.current.files));
           const resBlobs = Array.from(inputRef.current.files)?.map((file) => {
-            return file2optiWebp(file, 1920, 0.75, "webp");
+            return file2optiFile(file, 1920, 0.75, "webp");
           });
           const res = await Promise.all(resBlobs);
-          setFiles(res);
+          setFiles((p) => p.concat(res));
+
+          const resurl = Array.from(inputRef.current.files)?.map((file) => {
+            return file2optiDataurl(file, 160, 0.75, "webp");
+          });
+          const res2 = await Promise.all(resurl);
+          setPreviews((p) => p.concat(res2));
+
           e.target.value = "";
         }
         setUpLoading(false);
@@ -66,13 +89,13 @@ const AddProject = (): JSX.Element => {
     [dispatch]
   );
 
-  //   useEffect(() => {
-  //     if (files) {
-  //       setValue("images", ["file"]);
-  //     } else {
-  //       setValue("images", []);
-  //     }
-  //   }, [files, setValue]);
+  useEffect(() => {
+    if (files.length > 0) {
+      setValue("images", ["file"]);
+    } else {
+      setValue("images", []);
+    }
+  }, [files, setValue]);
 
   const handleNewCustomer = handleSubmit(async (data) => {
     try {
@@ -94,14 +117,10 @@ const AddProject = (): JSX.Element => {
     }
   });
 
-  // const clear = useCallback(() => {
-  //   setFile(null);
-  //   setPreview("");
-  //   if (inputRef.current != null) {
-  //     inputRef.current.files = null;
-  //   }
-  //   setValue("logo", "");
-  // }, [setValue]);
+  const remove = useCallback((n: number) => {
+    setFiles((p) => p?.filter((fl, i) => i !== n));
+    setPreviews((p) => p?.filter((fl, i) => i !== n));
+  }, []);
 
   return (
     <Container maxWidth={"xs"}>
@@ -117,16 +136,13 @@ const AddProject = (): JSX.Element => {
           ref={inputRef}
           multiple
         />
-        {console.log(files)}
-        {/* <Paper sx={styles.preview}>
-            {file && (
-              <IconButton onClick={clear} sx={styles.remove} size="small">
-                <CloseRoundedIcon color="error" fontSize="small" />
-              </IconButton>
-            )}
-            {preview && <img src={preview as unknown as string} alt="Лого" />}
-          </Paper> */}
-        {/* <Controller
+        <Paper sx={styles.preview}>
+          {previews.length > 0 &&
+            previews?.map((src, i) => (
+              <ImgItem key={i} src={src} n={i} remove={remove} />
+            ))}
+        </Paper>
+        <Controller
           name="images"
           control={control}
           render={({ fieldState: { error } }) => (
@@ -134,8 +150,9 @@ const AddProject = (): JSX.Element => {
           )}
           rules={{
             required: "Загрузите фото",
+            validate: (val) => (val.length > 0 ? undefined : "Загрузите фото"),
           }}
-        /> */}
+        />
         <Button
           startIcon={
             upLoading && <CircularProgress color="inherit" size={20} />
@@ -216,7 +233,7 @@ const AddProject = (): JSX.Element => {
             />
           )}
           rules={{
-            required: "Введите url slug",
+            required: "Введите год",
             pattern: {
               value: /^[0-9]*$/,
               message: "Только цифры",
@@ -287,19 +304,30 @@ const styles: Record<string, SxProps> = {
   },
   preview: {
     width: "100%",
-    height: "80px",
+    minHeight: "80px",
     position: "relative",
+    display: "flex",
+    flexWrap: "wrap",
+  },
+  imgitem: {
+    width: "89px",
+    height: "100px",
+    m: "5px",
+    position: "relative",
+    borderRadius: "4px",
+    overflow: "hidden",
     "& img": {
       width: "100%",
       height: "100%",
-      padding: "8px",
-      objectFit: "contain",
+      objectFit: "cover",
+      objectPosition: "center",
     },
   },
   remove: {
     position: "absolute",
     top: "2px",
     right: "2px",
+    backgroundColor: "#fff",
   },
   error: {
     width: "100%",
