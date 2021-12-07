@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Skeleton, Typography } from "@mui/material";
 import { SxProps } from "@mui/system";
 import { FC, memo, useMemo } from "react";
 import { useHistory } from "react-router";
@@ -7,6 +7,22 @@ import { SERVER_URL } from "../lib/constants";
 interface ICustomCardProps {
   customer: ICustomerFull;
 }
+
+export const SkeletonCustomerCard = (): JSX.Element => {
+  return (
+    <Box sx={styles.root}>
+      <Skeleton variant="rectangular" width={210} height={60} />
+      <Skeleton variant="text" width={210} />
+      <Skeleton variant="text" width={210} />
+      <Box sx={styles.photoes}>
+        {[0, 1, 2, 3].map((ph) => (
+          <Skeleton sx={styles.photo} key={ph} variant="rectangular" />
+        ))}
+      </Box>
+      <Skeleton variant="rectangular" width={210} height={36} />
+    </Box>
+  );
+};
 
 const CustomerCard: FC<ICustomCardProps> = ({ customer }) => {
   const router = useHistory();
@@ -41,7 +57,7 @@ const CustomerCard: FC<ICustomCardProps> = ({ customer }) => {
         fullWidth
         variant="contained"
         color="primary"
-        onClick={() => router.push("/")}
+        onClick={() => router.push(`/customer/${customer.slug}`)}
       >
         Смотреть проекты
       </Button>
@@ -52,8 +68,8 @@ const CustomerCard: FC<ICustomCardProps> = ({ customer }) => {
 const styles: Record<string, SxProps> = {
   root: {
     width: "270px",
-    maxWidth: '270px',
-    boxSizing: 'border-box',
+    maxWidth: "270px",
+    boxSizing: "border-box",
     p: "25px 30px 44px",
     display: "flex",
     flexDirection: "column",
@@ -86,7 +102,7 @@ const styles: Record<string, SxProps> = {
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    alignContent: 'space-between',
+    alignContent: "space-between",
   },
   photo: {
     width: "100px",

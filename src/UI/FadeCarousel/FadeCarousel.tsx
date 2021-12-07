@@ -2,12 +2,12 @@ import { memo } from "react";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
 import { EffectFade } from "swiper";
 import { Autoplay, Pagination } from "swiper";
-import "./FadeCarousel.scss"
+import "./FadeCarousel.scss";
 
-const FadeCarousel = ({slides, delay}: IFadeCarouselProps): JSX.Element => {
+const FadeCarousel = ({ slides, delay }: IFadeCarouselProps): JSX.Element => {
   return (
     <Swiper
-      className={'fade-carousel'}
+      className={"fade-carousel"}
       modules={[Autoplay, EffectFade, Pagination]}
       loop={true}
       effect="fade"

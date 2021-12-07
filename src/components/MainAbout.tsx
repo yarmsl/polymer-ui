@@ -129,6 +129,7 @@ const styles: Record<string, SxProps> = {
   },
   slide: {
     width: "100%",
+    height: '110px',
     display: "flex",
     userSelect: "none",
     backgroundColor: "white",

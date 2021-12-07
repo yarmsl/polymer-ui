@@ -2,6 +2,7 @@ import { memo, ReactElement, Suspense, lazy } from "react";
 import { Switch, Route } from "react-router-dom";
 import Loading from "./layouts/Loading";
 import MainLayout from "./layouts/MainLayout";
+import ScrollToTop from "./lib/ScrollToTop";
 import NotFound from "./pages/404";
 import About from "./pages/About";
 import Contacts from "./pages/Contacts";
@@ -9,6 +10,7 @@ import Customer from "./pages/Customer";
 import Home from "./pages/Home";
 import IndDesEngineering from "./pages/IndDesEngineering";
 import Production from "./pages/Production";
+import Project from "./pages/Project";
 import Projects from "./pages/Projects";
 
 const Auth = lazy(() => import("./pages/Auth"));
@@ -35,10 +37,12 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
           "/about",
           "/contacts",
           "/projects",
-          "/customer/:id",
+          "/customer/:slug",
+          "/project/:slug",
         ]}
       >
         <MainLayout>
+          <ScrollToTop />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route
@@ -50,7 +54,8 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
             <Route exact path="/about" component={About} />
             <Route exact path="/contacts" component={Contacts} />
             <Route exact path="/projects" component={Projects} />
-            <Route exact path="/customer/:id" component={Customer} />
+            <Route exact path="/customer/:slug" component={Customer} />
+            <Route exact path="/project/:slug" component={Project} />
           </Switch>
         </MainLayout>
       </Route>
