@@ -1,10 +1,11 @@
 import {
-  Button,
+  Box,
   CircularProgress,
   IconButton,
   TableCell,
   TableRow,
   Tooltip,
+  Typography,
 } from "@mui/material";
 import { memo, useCallback } from "react";
 import { str2rusDate } from "../../../lib/Dates";
@@ -18,10 +19,59 @@ import { useAppDispatch } from "../../../store";
 import { SxProps } from "@mui/system";
 import { SERVER_URL } from "../../../lib/constants";
 import { useDeleteProjectMutation } from "../../../store/Project";
+import EditRoundedIcon from "@mui/icons-material/EditRounded";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import ProjectItemDialog, { projEditTypes } from "./ProjectItem.dialog";
 
+interface IImgCellWithEditProps {
+  val: string | number;
+  imgPath: string;
+  openModal: (edit: projEditTypes) => void;
+  edit: projEditTypes;
+}
+interface ITextCellWithEditProps {
+  val: string | number | string[];
+  openModal: (edit: projEditTypes) => void;
+  edit: projEditTypes;
+}
 interface IProjectItemProps {
   project: IProjectFull;
 }
+
+const ImgCellWithEdit = ({
+  val,
+  imgPath,
+  openModal,
+  edit,
+}: IImgCellWithEditProps): JSX.Element => (
+  <Box sx={styles.textCell}>
+    <Tooltip arrow title={val}>
+      <Box sx={styles.img}>
+        <img src={`${SERVER_URL}/${imgPath}`} alt={`${val}`} />
+      </Box>
+    </Tooltip>
+    <IconButton onClick={() => openModal(edit)} size="small">
+      <EditRoundedIcon fontSize="inherit" color="warning" />
+    </IconButton>
+  </Box>
+);
+
+const TextCellWithEdit = ({
+  val,
+  openModal,
+  edit,
+}: ITextCellWithEditProps): JSX.Element => (
+  <Box sx={styles.textCell}>
+    <Tooltip arrow title={Array.isArray(val) ? val.join(", ") : val}>
+      <Typography variant="body2" sx={styles.long}>
+        {Array.isArray(val) ? val.join(", ") : val}
+      </Typography>
+    </Tooltip>
+    <IconButton onClick={() => openModal(edit)} size="small">
+      <EditRoundedIcon fontSize="inherit" color="warning" />
+    </IconButton>
+  </Box>
+);
 
 const ProjectItem = ({ project }: IProjectItemProps) => {
   const [removeProject, { isLoading }] = useDeleteProjectMutation();
@@ -35,6 +85,13 @@ const ProjectItem = ({ project }: IProjectItemProps) => {
       dispatch(showErrorSnackbar((e as IQueryError).data.message || "fail"));
     }
   }, [removeProject, project, dispatch]);
+
+  const openEditModal = useCallback(
+    (edit: projEditTypes) =>
+      dispatch(openModal(<ProjectItemDialog project={project} edit={edit} />)),
+    [dispatch, project]
+  );
+
   return (
     <TableRow>
       <TableCell>
@@ -42,95 +99,58 @@ const ProjectItem = ({ project }: IProjectItemProps) => {
       </TableCell>
       <TableCell>{project.title}</TableCell>
       <TableCell>
-        <Tooltip arrow title="Изменить">
-          <Button
-            size="small"
-            color="info"
-            //   onClick={() =>
-            //     dispatch(
-            //       openModal(
-            //         <CustomerItemDialog customer={customer} edit="name" />
-            //       )
-            //     )
-            //   }
-          >
-            {project.tags?.map((tag) => tag?.name)?.join(", ") || ""}
-          </Button>
-        </Tooltip>
+        <Box sx={{ display: "flex", "&>*": { m: "0 4px" } }}>
+          <IconButton onClick={() => openEditModal('addImgs')} size="small">
+            <CloudUploadIcon fontSize="inherit" color="info" />
+          </IconButton>
+          <IconButton onClick={() => openEditModal('editImgs')} size="small">
+            <EditRoundedIcon fontSize="inherit" color="warning" />
+          </IconButton>
+        </Box>
       </TableCell>
       <TableCell>
-        <Tooltip arrow title="Изменить">
-          <Button
-            size="small"
-            color="info"
-            //   onClick={() =>
-            //     dispatch(
-            //       openModal(
-            //         <CustomerItemDialog customer={customer} edit="slug" />
-            //       )
-            //     )
-            //   }
-          >
-            {project.customer?.name}
-          </Button>
-        </Tooltip>
+        <TextCellWithEdit
+          val={project.tags?.map((tag) => tag.name) || []}
+          openModal={openEditModal}
+          edit="tags"
+        />
+      </TableCell>
+
+      <TableCell>
+        <ImgCellWithEdit
+          val={project.customer.name}
+          imgPath={project.customer.logo}
+          openModal={openEditModal}
+          edit="customer"
+        />
       </TableCell>
       <TableCell>
-        <Tooltip arrow title="Изменить">
-          <Button
-            sx={styles.long}
-            size="small"
-            color="info"
-            //   onClick={() =>
-            //     dispatch(
-            //       openModal(
-            //         <CustomerItemDialog customer={customer} edit="description" />
-            //       )
-            //     )
-            //   }
-          >
-            {project.done}
-          </Button>
-        </Tooltip>
+        <TextCellWithEdit
+          val={project.done}
+          openModal={openEditModal}
+          edit="done"
+        />
       </TableCell>
       <TableCell>
-        <Tooltip arrow title="Изменить">
-          <Button
-            sx={styles.long}
-            size="small"
-            color="info"
-            //   onClick={() =>
-            //     dispatch(
-            //       openModal(
-            //         <CustomerItemDialog customer={customer} edit="description" />
-            //       )
-            //     )
-            //   }
-          >
-            {project.year}
-          </Button>
-        </Tooltip>
+        <TextCellWithEdit
+          val={project.year}
+          openModal={openEditModal}
+          edit="year"
+        />
       </TableCell>
       <TableCell>
-        <Tooltip arrow title="Изменить">
-          <Button
-            sx={styles.long}
-            size="small"
-            color="info"
-            //   onClick={() =>
-            //     dispatch(
-            //       openModal(
-            //         <CustomerItemDialog customer={customer} edit="description" />
-            //       )
-            //     )
-            //   }
-          >
-            {project.slug}
-          </Button>
-        </Tooltip>
+        <TextCellWithEdit
+          val={project.slug}
+          openModal={openEditModal}
+          edit="slug"
+        />
       </TableCell>
-      <TableCell>{str2rusDate(project.createdAt)}</TableCell>
-      <TableCell>{str2rusDate(project.updatedAt)}</TableCell>
+      <TableCell sx={{ whiteSpace: "nowrap" }}>
+        {str2rusDate(project.createdAt)}
+      </TableCell>
+      <TableCell sx={{ whiteSpace: "nowrap" }}>
+        {str2rusDate(project.updatedAt)}
+      </TableCell>
       <TableCell align="right">
         <IconButton
           color="error"
@@ -149,12 +169,38 @@ const ProjectItem = ({ project }: IProjectItemProps) => {
 };
 
 const styles: Record<string, SxProps> = {
+  textCell: {
+    maxWidth: "150px",
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  img: {
+    width: "calc(100% - 36px)",
+    minWidth: "80px",
+    mr: "8px",
+    "&:hover": {
+      cursor: "pointer",
+    },
+    "& img": {
+      width: "100%",
+      objectFit: "contain",
+      objectPosition: "center",
+    },
+  },
   long: {
-    maxWidth: "200px",
+    width: "calc(100% - 36px)",
     overflow: "hidden",
     textOverflow: "ellipsis",
     wordBreak: "break-all",
     whiteSpace: "nowrap",
+    mr: "8px",
+    "&:hover": {
+      textDecoration: "underline",
+      cursor: "pointer",
+    },
   },
 };
 

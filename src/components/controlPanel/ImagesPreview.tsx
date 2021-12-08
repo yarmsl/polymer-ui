@@ -1,13 +1,15 @@
 import { Box, IconButton, Paper } from "@mui/material";
 import { memo } from "react";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import SortRoundedIcon from '@mui/icons-material/SortRounded';
+import SortRoundedIcon from "@mui/icons-material/SortRounded";
 import { SxProps } from "@mui/system";
+import { SERVER_URL } from "../../lib/constants";
 
 interface IImagesPreviewProps {
   sources: string[];
   remove: (n: number) => void;
   firstPlace?: (n: number) => void;
+  path?: boolean;
 }
 
 interface IImgItemProps {
@@ -15,6 +17,7 @@ interface IImgItemProps {
   n: number;
   remove: (n: number) => void;
   firstPlace?: (n: number) => void;
+  path?: boolean;
 }
 
 const ImgItem = ({
@@ -22,6 +25,7 @@ const ImgItem = ({
   n,
   remove,
   firstPlace,
+  path
 }: IImgItemProps): JSX.Element => (
   <Box sx={styles.imgitem}>
     <IconButton onClick={() => remove(n)} sx={styles.remove} size="small">
@@ -32,7 +36,7 @@ const ImgItem = ({
         <SortRoundedIcon color="info" fontSize="small" />
       </IconButton>
     )}
-    <img src={src} alt="Предпросмотр" />
+    <img src={path ? `${SERVER_URL}/${src}` : src} alt="Предпросмотр" />
   </Box>
 );
 
@@ -40,6 +44,7 @@ const ImagesPreview = ({
   sources,
   remove,
   firstPlace,
+  path
 }: IImagesPreviewProps): JSX.Element => (
   <Paper sx={styles.preview}>
     {sources.length > 0 &&
@@ -49,7 +54,9 @@ const ImagesPreview = ({
           src={src}
           n={i}
           remove={remove}
-          firstPlace={firstPlace} />
+          firstPlace={firstPlace}
+          path={path}
+        />
       ))}
   </Paper>
 );

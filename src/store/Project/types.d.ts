@@ -43,7 +43,7 @@ interface ISendProjectData {
   title?: string;
   done?: string;
   year?: number;
-  photoes: string[];
+  images?: string[];
   tags?: string[];
   slug?: string;
 }

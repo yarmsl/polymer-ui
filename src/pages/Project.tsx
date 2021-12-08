@@ -17,6 +17,16 @@ const Project = (): ReactElement => {
     }
   }, [data, isLoading, router.location.pathname]);
 
+  const photoes = useMemo(() => {
+    if (
+      project != null &&
+      Array.isArray(project.images) &&
+      project.images.length > 1
+    ) {
+      return project.images.filter((_, i) => i !== 0) || [];
+    } else return [];
+  }, [project]);
+
   return (
     <>
       <HelmetTitle title={project?.title || "Проект"} />
@@ -44,10 +54,10 @@ const Project = (): ReactElement => {
             </Typography>
           )}
         </Box>
-        {project?.images && project?.images.length > 1 && (
+        {photoes.length > 0 && (
           <Box sx={styles.photoes}>
             <Box sx={styles.wrapper}>
-              {project.images?.map((photo, i) => {
+              {photoes.map((photo, i) => {
                 return (
                   <Box sx={styles.photo} key={i}>
                     <img src={`${SERVER_URL}/${photo}`} alt="Проект" />
@@ -95,8 +105,9 @@ const styles: Record<string, SxProps> = {
   },
   year: {
     width: "350px",
+    textAlign: "center",
     position: "absolute",
-    transform: "rotate(90deg) translateX(50%)",
+    transform: "rotate(90deg) translateX(55%)",
     color: "primary.main",
     fontSize: "144px",
     fontWeight: 700,
