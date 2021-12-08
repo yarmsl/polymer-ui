@@ -122,6 +122,17 @@ const AddProject = (): JSX.Element => {
     setPreviews((p) => p?.filter((fl, i) => i !== n));
   }, []);
 
+  const toFirstPlace = useCallback((n: number) => {
+    setFiles((p) => {
+      p.splice(0, 0, p.splice(n, 1)[0]);
+      return p;
+    });
+    setPreviews((p) => {
+      p.splice(0, 0, p.splice(n, 1)[0]);
+      return JSON.parse(JSON.stringify(p));
+    });
+  }, []);
+
   return (
     <Container maxWidth={"xs"}>
       <Box sx={styles.form} component="form">
@@ -136,7 +147,11 @@ const AddProject = (): JSX.Element => {
           ref={inputRef}
           multiple
         />
-        <ImagesPreview sources={previews} remove={remove} />
+        <ImagesPreview
+          sources={previews}
+          remove={remove}
+          firstPlace={toFirstPlace}
+        />
         <Controller
           name="images"
           control={control}

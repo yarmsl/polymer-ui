@@ -72,7 +72,7 @@ const CustomerItemDialog = ({
               size="small"
               tabIndex={1}
               sx={styles.input}
-              label="Тег"
+              label={edit}
               fullWidth
               multiline={edit === 'description'}
               maxRows={3}
