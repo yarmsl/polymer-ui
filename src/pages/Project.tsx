@@ -19,7 +19,7 @@ const Project = (): ReactElement => {
 
   return (
     <>
-      <HelmetTitle title="Проект" />
+      <HelmetTitle title={project?.title || "Проект"} />
       <Container sx={styles.root} maxWidth="md">
         <Box sx={styles.main}>
           <Typography sx={styles.year}>{project?.year}</Typography>

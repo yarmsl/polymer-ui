@@ -124,11 +124,11 @@ const AddProject = (): JSX.Element => {
 
   const toFirstPlace = useCallback((n: number) => {
     setFiles((p) => {
-      p.splice(0, 0, p.splice(n, 1)[0]);
+      p.sort((a, b) => (p.indexOf(a) === n ? -1 : p.indexOf(b) === n ? 1 : 0));
       return p;
     });
     setPreviews((p) => {
-      p.splice(0, 0, p.splice(n, 1)[0]);
+      p.sort((a, b) => (p.indexOf(a) === n ? -1 : p.indexOf(b) === n ? 1 : 0));
       return JSON.parse(JSON.stringify(p));
     });
   }, []);

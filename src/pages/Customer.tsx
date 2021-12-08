@@ -23,7 +23,9 @@ const Customer = (): ReactElement => {
 
   return (
     <>
-      <HelmetTitle title="Совместные проекты" />
+      <HelmetTitle
+        title={`Совместные проекты${customer ? ` с ${customer.name}` : ""}`}
+      />
       <Container maxWidth="md" sx={styles.root}>
         <Box sx={styles.header}>
           <Box sx={styles.title}>
