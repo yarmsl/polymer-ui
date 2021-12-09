@@ -18,6 +18,9 @@ import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import AssignmentIndRoundedIcon from '@mui/icons-material/AssignmentIndRounded';
 import EngineeringRoundedIcon from '@mui/icons-material/EngineeringRounded';
+import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
+import FilePresentIcon from '@mui/icons-material/FilePresent';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import TagIcon from '@mui/icons-material/Tag';
 import { useHistory, useRouteMatch } from "react-router";
 import { useAppSelector } from "../store";
@@ -53,6 +56,24 @@ const pages = [
     title: "Проекты",
     path: "/control_panel/projects",
     icon: <EngineeringRoundedIcon />,
+    access: "user",
+  },
+  {
+    title: "Баннеры",
+    path: "/control_panel/banners",
+    icon: <ViewCarouselIcon />,
+    access: "user",
+  },
+  {
+    title: "Файл презентации",
+    path: "/control_panel/presentation",
+    icon: <FilePresentIcon />,
+    access: "user",
+  },
+  {
+    title: "Почта",
+    path: "/control_panel/mail",
+    icon: <AlternateEmailIcon />,
     access: "user",
   }
 ];

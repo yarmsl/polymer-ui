@@ -1,21 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import { SxProps } from "@mui/system";
+import { SERVER_URL } from "../lib/constants";
+import { useGetAllBannersQuery } from "../store/Banner";
 import FadeCarousel from "../UI/FadeCarousel/FadeCarousel";
-
-const mock = [
-  {
-    text: "25 лет «УРАЛ–ПОЛИМЕР» проектирует и производит изделия из полимерных и композитных материалов для специальной техники, общественного транспорта, беспилотных летательных аппаратов, оборудования и станков.",
-    image: "https://picsum.photos/id/2/1920/1080",
-  },
-  {
-    text: "Работа над проектом начинается задолго до производства: рисуются эскизы, создаются модели для того, чтобы в полном объеме представить картину создаваемого объекта. вознаграждение",
-    image: "https://picsum.photos/id/52/1920/1080",
-  },
-  {
-    text: "Коммерческое Необходимые знания и опыт в области дизайна и создания изделий из композитов позволяют нам создавать конструкции практически любой сложности, которые обладают отличными техническими характеристиками и современным внешним видом.",
-    image: "https://picsum.photos/id/13/1920/1080",
-  },
-];
 
 interface IArticleSlide {
   text: string;
@@ -29,19 +16,21 @@ const ArticleSlide = ({ text, image }: IArticleSlide): JSX.Element => {
         {text}
       </Typography>
       <Box sx={styles.blackout}></Box>
-      <img src={image} alt="Статья" />
+      <img src={`${SERVER_URL}/${image}`} alt="Статья" />
     </Box>
   );
 };
 
 const MainSlider = (): JSX.Element => {
-  const slides = mock?.map((article, i) => (
+  const { data, isLoading } = useGetAllBannersQuery("");
+
+  const slides = data?.map((banner, i) => (
     <ArticleSlide
       key={`article-${i}`}
-      text={article.text}
-      image={article.image}
+      text={banner.text}
+      image={banner.image}
     />
-  ));
+  )) || [];
   return (
     <Box sx={styles.root}>
       <FadeCarousel slides={slides} delay={15000} />

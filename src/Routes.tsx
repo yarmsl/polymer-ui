@@ -20,6 +20,9 @@ const UserManagment = lazy(() => import("./pages/CP/UserManagment"));
 const Tags = lazy(() => import("./pages/CP/Tags"));
 const CustomersCP = lazy(() => import("./pages/CP/CustomersCP"));
 const ProjectsCP = lazy(() => import("./pages/CP/ProjectsCP"));
+const BannersCP = lazy(() => import("./pages/CP/BannersCP"));
+const PresentationCP = lazy(() => import("./pages/CP/PresentationCP"));
+const MailCP = lazy(() => import("./pages/CP/MailCP"));
 interface IRoutesProps {
   isAuth: boolean;
   role: RoleTypes;
@@ -68,6 +71,9 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
           "/control_panel/tags",
           "/control_panel/customers",
           "/control_panel/projects",
+          "/control_panel/banners",
+          "/control_panel/mail",
+          "/control_panel/presentation",
         ]}
       >
         <Suspense fallback={<Loading />}>
@@ -92,6 +98,17 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
                   exact
                   path="/control_panel/projects"
                   component={ProjectsCP}
+                />
+                <Route
+                  exact
+                  path="/control_panel/banners"
+                  component={BannersCP}
+                />
+                <Route exact path="/control_panel/mail" component={MailCP} />
+                <Route
+                  exact
+                  path="/control_panel/presentation"
+                  component={PresentationCP}
                 />
               </Switch>
             </ControlPanelLayout>

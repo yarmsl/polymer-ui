@@ -16,7 +16,6 @@ import {
 import { openModal } from "../../../store/ModalStack";
 import { useAppDispatch } from "../../../store";
 import { useDeleteTagMutation } from "../../../store/Tag";
-import { SxProps } from "@mui/system";
 import TagItemDialog from "./TagItem.dialog";
 
 interface ITagItemProps {
@@ -83,16 +82,6 @@ const UserItem = ({ tag }: ITagItemProps) => {
       </TableCell>
     </TableRow>
   );
-};
-
-const styles: Record<string, SxProps> = {
-  long: {
-    maxWidth: "250px",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    wordBreak: "break-all",
-    whiteSpace: "nowrap",
-  },
 };
 
 export default memo(UserItem);

@@ -3,39 +3,11 @@ import { SxProps } from "@mui/system";
 import FeedBackDownload from "./FeedBackDownload";
 import { useRouteMatch } from "react-router";
 import FadeCarousel from "../UI/FadeCarousel/FadeCarousel";
-
-const mock = [
-  {
-    customer: {
-      name: "ООО Алмаз",
-      description: "Входит в группу ГАЗ",
-    },
-    title: "Вагон",
-    done: "Всяческие работы выполнены над вагоном",
-    images: ["https://picsum.photos/id/533/1920/1080"],
-  },
-  {
-    customer: {
-      name: "ООО Вертикаль",
-      description: "Агенство по выполнению наличных обязательств",
-    },
-    title: "Коммерческое вознаграждение",
-    done: "ЧТо сделано - то сделано",
-    images: ["https://picsum.photos/id/111/1920/1080"],
-  },
-  {
-    customer: {
-      name: "АО ГазПром",
-      description: "Управляй мечтой",
-    },
-    title: "Северный поток",
-    done: "Развернули северный поток на юг, а потом на запад, а потом опять на север, а потом на восток, крутили им как хотели Развернули северный поток на юг, а потом на запад, а потом опять на север, а потом на восток, крутили им как хотелиРазвернули северный поток на юг, а потом на запад, а потом опять на север, а потом на восток, крутили им как хотелиРазвернули северный поток на юг, а потом на запад, а потом опять на север, а потом на восток, крутили им как хотелиРазвернули северный поток на юг, а потом на запад, а потом опять на север, а потом на восток, крутили им как хотели",
-    images: ["https://picsum.photos/id/55/1920/1080"],
-  },
-] as IProjectWithCustomer[];
+import { useGetProjectsDataQuery } from "../store/Data";
+import { SERVER_URL } from "../lib/constants";
 
 interface IProjectSlideProps {
-  project: IProjectWithCustomer;
+  project: IProjectFull;
 }
 
 const ProjectSlide = ({ project }: IProjectSlideProps): JSX.Element => {
@@ -56,16 +28,21 @@ const ProjectSlide = ({ project }: IProjectSlideProps): JSX.Element => {
         </Typography>
       </Box>
       <Box sx={styles.blackout}></Box>
-      <img src={project.images?.[0]} alt={project.title} />
+      <img
+        src={`${SERVER_URL}/${project.images?.[0] || ""}`}
+        alt={project.title}
+      />
     </Box>
   );
 };
 
 const FooterCarousel = (): JSX.Element => {
   const match = useRouteMatch();
-  const slides = mock?.map((project, i) => (
-    <ProjectSlide key={`proj-${i}`} project={project} />
-  ));
+  const { data, isLoading } = useGetProjectsDataQuery("");
+  const slides =
+    data?.map((project, i) => (
+      <ProjectSlide key={`proj-${i}`} project={project} />
+    )) || [];
   return (
     <Box sx={styles.root}>
       <Box sx={styles.feedback}>

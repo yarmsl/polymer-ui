@@ -5,8 +5,10 @@ import { authReducer, authAPI } from "./Auth";
 import { bannerAPI } from "./Banner";
 import { customerAPI } from "./Customer";
 import { dataAPI } from "./Data";
+import { mailAPI } from "./Mail";
 import { ModalStackReducer } from "./ModalStack";
 import { notificationsReducer } from "./Notifications";
+import { fileAPI } from "./PresentationFile";
 import { projectAPI } from "./Project";
 import { tagAPI } from "./Tag";
 import { usersAPI } from "./Users";
@@ -28,6 +30,8 @@ const rootReducer = combineReducers({
   [customerAPI.reducerPath]: customerAPI.reducer,
   [tagAPI.reducerPath]: tagAPI.reducer,
   [projectAPI.reducerPath]: projectAPI.reducer,
+  [mailAPI.reducerPath]: mailAPI.reducer,
+  [fileAPI.reducerPath]: fileAPI.reducer,
 });
 
 const appStore = configureStore({
@@ -40,7 +44,9 @@ const appStore = configureStore({
       usersAPI.middleware,
       customerAPI.middleware,
       tagAPI.middleware,
-      projectAPI.middleware
+      projectAPI.middleware,
+      mailAPI.middleware,
+      fileAPI.middleware
     ),
 });
 

@@ -6,7 +6,18 @@ interface IBanner {
   updatedAt: string;
 }
 
+interface IBottomBanner {
+  _id: string;
+  projects: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
 interface IEditBanner {
   id: string;
   data: { text: string };
+}
+
+interface IEditBottomBanner {
+  projects: string[]
 }

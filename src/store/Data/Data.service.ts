@@ -6,7 +6,7 @@ export const dataAPI = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${SERVER_URL}/api`,
   }),
-  tagTypes: ["Project", "Tag", "Customer"],
+  tagTypes: ["Project", "Tag", "Customer", "File"],
   endpoints: (build) => ({
     getProjectsData: build.query<IProjectFull[], string>({
       query: () => ({
@@ -29,6 +29,13 @@ export const dataAPI = createApi({
       }),
       providesTags: ["Project", "Tag", "Customer"],
     }),
+    getPresentationFile: build.query<IPresFile, string>({
+      query: () => ({
+        url: "/file",
+        method: "GET",
+      }),
+      providesTags: ["File"],
+    }),
   }),
 });
 
@@ -36,4 +43,5 @@ export const {
   useGetCustomersDataQuery,
   useGetProjectsDataQuery,
   useGetTagsDataQuery,
+  useGetPresentationFileQuery,
 } = dataAPI;

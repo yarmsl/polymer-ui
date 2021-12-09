@@ -14,7 +14,7 @@ export const bannerAPI = createApi({
       return headers;
     },
   }),
-  tagTypes: ["Banner"],
+  tagTypes: ["Banner", "BottomBanner"],
   endpoints: (build) => ({
     addBanner: build.mutation<IBanner, FormData>({
       query: (bannerData) => ({
@@ -46,6 +46,21 @@ export const bannerAPI = createApi({
       }),
       providesTags: ["Banner"],
     }),
+    editBottomBanner: build.mutation<IMessage, IEditBottomBanner>({
+      query: (editBottomBannerReq) => ({
+        url: "/bottom",
+        method: "POST",
+        body: editBottomBannerReq,
+      }),
+      invalidatesTags: ["BottomBanner"],
+    }),
+    getBottomBanner: build.query<IBottomBanner, string>({
+      query: () => ({
+        url: "/bottom",
+        method: "GET",
+      }),
+      providesTags: ["BottomBanner"],
+    }),
   }),
 });
 
@@ -54,4 +69,6 @@ export const {
   useDeleteBannerMutation,
   useEditBannerMutation,
   useGetAllBannersQuery,
+  useEditBottomBannerMutation,
+  useGetBottomBannerQuery,
 } = bannerAPI;
