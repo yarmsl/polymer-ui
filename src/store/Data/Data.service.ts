@@ -29,13 +29,6 @@ export const dataAPI = createApi({
       }),
       providesTags: ["Project", "Tag", "Customer"],
     }),
-    getPresentationFile: build.query<IPresFile, string>({
-      query: () => ({
-        url: "/file",
-        method: "GET",
-      }),
-      providesTags: ["File"],
-    }),
   }),
 });
 
@@ -43,5 +36,4 @@ export const {
   useGetCustomersDataQuery,
   useGetProjectsDataQuery,
   useGetTagsDataQuery,
-  useGetPresentationFileQuery,
 } = dataAPI;
