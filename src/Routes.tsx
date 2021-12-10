@@ -12,12 +12,13 @@ import IndDesEngineering from "./pages/IndDesEngineering";
 import Production from "./pages/Production";
 import Project from "./pages/Project";
 import Projects from "./pages/Projects";
+import Tags from "./pages/Tags";
 
 const Auth = lazy(() => import("./pages/Auth"));
 const ControlPanelLayout = lazy(() => import("./layouts/ControlPanelLayout"));
 const ControlPanel = lazy(() => import("./pages/CP/ControlPanel"));
 const UserManagment = lazy(() => import("./pages/CP/UserManagment"));
-const Tags = lazy(() => import("./pages/CP/Tags"));
+const TagsCP = lazy(() => import("./pages/CP/Tags"));
 const CustomersCP = lazy(() => import("./pages/CP/CustomersCP"));
 const ProjectsCP = lazy(() => import("./pages/CP/ProjectsCP"));
 const BannersCP = lazy(() => import("./pages/CP/BannersCP"));
@@ -42,6 +43,7 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
           "/projects",
           "/customer/:slug",
           "/project/:slug",
+          "/tag/:slug",
         ]}
       >
         <MainLayout>
@@ -59,6 +61,7 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
             <Route exact path="/projects" component={Projects} />
             <Route exact path="/customer/:slug" component={Customer} />
             <Route exact path="/project/:slug" component={Project} />
+            <Route exact path="/tag/:slug" component={Tags} />
           </Switch>
         </MainLayout>
       </Route>
@@ -88,7 +91,7 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
                     component={UserManagment}
                   />
                 )}
-                <Route exact path="/control_panel/tags" component={Tags} />
+                <Route exact path="/control_panel/tags" component={TagsCP} />
                 <Route
                   exact
                   path="/control_panel/customers"

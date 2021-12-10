@@ -3,24 +3,19 @@ import { SxProps } from "@mui/system";
 import { SERVER_URL } from "../lib/constants";
 
 const FeedBackDownload = (): JSX.Element => {
-  
   return (
     <Box sx={styles.root}>
-
-        
-          <Typography variant="h5" component="p" color="white">
-            Хотите узнать о нас больше?
-          </Typography>
-          <Button
-            href={`${SERVER_URL}/api/file`}
-
-            size="large"
-            variant="contained"
-            color="primary"
-          >
-            Скачайте презентацию
-          </Button>
-
+      <Typography variant="h5" component="p" color="white">
+        Хотите узнать о нас больше?
+      </Typography>
+      <Button
+        href={`${SERVER_URL}/api/file`}
+        size="large"
+        variant="contained"
+        color="primary"
+      >
+        Скачайте презентацию
+      </Button>
     </Box>
   );
 };

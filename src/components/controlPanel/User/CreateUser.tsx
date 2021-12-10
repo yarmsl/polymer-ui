@@ -113,10 +113,10 @@ const CreateUser = (): JSX.Element => {
             />
           )}
           rules={{
-            required: "Enter password",
+            required: "Введите пароль",
             minLength: {
               value: 6,
-              message: "min password length 6",
+              message: "минимум 6 символов",
             },
           }}
         />

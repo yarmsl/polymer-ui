@@ -1,6 +1,8 @@
 import { Box } from "@mui/material";
 import { SxProps } from "@mui/system";
 import { ReactElement } from "react";
+import AddMail from "../../components/controlPanel/Mail/AddMail";
+import EditMail from "../../components/controlPanel/Mail/EditMail";
 import HelmetTitle from "../../layouts/Helmet";
 
 const MailCP = (): ReactElement => {
@@ -8,7 +10,8 @@ const MailCP = (): ReactElement => {
     <>
       <HelmetTitle title="Почта" />
       <Box sx={styles.root}>
-            почта
+        <AddMail />
+        <EditMail />
       </Box>
     </>
   );

@@ -51,7 +51,6 @@ const ProjectItemDialog = ({
   const { data: tags } = useGetAllTagsQuery("");
   const { data: customers } = useGetAllCustomersQuery("");
   const [sources, serSources] = useState(project.images);
-
   const [files, setFiles] = useState<File[]>([]);
   const [upLoading, setUpLoading] = useState(false);
   const [previews, setPreviews] = useState<string[]>([]);
