@@ -1,10 +1,12 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Skeleton, Typography } from "@mui/material";
 import { SxProps } from "@mui/system";
 import FeedBackDownload from "./FeedBackDownload";
 import { useRouteMatch } from "react-router";
 import FadeCarousel from "../UI/FadeCarousel/FadeCarousel";
 import { useGetProjectsDataQuery } from "../store/Data";
 import { SERVER_URL } from "../lib/constants";
+import { useGetBottomBannerQuery } from "../store/Banner";
+import { useMemo } from "react";
 
 interface IProjectSlideProps {
   project: IProjectFull;
@@ -38,16 +40,36 @@ const ProjectSlide = ({ project }: IProjectSlideProps): JSX.Element => {
 
 const FooterCarousel = (): JSX.Element => {
   const match = useRouteMatch();
-  const { data, isLoading } = useGetProjectsDataQuery("");
-  const slides =
-    data?.map((project, i) => (
-      <ProjectSlide key={`proj-${i}`} project={project} />
-    )) || [];
+  const { data: projects, isLoading: isProjectsLoading } =
+    useGetProjectsDataQuery("");
+  const { data: bottomBanner, isLoading: isBottomBannerLoading } =
+    useGetBottomBannerQuery("");
+
+  const filteredProjects = useMemo(
+    () =>
+      projects?.filter((proj) => bottomBanner?.projects?.includes(proj._id)) ||
+      [],
+    [bottomBanner, projects]
+  );
+
+  const slides = useMemo(
+    () =>
+      filteredProjects?.map((project, i) => (
+        <ProjectSlide key={`proj-${i}`} project={project} />
+      )) || [],
+    [filteredProjects]
+  );
+
   return (
     <Box sx={styles.root}>
       <Box sx={styles.feedback}>
         {match.path !== "/contacts" && <FeedBackDownload />}
       </Box>
+      {isProjectsLoading &&
+        isBottomBannerLoading &&
+        filteredProjects.length === 0 && (
+          <Skeleton variant="rectangular" width={"100%"} height={"100%"} />
+        )}
       <FadeCarousel slides={slides} delay={15000} />
     </Box>
   );
@@ -73,17 +95,20 @@ const styles: Record<string, SxProps> = {
     },
   },
   description: {
-    width: "180px",
-    maxHeight: "150px",
+    width: "100%",
+    maxWidth: "900px",
     overflow: "hidden",
     position: "absolute",
-    margin: "0 50%",
+    left: "50%",
+    transform: "translateX(-50%)",
     bottom: 40,
-    left: 250,
     zIndex: 3,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-end",
     "&>p": {
-      overflow: "hidden",
-      textOverflow: "ellipsis",
+      width: "180px",
+      maxHeight: "100px",
     },
   },
   blackout: {

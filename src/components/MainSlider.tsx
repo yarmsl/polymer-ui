@@ -1,5 +1,6 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Skeleton, Typography } from "@mui/material";
 import { SxProps } from "@mui/system";
+import { useMemo } from "react";
 import { SERVER_URL } from "../lib/constants";
 import { useGetAllBannersQuery } from "../store/Banner";
 import FadeCarousel from "../UI/FadeCarousel/FadeCarousel";
@@ -24,15 +25,23 @@ const ArticleSlide = ({ text, image }: IArticleSlide): JSX.Element => {
 const MainSlider = (): JSX.Element => {
   const { data, isLoading } = useGetAllBannersQuery("");
 
-  const slides = data?.map((banner, i) => (
-    <ArticleSlide
-      key={`article-${i}`}
-      text={banner.text}
-      image={banner.image}
-    />
-  )) || [];
+  const slides = useMemo(
+    () =>
+      data?.map((banner, i) => (
+        <ArticleSlide
+          key={`article-${i}`}
+          text={banner.text}
+          image={banner.image}
+        />
+      )) || [],
+    [data]
+  );
+
   return (
     <Box sx={styles.root}>
+      {isLoading && slides.length === 0 && (
+        <Skeleton variant="rectangular" width={"100%"} height={"100%"} />
+      )}
       <FadeCarousel slides={slides} delay={15000} />
     </Box>
   );
