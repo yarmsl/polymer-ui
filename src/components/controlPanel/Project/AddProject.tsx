@@ -207,7 +207,7 @@ const AddProject = (): JSX.Element => {
               color={"warning"}
               tabIndex={1}
               sx={styles.input}
-              label="Выбирите один или несколько тегов"
+              label="Выберите один или несколько тегов"
               fullWidth
               select
               SelectProps={{
@@ -246,7 +246,7 @@ const AddProject = (): JSX.Element => {
               color={"warning"}
               tabIndex={2}
               sx={styles.input}
-              label="Выбирите Заказчика проекта"
+              label="Выберите Заказчика проекта"
               fullWidth
               select
               value={value}

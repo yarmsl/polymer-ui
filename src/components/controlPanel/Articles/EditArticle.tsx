@@ -11,14 +11,14 @@ import {
   TableRow,
 } from "@mui/material";
 import { SxProps } from "@mui/system";
-import { useGetAllProjectsQuery } from "../../../store/Project";
-import ProjectItem from "./ProjectItem";
+import { useGetAllArticlesQuery } from "../../../store/Article";
+import ArticleItem from "./ArticleItem";
 
-const EditProject = (): JSX.Element => {
-  const { data, isLoading } = useGetAllProjectsQuery("");
+const EditArticle = (): JSX.Element => {
+  const { data, isLoading } = useGetAllArticlesQuery("")
 
   return (
-    <Container sx={styles.root} maxWidth='xl'>
+    <Container sx={styles.root} maxWidth="md">
       <TableContainer component={Paper}>
         <Box sx={styles.loader}>
           {isLoading && <LinearProgress color="success" />}
@@ -27,19 +27,15 @@ const EditProject = (): JSX.Element => {
           <TableHead>
             <TableRow>
               <TableCell>Автор</TableCell>
-              <TableCell>Проект</TableCell>
               <TableCell>Изображения</TableCell>
-              <TableCell>Тэги</TableCell>
-              <TableCell>Заказчик</TableCell>
-              <TableCell>Что сделано</TableCell>
-              <TableCell>Год выполнения</TableCell>
-              <TableCell>URL slug</TableCell>
-              <TableCell>Создан</TableCell>
-              <TableCell>Изменен</TableCell>
+              <TableCell>Заголовок</TableCell>
+              <TableCell>Статья</TableCell>
+              <TableCell>Создана</TableCell>
+              <TableCell>Изменена</TableCell>
               <TableCell>Удалить</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>{data?.map((project) => <ProjectItem key={project._id} project={project} /> )}</TableBody>
+          <TableBody>{data?.map((article) => <ArticleItem key={article._id} article={article} /> )}</TableBody>
         </Table>
       </TableContainer>
     </Container>
@@ -60,4 +56,4 @@ const styles: Record<string, SxProps> = {
   },
 };
 
-export default EditProject;
+export default EditArticle;

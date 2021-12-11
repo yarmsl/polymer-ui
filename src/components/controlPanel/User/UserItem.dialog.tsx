@@ -87,7 +87,7 @@ const UserItemDialog = ({ user }: IUserItemDialogProps): JSX.Element => {
             </TextField>
           )}
           rules={{
-            required: "Выбирите уровень доступа",
+            required: "Выберите уровень доступа",
           }}
         />
         <Typography variant="subtitle2">

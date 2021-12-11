@@ -24,6 +24,11 @@ const ProjectsCP = lazy(() => import("./pages/CP/ProjectsCP"));
 const BannersCP = lazy(() => import("./pages/CP/BannersCP"));
 const PresentationCP = lazy(() => import("./pages/CP/PresentationCP"));
 const MailCP = lazy(() => import("./pages/CP/MailCP"));
+const ArticlesCP = lazy(() => import("./pages/CP/ArticlesCP"));
+const ProductionCP = lazy(() => import("./pages/CP/ProductionCP"));
+const StoryCP = lazy(() => import("./pages/CP/StoryCP"));
+const StoryArticleCP = lazy(() => import("./pages/CP/StoryArticleCP"));
+const VacancyCP = lazy(() => import("./pages/CP/VacancyCP"));
 interface IRoutesProps {
   isAuth: boolean;
   role: RoleTypes;
@@ -77,6 +82,11 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
           "/control_panel/banners",
           "/control_panel/mail",
           "/control_panel/presentation",
+          "/control_panel/ind_des_engin_articles",
+          "/control_panel/production",
+          "/control_panel/stories",
+          "/control_panel/story_articles",
+          "/control_panel/vacancies",
         ]}
       >
         <Suspense fallback={<Loading />}>
@@ -112,6 +122,31 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
                   exact
                   path="/control_panel/presentation"
                   component={PresentationCP}
+                />
+                <Route
+                  exact
+                  path="/control_panel/ind_des_engin_articles"
+                  component={ArticlesCP}
+                />
+                <Route
+                  exact
+                  path="/control_panel/production"
+                  component={ProductionCP}
+                />
+                <Route
+                  exact
+                  path="/control_panel/stories"
+                  component={StoryCP}
+                />
+                <Route
+                  exact
+                  path="/control_panel/story_articles"
+                  component={StoryArticleCP}
+                />
+                <Route
+                  exact
+                  path="/control_panel/vacancies"
+                  component={VacancyCP}
                 />
               </Switch>
             </ControlPanelLayout>

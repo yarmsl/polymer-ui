@@ -106,7 +106,7 @@ const AddMail = (): JSX.Element => {
             </TextField>
           )}
           rules={{
-            required: "Выбирите сервис",
+            required: "Выберите сервис",
           }}
         />
         <Controller

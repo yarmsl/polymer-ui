@@ -1,12 +1,8 @@
 import {
   Box,
   Button,
-  Checkbox,
   CircularProgress,
   Container,
-  ListItemIcon,
-  ListItemText,
-  MenuItem,
   TextField,
   Typography,
 } from "@mui/material";
@@ -20,37 +16,25 @@ import {
 } from "../../../store/Notifications";
 import { closeModalAction } from "../../../store/ModalStack";
 import { SxProps } from "@mui/system";
-import { useEditProjectMutation } from "../../../store/Project";
-import { useGetAllTagsQuery } from "../../../store/Tag";
-import { useGetAllCustomersQuery } from "../../../store/Customer";
-import { SERVER_URL } from "../../../lib/constants";
 import ImagesPreview from "../ImagesPreview";
 import { file2optiDataurl, file2optiFile } from "../../../lib/imageOptimaze";
+import { useEditArticleMutation } from "../../../store/Article";
 
-export type projEditTypes =
-  | "tags"
-  | "slug"
-  | "done"
-  | "year"
-  | "customer"
-  | "addImgs"
-  | "editImgs";
+export type articleEditTypes = "title" | "content" | "addImgs" | "editImgs";
 
-interface IProjectDialogProps {
-  project: IProjectFull;
-  edit: projEditTypes;
+interface IArticleDialogProps {
+  article: IArticleFull;
+  edit: articleEditTypes;
 }
 
-const ProjectItemDialog = ({
-  project,
+const ArticleItemDialog = ({
+  article,
   edit,
-}: IProjectDialogProps): JSX.Element => {
+}: IArticleDialogProps): JSX.Element => {
   const dispatch = useAppDispatch();
-  const [editProject, { isLoading }] = useEditProjectMutation();
-  const { handleSubmit, control } = useForm<ISendProjectData>();
-  const { data: tags } = useGetAllTagsQuery("");
-  const { data: customers } = useGetAllCustomersQuery("");
-  const [sources, serSources] = useState(project.images);
+  const [editArticle, { isLoading }] = useEditArticleMutation();
+  const { handleSubmit, control } = useForm<ISendArticle>();
+  const [sources, serSources] = useState(article.images);
   const [files, setFiles] = useState<File[]>([]);
   const [upLoading, setUpLoading] = useState(false);
   const [previews, setPreviews] = useState<string[]>([]);
@@ -66,7 +50,7 @@ const ProjectItemDialog = ({
           inputRef.current.files.length > 0
         ) {
           const resBlobs = Array.from(inputRef.current.files)?.map((file) => {
-            return file2optiFile(file, 1920, 0.75, "webp");
+            return file2optiFile(file, 500, 0.75, "webp");
           });
           const res = await Promise.all(resBlobs);
           setFiles((p) => p.concat(res));
@@ -88,18 +72,18 @@ const ProjectItemDialog = ({
     [dispatch]
   );
 
-  const handleEditCustomer = handleSubmit(async (data) => {
+  const handleEditArticle = handleSubmit(async (data) => {
     try {
       const formData = new FormData();
       files?.forEach((file) => formData.append("images", file as Blob));
       const sendData =
         edit === "editImgs"
-          ? { id: project._id, data: { images: sources } }
+          ? { id: article._id, data: { images: sources } }
           : edit === "addImgs"
-          ? { id: project._id, data: formData }
-          : { id: project._id, data };
-      const res = await editProject(sendData).unwrap();
-      dispatch(showSuccessSnackbar(`Проект ${res.title} успешно изменён`));
+          ? { id: article._id, data: formData }
+          : { id: article._id, data };
+      const res = await editArticle(sendData).unwrap();
+      dispatch(showSuccessSnackbar(`Статья ${res.title} успешно изменена`));
     } catch (e) {
       dispatch(showErrorSnackbar((e as IQueryError)?.data?.message || "fail"));
     }
@@ -107,18 +91,10 @@ const ProjectItemDialog = ({
 
   const validObj = () => {
     switch (edit) {
-      case "year":
-        return { required: "Введите год" };
-      case "done":
-        return { required: "Что было сделано по проекту" };
-      case "slug":
-        return {
-          required: "Введите url slug",
-          pattern: {
-            value: /^[a-zA-Zа-яА-Я0-9_-]*$/,
-            message: "URL slug может содержать только буквы, цифры, - и _",
-          },
-        };
+      case "title":
+        return { required: "Введите заголовок статьи" };
+      case "content":
+        return { required: "Напишите статью" };
       default:
         return undefined;
     }
@@ -154,15 +130,15 @@ const ProjectItemDialog = ({
   }, []);
 
   return (
-    <Container sx={styles.dialog}>
+    <Container maxWidth='sm' sx={styles.dialog}>
       <Box sx={styles.form} component="form">
-        <Typography>Редактирование Проекта</Typography>
+        <Typography>Редактирование Статьи</Typography>
 
-        {(edit === "done" || edit === "year" || edit === "slug") && (
+        {(edit === "title" || edit === "content") && (
           <Controller
             name={edit}
             control={control}
-            defaultValue={project[edit]}
+            defaultValue={article[edit]}
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <TextField
                 size="small"
@@ -170,7 +146,7 @@ const ProjectItemDialog = ({
                 sx={styles.input}
                 label={edit}
                 fullWidth
-                multiline={edit === "done"}
+                multiline={edit === "content"}
                 minRows={3}
                 maxRows={8}
                 type="text"
@@ -181,85 +157,6 @@ const ProjectItemDialog = ({
               />
             )}
             rules={validObj()}
-          />
-        )}
-
-        {edit === "tags" && (
-          <Controller
-            name="tags"
-            control={control}
-            defaultValue={[]}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <TextField
-                size="small"
-                color={"warning"}
-                tabIndex={1}
-                sx={styles.input}
-                label="Выберите один или несколько тегов"
-                fullWidth
-                select
-                SelectProps={{
-                  multiple: true,
-                  renderValue: (selected) => {
-                    const print = (selected as string[])?.map((id) => {
-                      return tags?.find((tag) => tag._id === id)?.name;
-                    });
-                    return <div>{print?.join(", ")}</div>;
-                  },
-                  MenuProps: {
-                    PaperProps: { style: { maxHeight: 380, marginTop: 5 } },
-                  },
-                }}
-                value={value}
-                onChange={onChange}
-                error={!!error}
-                helperText={error ? error.message : null}
-              >
-                {tags?.map((tag, i) => (
-                  <MenuItem dense key={i} value={tag._id}>
-                    <Checkbox size="small" checked={value?.includes(tag._id)} />
-                    <ListItemText>{tag.name}</ListItemText>
-                  </MenuItem>
-                )) || <p>wait...</p>}
-              </TextField>
-            )}
-          />
-        )}
-
-        {edit === "customer" && (
-          <Controller
-            name="customer"
-            control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <TextField
-                size="small"
-                color={"warning"}
-                tabIndex={2}
-                sx={styles.input}
-                label="Выберите Заказчика проекта"
-                fullWidth
-                select
-                value={value}
-                onChange={onChange}
-                error={!!error}
-                helperText={error ? error.message : null}
-              >
-                <MenuItem dense value={undefined}></MenuItem>
-                {customers?.map((customer, i) => (
-                  <MenuItem dense key={i} value={customer._id}>
-                    <ListItemText>{customer.name}</ListItemText>
-                    <ListItemIcon sx={styles.logo}>
-                      {
-                        <img
-                          src={`${SERVER_URL}/${customer.logo}`}
-                          alt={customer.name}
-                        />
-                      }
-                    </ListItemIcon>
-                  </MenuItem>
-                )) || <p>wait...</p>}
-              </TextField>
-            )}
           />
         )}
 
@@ -311,7 +208,7 @@ const ProjectItemDialog = ({
                 <SaveRoundedIcon />
               )
             }
-            onClick={handleEditCustomer}
+            onClick={handleEditArticle}
             disabled={isLoading}
           >
             Сохранить
@@ -338,7 +235,7 @@ const styles: Record<string, SxProps> = {
     padding: "24px",
   },
   form: {
-    width: "300px",
+    width: "320px",
     "&>*:not(:last-child)": {
       mb: "12px",
     },
@@ -346,13 +243,6 @@ const styles: Record<string, SxProps> = {
   input: {
     minHeight: "60px",
   },
-  logo: {
-    width: "60px",
-    "& img": {
-      width: "100%",
-      objectFit: "contain",
-    },
-  },
 };
 
-export default memo(ProjectItemDialog);
+export default memo(ArticleItemDialog);

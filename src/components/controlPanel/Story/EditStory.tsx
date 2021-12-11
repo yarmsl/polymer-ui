@@ -11,14 +11,21 @@ import {
   TableRow,
 } from "@mui/material";
 import { SxProps } from "@mui/system";
-import { useGetAllProjectsQuery } from "../../../store/Project";
-import ProjectItem from "./ProjectItem";
+import { useMemo } from "react";
+import { useGetAllStoriesQuery } from "../../../store/Story";
+import StoryItem from "./StoryItem";
 
-const EditProject = (): JSX.Element => {
-  const { data, isLoading } = useGetAllProjectsQuery("");
+const EditStory = (): JSX.Element => {
+  const { data, isLoading } = useGetAllStoriesQuery("");
+
+  const sortedData = useMemo(
+    () =>
+      Array.isArray(data) ? [...data].sort((a, b) => b.from - a.from) : [],
+    [data]
+  );
 
   return (
-    <Container sx={styles.root} maxWidth='xl'>
+    <Container sx={styles.root} maxWidth="md">
       <TableContainer component={Paper}>
         <Box sx={styles.loader}>
           {isLoading && <LinearProgress color="success" />}
@@ -27,19 +34,19 @@ const EditProject = (): JSX.Element => {
           <TableHead>
             <TableRow>
               <TableCell>Автор</TableCell>
-              <TableCell>Проект</TableCell>
-              <TableCell>Изображения</TableCell>
-              <TableCell>Тэги</TableCell>
-              <TableCell>Заказчик</TableCell>
-              <TableCell>Что сделано</TableCell>
-              <TableCell>Год выполнения</TableCell>
-              <TableCell>URL slug</TableCell>
+              <TableCell>Год (с...)</TableCell>
+              <TableCell>По</TableCell>
+              <TableCell>История</TableCell>
               <TableCell>Создан</TableCell>
               <TableCell>Изменен</TableCell>
               <TableCell>Удалить</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>{data?.map((project) => <ProjectItem key={project._id} project={project} /> )}</TableBody>
+          <TableBody>
+            {sortedData?.map((story) => (
+              <StoryItem key={story._id} story={story} />
+            ))}
+          </TableBody>
         </Table>
       </TableContainer>
     </Container>
@@ -60,4 +67,4 @@ const styles: Record<string, SxProps> = {
   },
 };
 
-export default EditProject;
+export default EditStory;

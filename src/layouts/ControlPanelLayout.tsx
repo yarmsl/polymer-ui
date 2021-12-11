@@ -21,11 +21,17 @@ import EngineeringRoundedIcon from '@mui/icons-material/EngineeringRounded';
 import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
 import FilePresentIcon from '@mui/icons-material/FilePresent';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
+import DesignServicesIcon from '@mui/icons-material/DesignServices';
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
+import InfoIcon from '@mui/icons-material/Info';
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import TagIcon from '@mui/icons-material/Tag';
 import { useHistory, useRouteMatch } from "react-router";
 import { useAppSelector } from "../store";
 import { SxProps } from "@mui/system";
 import { ReactComponent as Logo } from "../assets/Logo.svg";
+
 
 const pages = [
   {
@@ -56,6 +62,36 @@ const pages = [
     title: "Проекты",
     path: "/control_panel/projects",
     icon: <EngineeringRoundedIcon />,
+    access: "user",
+  },
+  {
+    title: "Статьи (Инжиниринг)",
+    path: "/control_panel/ind_des_engin_articles",
+    icon: <DesignServicesIcon />,
+    access: "user",
+  },
+  {
+    title: "Статьи (Производство)",
+    path: "/control_panel/production",
+    icon: <PrecisionManufacturingIcon />,
+    access: "user",
+  },
+  {
+    title: "История (О компании)",
+    path: "/control_panel/stories",
+    icon: <HistoryEduIcon />,
+    access: "user",
+  },
+  {
+    title: "Статьи (О компании)",
+    path: "/control_panel/story_articles",
+    icon: <InfoIcon />,
+    access: "user",
+  },
+  {
+    title: "Вакансии",
+    path: "/control_panel/vacancies",
+    icon: <PersonSearchIcon />,
     access: "user",
   },
   {
