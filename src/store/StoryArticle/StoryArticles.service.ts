@@ -16,7 +16,7 @@ export const storyArticleAPI = createApi({
   }),
   tagTypes: ["StoryArticle"],
   endpoints: (build) => ({
-    addStoryArticle: build.mutation<IStoryArticleFull, FormData>({
+    addStoryArticle: build.mutation<IStoryArticleFull, IAddStoryArticle>({
       query: (data) => ({
         url: "/",
         method: "POST",

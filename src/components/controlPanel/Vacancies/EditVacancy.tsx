@@ -11,14 +11,14 @@ import {
   TableRow,
 } from "@mui/material";
 import { SxProps } from "@mui/system";
-import { useGetAllProjectsQuery } from "../../../store/Project";
-import ProjectItem from "./ProjectItem";
+import { useGetAllVacanciesQuery } from "../../../store/Vacancy";
+import VacancyItem from "./VacancyItem";
 
-const EditProject = (): JSX.Element => {
-  const { data, isLoading } = useGetAllProjectsQuery("");
+const EditVacancy = (): JSX.Element => {
+  const { data, isLoading } = useGetAllVacanciesQuery("");
 
   return (
-    <Container sx={styles.root} maxWidth='xl'>
+    <Container sx={styles.root} maxWidth="md">
       <TableContainer component={Paper}>
         <Box sx={styles.loader}>
           {isLoading && <LinearProgress color="success" />}
@@ -27,19 +27,19 @@ const EditProject = (): JSX.Element => {
           <TableHead>
             <TableRow>
               <TableCell>Автор</TableCell>
-              <TableCell>Проект</TableCell>
-              <TableCell>Изображения</TableCell>
-              <TableCell>Тэги</TableCell>
-              <TableCell>Заказчик</TableCell>
-              <TableCell>Что сделано</TableCell>
-              <TableCell>Год выполнения</TableCell>
-              <TableCell>URL slug</TableCell>
-              <TableCell>Создан</TableCell>
-              <TableCell>Изменен</TableCell>
+              <TableCell>Вакансия</TableCell>
+              <TableCell>Требования</TableCell>
+              <TableCell>З/П от</TableCell>
+              <TableCell>Создана</TableCell>
+              <TableCell>Изменена</TableCell>
               <TableCell>Удалить</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>{data?.map((project) => <ProjectItem key={project._id} project={project} /> )}</TableBody>
+          <TableBody>
+            {data?.map((vacancy) => (
+              <VacancyItem key={vacancy._id} vacancy={vacancy} />
+            ))}
+          </TableBody>
         </Table>
       </TableContainer>
     </Container>
@@ -60,4 +60,4 @@ const styles: Record<string, SxProps> = {
   },
 };
 
-export default EditProject;
+export default EditVacancy;

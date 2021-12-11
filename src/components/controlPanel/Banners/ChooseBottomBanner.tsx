@@ -130,7 +130,7 @@ const ChooseBottomBanner = (): JSX.Element => {
               </TextField>
             )}
             rules={{
-              required: "Выбирите хотя бы один проект",
+              required: "Выберите хотя бы один проект",
             }}
           />
         )}

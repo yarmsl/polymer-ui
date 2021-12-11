@@ -62,3 +62,11 @@ interface ISendStep {
   productionArticle?: string;
   order?: number;
 }
+
+interface IAddStep {
+  title: string;
+  content: string;
+  productionArticle: string;
+  order: number;
+  image: string;
+}

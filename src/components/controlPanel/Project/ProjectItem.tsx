@@ -5,7 +5,6 @@ import {
   TableCell,
   TableRow,
   Tooltip,
-  Typography,
 } from "@mui/material";
 import { memo, useCallback } from "react";
 import { str2rusDate } from "../../../lib/Dates";
@@ -22,15 +21,11 @@ import { useDeleteProjectMutation } from "../../../store/Project";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import ProjectItemDialog, { projEditTypes } from "./ProjectItem.dialog";
+import TextCellWithEdit from "../TextCellWithEdit";
 
 interface IImgCellWithEditProps {
   val: string | number;
   imgPath: string;
-  openModal: (edit: projEditTypes) => void;
-  edit: projEditTypes;
-}
-interface ITextCellWithEditProps {
-  val: string | number | string[];
   openModal: (edit: projEditTypes) => void;
   edit: projEditTypes;
 }
@@ -49,23 +44,6 @@ const ImgCellWithEdit = ({
       <Box sx={styles.img}>
         <img src={`${SERVER_URL}/${imgPath}`} alt={`${val}`} />
       </Box>
-    </Tooltip>
-    <IconButton onClick={() => openModal(edit)} size="small">
-      <EditRoundedIcon fontSize="inherit" color="warning" />
-    </IconButton>
-  </Box>
-);
-
-const TextCellWithEdit = ({
-  val,
-  openModal,
-  edit,
-}: ITextCellWithEditProps): JSX.Element => (
-  <Box sx={styles.textCell}>
-    <Tooltip arrow title={Array.isArray(val) ? val.join(", ") : val}>
-      <Typography variant="body2" sx={styles.long}>
-        {Array.isArray(val) ? val.join(", ") : val}
-      </Typography>
     </Tooltip>
     <IconButton onClick={() => openModal(edit)} size="small">
       <EditRoundedIcon fontSize="inherit" color="warning" />
@@ -100,16 +78,16 @@ const ProjectItem = ({ project }: IProjectItemProps) => {
       <TableCell>{project.title}</TableCell>
       <TableCell>
         <Box sx={{ display: "flex", "&>*": { m: "0 4px" } }}>
-          <IconButton onClick={() => openEditModal('addImgs')} size="small">
+          <IconButton onClick={() => openEditModal("addImgs")} size="small">
             <CloudUploadIcon fontSize="inherit" color="info" />
           </IconButton>
-          <IconButton onClick={() => openEditModal('editImgs')} size="small">
+          <IconButton onClick={() => openEditModal("editImgs")} size="small">
             <EditRoundedIcon fontSize="inherit" color="warning" />
           </IconButton>
         </Box>
       </TableCell>
       <TableCell>
-        <TextCellWithEdit
+        <TextCellWithEdit<projEditTypes>
           val={project.tags?.map((tag) => tag.name) || []}
           openModal={openEditModal}
           edit="tags"
@@ -125,21 +103,21 @@ const ProjectItem = ({ project }: IProjectItemProps) => {
         />
       </TableCell>
       <TableCell>
-        <TextCellWithEdit
+        <TextCellWithEdit<projEditTypes>
           val={project.done}
           openModal={openEditModal}
           edit="done"
         />
       </TableCell>
       <TableCell>
-        <TextCellWithEdit
+        <TextCellWithEdit<projEditTypes>
           val={project.year}
           openModal={openEditModal}
           edit="year"
         />
       </TableCell>
       <TableCell>
-        <TextCellWithEdit
+        <TextCellWithEdit<projEditTypes>
           val={project.slug}
           openModal={openEditModal}
           edit="slug"
@@ -188,18 +166,6 @@ const styles: Record<string, SxProps> = {
       width: "100%",
       objectFit: "contain",
       objectPosition: "center",
-    },
-  },
-  long: {
-    width: "calc(100% - 36px)",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    wordBreak: "break-all",
-    whiteSpace: "nowrap",
-    mr: "8px",
-    "&:hover": {
-      textDecoration: "underline",
-      cursor: "pointer",
     },
   },
 };

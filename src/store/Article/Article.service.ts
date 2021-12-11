@@ -24,6 +24,7 @@ export const articleAPI = createApi({
       }),
       invalidatesTags: ["Article"],
     }),
+
     editArticle: build.mutation<IArticleFull, IEditArticle>({
       query: (data) => ({
         url: `/${data.id}`,
