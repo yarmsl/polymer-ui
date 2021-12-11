@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { articleAPI } from "./Article";
 import { authReducer, authAPI } from "./Auth";
 import { bannerAPI } from "./Banner";
 import { customerAPI } from "./Customer";
@@ -9,9 +10,13 @@ import { mailAPI } from "./Mail";
 import { ModalStackReducer } from "./ModalStack";
 import { notificationsReducer } from "./Notifications";
 import { fileAPI } from "./PresentationFile";
+import { productionAPI } from "./Production";
 import { projectAPI } from "./Project";
+import { storyAPI } from "./Story";
+import { storyArticleAPI } from "./StoryArticle";
 import { tagAPI } from "./Tag";
 import { usersAPI } from "./Users";
+import { vacancyAPI } from "./Vacancy";
 
 const authPersistConfig = {
   key: "auth",
@@ -32,6 +37,11 @@ const rootReducer = combineReducers({
   [projectAPI.reducerPath]: projectAPI.reducer,
   [mailAPI.reducerPath]: mailAPI.reducer,
   [fileAPI.reducerPath]: fileAPI.reducer,
+  [articleAPI.reducerPath]: articleAPI.reducer,
+  [productionAPI.reducerPath]: productionAPI.reducer,
+  [storyAPI.reducerPath]: storyAPI.reducer,
+  [storyArticleAPI.reducerPath]: storyArticleAPI.reducer,
+  [vacancyAPI.reducerPath]: vacancyAPI.reducer,
 });
 
 const appStore = configureStore({
@@ -46,7 +56,12 @@ const appStore = configureStore({
       tagAPI.middleware,
       projectAPI.middleware,
       mailAPI.middleware,
-      fileAPI.middleware
+      fileAPI.middleware,
+      articleAPI.middleware,
+      productionAPI.middleware,
+      storyAPI.middleware,
+      storyArticleAPI.middleware,
+      vacancyAPI.middleware
     ),
 });
 

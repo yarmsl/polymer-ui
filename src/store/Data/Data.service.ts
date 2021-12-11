@@ -6,28 +6,54 @@ export const dataAPI = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${SERVER_URL}/api`,
   }),
-  tagTypes: ["Project", "Tag", "Customer", "File"],
   endpoints: (build) => ({
     getProjectsData: build.query<IProjectFull[], string>({
       query: () => ({
         url: "/project",
         method: "GET",
       }),
-      providesTags: ["Project", "Tag", "Customer"],
     }),
     getTagsData: build.query<ITagFull[], string>({
       query: () => ({
         url: "/tag",
         method: "GET",
       }),
-      providesTags: ["Project", "Tag", "Customer"],
     }),
     getCustomersData: build.query<ICustomerFull[], string>({
       query: () => ({
         url: "/customer",
         method: "GET",
       }),
-      providesTags: ["Project", "Tag", "Customer"],
+    }),
+    getArticlesData: build.query<IArticle[], string>({
+      query: () => ({
+        url: "/article",
+        method: "GET",
+      }),
+    }),
+    getProductionArticlesData: build.query<IProductionArticle[], string>({
+      query: () => ({
+        url: "/production/article",
+        method: "GET",
+      }),
+    }),
+    getStoriesData: build.query<IStory[], string>({
+      query: () => ({
+        url: "/story",
+        method: "GET",
+      }),
+    }),
+    getStoryArticlesData: build.query<IStoryArticle[], string>({
+      query: () => ({
+        url: "/storyarticle",
+        method: "GET",
+      }),
+    }),
+    getVacanciesData: build.query<IVacancy[], string>({
+      query: () => ({
+        url: "/vacancy",
+        method: "GET",
+      }),
     }),
   }),
 });
@@ -36,4 +62,8 @@ export const {
   useGetCustomersDataQuery,
   useGetProjectsDataQuery,
   useGetTagsDataQuery,
+  useGetArticlesDataQuery,
+  useGetProductionArticlesDataQuery,
+  useGetStoriesDataQuery,
+  useGetStoryArticlesDataQuery,
 } = dataAPI;
