@@ -16,22 +16,23 @@ import AdminPanelSettingsRoundedIcon from "@mui/icons-material/AdminPanelSetting
 import GroupRoundedIcon from "@mui/icons-material/GroupRounded";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import AssignmentIndRoundedIcon from '@mui/icons-material/AssignmentIndRounded';
-import EngineeringRoundedIcon from '@mui/icons-material/EngineeringRounded';
-import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
-import FilePresentIcon from '@mui/icons-material/FilePresent';
-import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
-import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
-import DesignServicesIcon from '@mui/icons-material/DesignServices';
-import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
-import InfoIcon from '@mui/icons-material/Info';
-import PersonSearchIcon from '@mui/icons-material/PersonSearch';
-import TagIcon from '@mui/icons-material/Tag';
+import AssignmentIndRoundedIcon from "@mui/icons-material/AssignmentIndRounded";
+import EngineeringRoundedIcon from "@mui/icons-material/EngineeringRounded";
+import ViewCarouselIcon from "@mui/icons-material/ViewCarousel";
+import FilePresentIcon from "@mui/icons-material/FilePresent";
+import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
+import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
+import DesignServicesIcon from "@mui/icons-material/DesignServices";
+import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturing";
+import InfoIcon from "@mui/icons-material/Info";
+import PersonSearchIcon from "@mui/icons-material/PersonSearch";
+import LogoutIcon from "@mui/icons-material/Logout";
+import TagIcon from "@mui/icons-material/Tag";
 import { useHistory, useRouteMatch } from "react-router";
-import { useAppSelector } from "../store";
+import { useAppDispatch, useAppSelector } from "../store";
 import { SxProps } from "@mui/system";
 import { ReactComponent as Logo } from "../assets/Logo.svg";
-
+import { logout } from "../store/Auth";
 
 const pages = [
   {
@@ -111,11 +112,12 @@ const pages = [
     path: "/control_panel/mail",
     icon: <AlternateEmailIcon />,
     access: "user",
-  }
+  },
 ];
 
 const ControlPanelLayout = ({ children }: Child): ReactElement => {
   const { role } = useAppSelector((st) => st.auth);
+  const dispatch = useAppDispatch();
   const [burger, setBurger] = useState(false);
   const router = useHistory();
   const match = useRouteMatch();
@@ -165,6 +167,12 @@ const ControlPanelLayout = ({ children }: Child): ReactElement => {
               </ListItemButton>
             );
           })}
+          <ListItemButton onClick={() => dispatch(logout())}>
+            <ListItemIcon>
+              <LogoutIcon />
+            </ListItemIcon>
+            <ListItemText>Выйти</ListItemText>
+          </ListItemButton>
         </List>
       </SwipeableDrawer>
       <>{children}</>

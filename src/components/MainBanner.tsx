@@ -5,6 +5,7 @@ import MainSlider from "./MainSlider";
 import promdis from "../assets/promdis.webp";
 import projects from "../assets/projects.webp";
 import production from "../assets/production.webp";
+import about from "../assets/about.webp";
 
 const bannerPaths = [
   "/indastrial_design_and_engineering",
@@ -32,7 +33,7 @@ const banner = {
   "/about": {
     title: "",
     text: "",
-    image: "https://picsum.photos/id/76/1920/1080",
+    image: about,
   },
 };
 

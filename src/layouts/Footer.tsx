@@ -6,16 +6,12 @@ import { pages } from "./MainLayout";
 import { ReactComponent as Logo } from "../assets/LogoGrey.svg";
 import FooterCarousel from "../components/FooterCarousel";
 import { useRouteMatch } from "react-router";
-import { useMedia } from "../lib/useMedia";
-import Map from "../components/Map";
 
 const Footer = (): JSX.Element => {
   const match = useRouteMatch();
-  const { matchesMobile } = useMedia();
   return (
     <Box sx={styles.root} component="footer">
       {match.isExact && <FooterCarousel />}
-      {match.path === "/contacts" && matchesMobile && <Map />}
       <Container maxWidth="md" sx={styles.footer}>
         <Box sx={styles.main}>
           <Box sx={styles.nav}>

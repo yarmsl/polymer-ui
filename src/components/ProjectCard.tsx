@@ -24,7 +24,9 @@ const ProjectCard = ({ project }: IProjectCardProps): JSX.Element => {
       <Box sx={styles.imgWrapper}>
         <img src={`${SERVER_URL}/${project.images[0]}`} alt={project.title} />
       </Box>
-      <Typography sx={styles.title} variant="h6">{project.title}</Typography>
+      <Typography sx={styles.title} variant="h6">
+        {project.title}
+      </Typography>
       <Link
         sx={styles.link}
         component={RouterLink}
@@ -38,10 +40,10 @@ const ProjectCard = ({ project }: IProjectCardProps): JSX.Element => {
 
 const styles: Record<string, SxProps> = {
   root: {
-    width: "33.33%",
-    height: "270px",
+    width: { xs: "100%", sm: "50%", md: "33.33%" },
+    height: { xs: '320px', sm: "270px"},
     p: "0 7px",
-    mb: '33px',
+    mb: "33px",
     boxSizing: "border-box",
     display: "flex",
     flexDirection: "column",
@@ -49,11 +51,11 @@ const styles: Record<string, SxProps> = {
   },
   imgWrapper: {
     width: "100%",
-    minHeight: '185px',
-    height: "185px",
+    minHeight: { xs: '235px', sm: "185px"},
+    height: { xs: '235px', sm: "185px"},
     borderRadius: "5px",
     overflow: "hidden",
-    mb: '10px',
+    mb: "10px",
     "& img": {
       width: "100%",
       height: "100%",
@@ -62,9 +64,8 @@ const styles: Record<string, SxProps> = {
     },
   },
   title: {
-    height: '42px',
+    height: "42px",
     lineHeight: 1.2,
-
   },
   link: {
     color: "primary.main",

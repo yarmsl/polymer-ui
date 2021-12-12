@@ -4,7 +4,6 @@ import { Box, Container, Typography } from "@mui/material";
 import { SxProps } from "@mui/system";
 import DownloadPres from "../components/DownloadPres";
 import { ReactComponent as Logotype } from "../assets/Logo.svg";
-import Map from "../components/Map";
 import { useMedia } from "../lib/useMedia";
 
 const Contacts = (): ReactElement => {
@@ -41,7 +40,6 @@ const Contacts = (): ReactElement => {
         </Box>
         {matchesMobile && <DownloadPres />}
       </Container>
-      {!matchesMobile && <Map />}
     </>
   );
 };

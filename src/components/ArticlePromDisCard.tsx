@@ -32,7 +32,13 @@ const ArticlesPromDisCard = ({
         <Typography sx={styles.title} variant="h6">
           {article.title}
         </Typography>
-        <Typography color="#777777">{article.content}</Typography>
+        <Typography
+          sx={{ whiteSpace: "pre-wrap" }}
+          component="pre"
+          color="#777777"
+        >
+          {article.content}
+        </Typography>
       </Box>
       <Box
         sx={styles.slider}

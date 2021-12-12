@@ -30,6 +30,7 @@ const styles: Record<string, SxProps> = {
     width: "100%",
     display: "flex",
     flexWrap: "wrap",
+    justifyContent: {xs: 'center', sm: 'flex-start'},
     mb: "50px",
   },
 };

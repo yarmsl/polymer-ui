@@ -15,6 +15,12 @@ const defaultTheme = createTheme({
     button: {
       textTransform: "none",
     },
+    h2: {
+      fontSize: 48,
+      lineHeight: 1.1,
+      fontWeight: 700,
+      userSelect: "none",
+    },
     h3: {
       fontSize: 36,
       lineHeight: 2,
