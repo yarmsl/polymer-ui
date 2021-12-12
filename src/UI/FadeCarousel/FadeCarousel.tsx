@@ -20,6 +20,7 @@ const FadeCarousel = ({ slides, delay }: IFadeCarouselProps): JSX.Element => {
         dynamicBullets: true,
         dynamicMainBullets: 3,
       }}
+      initialSlide={1}
     >
       {slides?.map((slide, i) => {
         return <SwiperSlide key={i}>{slide}</SwiperSlide>;

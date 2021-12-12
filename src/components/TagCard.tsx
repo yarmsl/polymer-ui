@@ -67,6 +67,7 @@ const TagCard: FC<ITagCardProps> = ({ tag }) => {
 
 const styles: Record<string, SxProps> = {
   root: {
+    minWidth: '270px',
     width: "270px",
     maxWidth: "270px",
     boxSizing: "border-box",

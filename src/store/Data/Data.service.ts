@@ -66,4 +66,5 @@ export const {
   useGetProductionArticlesDataQuery,
   useGetStoriesDataQuery,
   useGetStoryArticlesDataQuery,
+  useGetVacanciesDataQuery
 } = dataAPI;
