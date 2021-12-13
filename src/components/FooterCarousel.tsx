@@ -8,6 +8,7 @@ import { useGetBottomBannerQuery } from "../store/Banner";
 import { useMemo } from "react";
 import ProjectSlide from "./ProjectSlide";
 import FeedbackForm from "./FeedbackForm";
+import { useMedia } from "../lib/useMedia";
 
 const FooterCarousel = (): JSX.Element => {
   const match = useRouteMatch();
@@ -15,7 +16,7 @@ const FooterCarousel = (): JSX.Element => {
     useGetProjectsDataQuery("");
   const { data: bottomBanner, isLoading: isBottomBannerLoading } =
     useGetBottomBannerQuery("");
-
+  const { matchesMobile } = useMedia();
   const filteredProjects = useMemo(
     () =>
       projects?.filter((proj) => bottomBanner?.projects?.includes(proj._id)) ||
@@ -29,14 +30,22 @@ const FooterCarousel = (): JSX.Element => {
         <ProjectSlide
           key={`proj-${i}`}
           project={project}
-          showDescription={match.path !== "/contacts"}
+          showDescription={match.path !== "/contacts" && !matchesMobile}
         />
       )) || [],
-    [filteredProjects, match.path]
+    [filteredProjects, match.path, matchesMobile]
   );
 
   return (
-    <Box sx={styles.root}>
+    <Box
+      sx={{
+        ...styles.root,
+        height: {
+          xs: match.path === "/contacts" ? "525px" : "210px",
+          sm: "525px",
+        },
+      }}
+    >
       <Box sx={styles.feedback}>
         {match.path !== "/contacts" ? <FeedBackDownload /> : <FeedbackForm />}
       </Box>
@@ -53,7 +62,6 @@ const FooterCarousel = (): JSX.Element => {
 const styles: Record<string, SxProps> = {
   root: {
     width: "100%",
-    height: "525px",
     overflow: "hidden",
     position: "relative",
     display: "flex",

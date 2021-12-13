@@ -4,9 +4,11 @@ import { useGetCustomersDataQuery } from "../store/Data";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
 import { Navigation } from "swiper";
 import CustomerCard, { SkeletonCustomerCard } from "./CustomerCard";
+import { useMedia } from "../lib/useMedia";
 
 const TrustUs = (): JSX.Element => {
   const { data, isLoading } = useGetCustomersDataQuery("");
+  const { matchesMobile, matchesDesktop } = useMedia();
   return (
     <Box sx={styles.root}>
       <Typography variant="h5">Нам доверяют</Typography>
@@ -15,7 +17,8 @@ const TrustUs = (): JSX.Element => {
           modules={[Navigation]}
           spaceBetween={0}
           navigation={true}
-          slidesPerView={3}
+          slidesPerView={matchesMobile ? 1 : matchesDesktop ? 3 : 2}
+          
         >
           {isLoading
             ? [0, 1, 2].map((ph) => (

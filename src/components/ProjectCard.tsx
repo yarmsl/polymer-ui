@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Box, Link, Skeleton, Typography } from "@mui/material";
+import { Box, Skeleton, Typography } from "@mui/material";
 import { SxProps } from "@mui/system";
 import { Link as RouterLink } from "react-router-dom";
 import { SERVER_URL } from "../lib/constants";
@@ -20,20 +20,18 @@ export const SkeletonProjectCard = (): JSX.Element => {
 
 const ProjectCard = ({ project }: IProjectCardProps): JSX.Element => {
   return (
-    <Box sx={styles.root}>
+    <Box
+      component={RouterLink}
+      to={`/project/${project.slug}`}
+      sx={styles.root}
+    >
       <Box sx={styles.imgWrapper}>
         <img src={`${SERVER_URL}/${project.images[0]}`} alt={project.title} />
       </Box>
       <Typography sx={styles.title} variant="h6">
         {project.title}
       </Typography>
-      <Link
-        sx={styles.link}
-        component={RouterLink}
-        to={`/project/${project.slug}`}
-      >
-        Смотреть подробнее
-      </Link>
+      <Typography sx={styles.link}>Смотреть подробнее</Typography>
     </Box>
   );
 };
@@ -41,18 +39,20 @@ const ProjectCard = ({ project }: IProjectCardProps): JSX.Element => {
 const styles: Record<string, SxProps> = {
   root: {
     width: { xs: "100%", sm: "50%", md: "33.33%" },
-    height: { xs: '320px', sm: "270px"},
+    height: { xs: "320px", sm: "270px" },
     p: "0 7px",
     mb: "33px",
     boxSizing: "border-box",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
+    textDecoration: "none",
+    color: "#000",
   },
   imgWrapper: {
     width: "100%",
-    minHeight: { xs: '235px', sm: "185px"},
-    height: { xs: '235px', sm: "185px"},
+    minHeight: { xs: "235px", sm: "185px" },
+    height: { xs: "235px", sm: "185px" },
     borderRadius: "5px",
     overflow: "hidden",
     mb: "10px",

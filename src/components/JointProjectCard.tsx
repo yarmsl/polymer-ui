@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Box, Link, Skeleton, Typography } from "@mui/material";
+import { Box, Skeleton, Typography } from "@mui/material";
 import { SxProps } from "@mui/system";
 import { Link as RouterLink } from "react-router-dom";
 import { SERVER_URL } from "../lib/constants";
@@ -16,7 +16,7 @@ export const SkeletonJointProjectCard = (): JSX.Element => {
         <Skeleton variant="text" />
       </Box>
       <Box sx={styles.imgWrapper}>
-        <Skeleton variant="rectangular" width={"100%"} height={'100%'} />
+        <Skeleton variant="rectangular" width={"100%"} height={"100%"} />
       </Box>
     </Box>
   );
@@ -24,18 +24,15 @@ export const SkeletonJointProjectCard = (): JSX.Element => {
 
 const ProjectCard = ({ project }: IProjectCardProps): JSX.Element => {
   return (
-    <Box sx={styles.root}>
+    <Box
+      component={RouterLink}
+      to={`/project/${project.slug}`}
+      sx={styles.root}
+    >
       <Box sx={styles.info}>
         <Typography variant="h6">{project.title}</Typography>
-        <Link
-          sx={styles.link}
-          component={RouterLink}
-          to={`/project/${project.slug}`}
-        >
-          Смотреть подробнее
-        </Link>
+        <Typography sx={styles.link}>Смотреть подробнее</Typography>
       </Box>
-
       <Box sx={styles.imgWrapper}>
         <img src={`${SERVER_URL}/${project.images[0]}`} alt={project.title} />
       </Box>
@@ -46,13 +43,17 @@ const ProjectCard = ({ project }: IProjectCardProps): JSX.Element => {
 const styles: Record<string, SxProps> = {
   root: {
     width: "100%",
-    height: "300px",
+    height: { xs: "", sm: "300px" },
     display: "flex",
+    flexDirection: { xs: "column", sm: "row" },
+    textDecoration: "none",
+    color: "#000",
   },
   info: {
-    height: "100%",
-    width: "45%",
-    pr: "80px",
+    order: { xs: 1, sm: 0 },
+    height: { xs: "", sm: "100%" },
+    width: { xs: "100%", sm: "45%" },
+    pr: { xs: "", sm: "80px" },
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -65,10 +66,12 @@ const styles: Record<string, SxProps> = {
     },
   },
   imgWrapper: {
-    width: "55%",
-    height: "100%",
+    order: { xs: 0, sm: 1 },
+    width: { xs: "100%", sm: "55%" },
+    height: { xs: "275px", sm: "100%" },
     borderRadius: "5px",
     overflow: "hidden",
+    mb: { xs: "16px", sm: "" },
     "& img": {
       width: "100%",
       height: "100%",

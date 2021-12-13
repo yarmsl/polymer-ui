@@ -3,10 +3,21 @@ import { SxProps } from "@mui/system";
 import { useHistory } from "react-router";
 import { ReactComponent as Logotype } from "../assets/Logo.svg";
 
-const Logo = (): JSX.Element => {
+interface ILogoProps {
+  closeBurger?: () => void;
+}
+
+const Logo = ({ closeBurger }: ILogoProps): JSX.Element => {
   const router = useHistory();
   return (
-    <Button color="inherit" onClick={() => router.push("/")} sx={styles.root}>
+    <Button
+      color="inherit"
+      onClick={() => {
+        router.push("/");
+        if (closeBurger) closeBurger();
+      }}
+      sx={styles.root}
+    >
       <Logotype />
       <Box sx={styles.title}>
         <Typography color="MenuText">УРАЛ-ПОЛИМЕР</Typography>

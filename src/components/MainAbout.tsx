@@ -1,42 +1,10 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import { SxProps } from "@mui/system";
-import { ReactComponent as DesignIcon } from "../assets/design_icon.svg";
-import { ReactComponent as ModelIcon } from "../assets/model_icon.svg";
-import { ReactComponent as EngineeringIcon } from "../assets/engineering_icon.svg";
-import { ReactComponent as ProductionIcon } from "../assets/production_icon.svg";
-import { ReactComponent as PerfectIcon } from "../assets/perfect_icon.svg";
 import { EffectFade } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
 import SwiperCore from "swiper";
 import { useCallback, useState } from "react";
-
-const abouts = [
-  {
-    title: "Дизайн",
-    text: "Более четверти века мы занимаемся изделиями из композитных полимерных материалов. Мы не только производим изделия, но и проектируем их. Наша команда выполнила множество проектов, которые сейчас являются частью городской инфраструктуры: коммунальные и пожарные машины, городской транспорт и многое другое.",
-    icon: <DesignIcon />,
-  },
-  {
-    title: "От эскиза до 3D модели",
-    text: "Работа над проектом начинается задолго до производства: рисуются эскизы, создаются модели для того, чтобы в полном объеме представить картину создаваемого объекта.",
-    icon: <ModelIcon />,
-  },
-  {
-    title: "Инжиниринг",
-    text: "Необходимые знания и опыт в области дизайна и создания изделий из композитов позволяют нам создавать конструкции практически любой сложности, которые обладают отличными техническими характеристиками и современным внешним видом.",
-    icon: <EngineeringIcon />,
-  },
-  {
-    title: "Производство",
-    text: "Современное производство позволяет реализовывать смелые конструкторские решения и обеспечивать необходимые объемы поставок продукции с должным качеством.",
-    icon: <ProductionIcon />,
-  },
-  {
-    title: "Совершенствование конструкции",
-    text: "После разработки изделия мы остаемся в контакте с заказчиком. Дизайн, конструкция, экономическая составляющая - все это может быть улучшено в процессе дальнейшей работы над проектом.",
-    icon: <PerfectIcon />,
-  },
-];
+import { abouts } from "../lib/about";
 
 const MainAbout = (): JSX.Element => {
   const [swiper, setSwiper] = useState<SwiperCore | null>(null);
@@ -58,7 +26,7 @@ const MainAbout = (): JSX.Element => {
               onClick={() => toSlide(i + 1)}
             >
               <Box>{about.icon}</Box>
-              <Typography>{about.title}</Typography>
+              <Typography sx={styles.title}>{about.title}</Typography>
             </Button>
           );
         })}
@@ -106,10 +74,9 @@ const styles: Record<string, SxProps> = {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "flex-start",
-    fontSize: "12px",
     lineHeight: "17px",
     textTransform: "uppercase",
-    letterSpacing: "0.24em",
+    letterSpacing: { sm: '0.1em', md: "0.24em"},
     "&>div": {
       width: "60px",
       height: "60px",
@@ -120,6 +87,9 @@ const styles: Record<string, SxProps> = {
       },
     },
   },
+  title: {
+    fontSize: { sm: "10px", md: "14px" },
+  },
   selected: {
     color: "#000",
   },
@@ -129,7 +99,7 @@ const styles: Record<string, SxProps> = {
   },
   slide: {
     width: "100%",
-    height: '110px',
+    height: "110px",
     display: "flex",
     userSelect: "none",
     backgroundColor: "white",

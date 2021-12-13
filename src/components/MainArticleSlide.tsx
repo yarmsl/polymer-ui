@@ -40,7 +40,7 @@ const styles: Record<string, SxProps> = {
     zIndex: 2,
   },
   article: {
-    width: "100%",
+    width: { xs: "90%", sm: "100%" },
     maxWidth: "872px",
     minWidth: "300px",
     m: "0 10px",
@@ -49,6 +49,7 @@ const styles: Record<string, SxProps> = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
+    fontSize: { xs: "14px", sm: "18px" },
   },
 };
 

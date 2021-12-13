@@ -1,10 +1,12 @@
-import { ReactElement, useMemo } from "react";
-import Header from "./Header";
+import { ReactElement, Suspense, useMemo, lazy } from "react";
 import { Container } from "@mui/material";
-import Footer from "./Footer";
 import { SxProps } from "@mui/system";
 import MainBanner from "../components/MainBanner";
 import { useRouteMatch } from "react-router";
+import Loading from "./Loading";
+
+const Header = lazy(() => import("./Header"));
+const Footer = lazy(() => import("./Footer"));
 
 export const pages = [
   {
@@ -31,12 +33,16 @@ const MainLayout = ({ children }: Child): ReactElement => {
   );
   return (
     <>
-      <Header />
+      <Suspense fallback={<Loading />}>
+        <Header />
+      </Suspense>
       {showBanner && <MainBanner />}
       <Container disableGutters sx={styles.root} maxWidth={false}>
         <>{children}</>
       </Container>
-      <Footer />
+      <Suspense fallback={"...loading"}>
+        <Footer />
+      </Suspense>
     </>
   );
 };

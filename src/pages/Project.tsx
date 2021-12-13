@@ -5,9 +5,11 @@ import { SxProps } from "@mui/system";
 import { useGetProjectsDataQuery } from "../store/Data";
 import { useHistory } from "react-router";
 import { SERVER_URL } from "../lib/constants";
+import { useMedia } from "../lib/useMedia";
 
 const Project = (): ReactElement => {
   const router = useHistory();
+  const { matchesMobile } = useMedia();
   const { data, isLoading } = useGetProjectsDataQuery("");
   const project = useMemo(() => {
     if (!isLoading && router?.location?.pathname != null && data != null) {
@@ -32,10 +34,15 @@ const Project = (): ReactElement => {
       <HelmetTitle title={project?.title || "Проект"} />
       <Container sx={styles.root} maxWidth="md">
         <Box sx={styles.main}>
-          <Typography sx={styles.year}>{project?.year}</Typography>
+          {!matchesMobile && (
+            <Typography sx={styles.year}>{project?.year}</Typography>
+          )}
           <img src={`${SERVER_URL}/${project?.images[0]}`} alt="Проект" />
         </Box>
         <Box sx={styles.info}>
+          {matchesMobile && (
+            <Typography sx={styles.yearMob}>{project?.year}</Typography>
+          )}
           <Typography sx={styles.title} variant="h3">
             {project?.title}
           </Typography>
@@ -64,10 +71,10 @@ const Project = (): ReactElement => {
                   </Box>
                 );
               })}
+              <Typography variant="subtitle1">
+                Изображения взяты из открытых источников
+              </Typography>
             </Box>
-            <Typography variant="subtitle1">
-              Изображения взяты из открытых источников
-            </Typography>
           </Box>
         )}
         <Button
@@ -92,14 +99,14 @@ const styles: Record<string, SxProps> = {
   },
   main: {
     width: "100%",
-    height: "560px",
+    height: { xs: "300px", sm: "560px" },
     position: "relative",
     "& img": {
       width: "100%",
       height: "100%",
       objectFit: "cover",
       objectPosition: "center",
-      borderRadius: "5px",
+      borderRadius: { xs: "0px", sm: "5px" },
       overflow: "hidden",
     },
   },
@@ -112,13 +119,19 @@ const styles: Record<string, SxProps> = {
     fontSize: "144px",
     fontWeight: 700,
     lineHeight: 1,
-    right: "-175px",
+    right: { sm: "-125px", md: "-175px" },
     userSelect: "none",
+  },
+  yearMob: {
+    color: "primary.main",
+    fontSize: "96px",
+    fontWeight: 700,
   },
   info: {
     width: "100%",
+    p: { xs: "0 30px", sm: "" },
     mb: "40px",
-    "&>*:not(:first-child)": {
+    "&>*": {
       mb: "12px",
     },
   },
@@ -133,15 +146,15 @@ const styles: Record<string, SxProps> = {
   },
   wrapper: {
     width: "100%",
+    p: { xs: "0 30px", sm: "" },
     display: "flex",
     flexWrap: "wrap",
   },
   photo: {
-    width: "33.33%",
+    width: { xs: "50%", sm: "33.33%" },
     p: "5px",
     boxSizing: "border-box",
     height: "190px",
-
     "& img": {
       width: "100%",
       height: "100%",

@@ -105,13 +105,13 @@ const pages = [
     title: "Файл презентации",
     path: "/control_panel/presentation",
     icon: <FilePresentIcon />,
-    access: "user",
+    access: "admin",
   },
   {
     title: "Почта",
     path: "/control_panel/mail",
     icon: <AlternateEmailIcon />,
-    access: "user",
+    access: "admin",
   },
 ];
 
@@ -158,7 +158,10 @@ const ControlPanelLayout = ({ children }: Child): ReactElement => {
             return (
               <ListItemButton
                 key={`page-${i}`}
-                onClick={() => router.push(page.path)}
+                onClick={() => {
+                  router.push(page.path);
+                  setBurger((p) => !p);
+                }}
                 selected={match.path === page.path}
                 disabled={page.access === "admin" && role === "user"}
               >

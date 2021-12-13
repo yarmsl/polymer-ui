@@ -61,26 +61,32 @@ const Customer = (): ReactElement => {
 const styles: Record<string, SxProps> = {
   root: {
     width: "100%",
-    p: "80px 0 110px",
+    pt: "80px",
+    pb: "80px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
   },
   header: {
     width: "100%",
-
     display: "flex",
+    flexDirection: { xs: "column", md: "row" },
   },
   title: {
-    flexGrow: 1,
+    order: { xs: 1, md: 0 },
+    flexGrow: { xs: 0, md: 1 },
     pr: "18px",
+    textAlign: { xs: "center", md: "left" },
   },
   ht: {
     color: "primary.main",
     lineHeight: 1,
   },
   logo: {
-    width: "25%",
+    order: { xs: 0, md: 1 },
+    width: { xs: "100%", md: "25%" },
+    p: { xs: "0 15%", sm: "0 20%", md: "0" },
+    mb: { xs: "18px", md: "" },
     "& img": {
       width: "100%",
       height: "100%",
@@ -90,7 +96,7 @@ const styles: Record<string, SxProps> = {
   },
   projects: {
     width: "100%",
-    p: "100px 0",
+    p: "50px 0",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

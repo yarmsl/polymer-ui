@@ -33,7 +33,7 @@ const styles: Record<string, SxProps> = {
   content: {
     color: "#777777",
     whiteSpace: "pre-wrap",
-    fontSize: "18px",
+    fontSize: { xs: "14px", sm: "18px" },
   },
 };
 

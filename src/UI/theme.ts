@@ -27,6 +27,12 @@ const defaultTheme = createTheme({
       fontWeight: 700,
       userSelect: "none",
     },
+    h4: {
+      fontSize: 30,
+      lineHeight: 1,
+      fontWeight: 700,
+      userSelect: "none",
+    },
     h5: {
       fontSize: 24,
       fontWeight: 500,
@@ -59,33 +65,7 @@ const defaultTheme = createTheme({
       contrastText: "#fff",
     },
   },
-  // shadows: [
-  // 	'none',
-  // 	'none',
-  // 	'none',
-  // 	'none',
-  // 	'none',
-  // 	'none',
-  // 	'none',
-  // 	'none',
-  // 	'none', //используется выпадашки из селектов TextField
-  // 	'none',
-  // 	'none',
-  // 	'0px 0px 16px rgba(0, 0, 0, 0.25)',
-  // 	'none',
-  // 	'none',
-  // 	'none',
-  // 	'none',
-  // 	'none',
-  // 	'none',
-  // 	'none',
-  // 	'none',
-  // 	'none',
-  // 	'none',
-  // 	'none',
-  // 	'none',
-  // 	'none'
-  // ],
+
   shape: {
     borderRadius: 5,
   },

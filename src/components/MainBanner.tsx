@@ -47,10 +47,10 @@ const MainBanner = (): JSX.Element => {
         bannerPaths.includes(match.path) && (
           <Box sx={styles.banner}>
             <Box sx={styles.article}>
-              <Typography variant="h3" color="white">
+              <Typography sx={styles.title} variant="h3" color="white">
                 {banner[match.path].title}
               </Typography>
-              <Typography variant="h6" color="white">
+              <Typography sx={styles.text} variant="h6" color="white">
                 {banner[match.path].text}
               </Typography>
             </Box>
@@ -69,7 +69,7 @@ const MainBanner = (): JSX.Element => {
 const styles: Record<string, SxProps> = {
   root: {
     width: "100%",
-    height: "525px",
+    height: { xs: "300px", sm: "525px" },
     overflow: "hidden",
     position: "relative",
     display: "flex",
@@ -93,7 +93,7 @@ const styles: Record<string, SxProps> = {
     zIndex: 2,
   },
   article: {
-    width: "100%",
+    width: { xs: "90%", sm: "100%" },
     maxWidth: "872px",
     minWidth: "300px",
     position: "absolute",
@@ -102,6 +102,12 @@ const styles: Record<string, SxProps> = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
+  },
+  title: {
+    fontSize: { xs: "18px", sm: "36px" },
+  },
+  text: {
+    fontSize: { xs: "14px", sm: "18px" },
   },
 };
 
