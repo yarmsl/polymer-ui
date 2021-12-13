@@ -4,8 +4,8 @@ import { SxProps } from "@mui/system";
 import MainBanner from "../components/MainBanner";
 import { useRouteMatch } from "react-router";
 import Loading from "./Loading";
+import Header from "./Header";
 
-const Header = lazy(() => import("./Header"));
 const Footer = lazy(() => import("./Footer"));
 
 export const pages = [
@@ -33,14 +33,12 @@ const MainLayout = ({ children }: Child): ReactElement => {
   );
   return (
     <>
-      <Suspense fallback={<Loading />}>
-        <Header />
-      </Suspense>
+      <Header />
       {showBanner && <MainBanner />}
       <Container disableGutters sx={styles.root} maxWidth={false}>
         <>{children}</>
       </Container>
-      <Suspense fallback={"...loading"}>
+      <Suspense fallback={<Loading />}>
         <Footer />
       </Suspense>
     </>
