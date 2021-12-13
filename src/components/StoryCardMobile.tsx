@@ -16,7 +16,7 @@ const StoryCardMobile = ({ story }: IStoryCardProps): JSX.Element => {
   );
   return (
     <Box sx={styles.root}>
-      <Box sx={styles.header}>
+      <Box sx={styles.header} onClick={handleCollapse}>
         <Typography sx={styles.title}>
           {story.to ? `${story.from} - ${story.to}` : story.from}
         </Typography>

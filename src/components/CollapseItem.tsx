@@ -24,7 +24,7 @@ const CollapseItem = ({ article, open }: ICollapseItem): JSX.Element => {
   );
   return (
     <Box sx={styles.root}>
-      <Box sx={styles.header}>
+      <Box sx={styles.header} onClick={handleCollapse} >
         <Typography sx={styles.title} variant="h6">
           {article.title}
         </Typography>
@@ -80,9 +80,9 @@ const styles: Record<string, SxProps> = {
     p: "8px 0",
   },
   collWrapper: {
-      display: 'flex',
-      flexDirection: 'column'
-  }
+    display: "flex",
+    flexDirection: "column",
+  },
 };
 
 export default memo(CollapseItem);
