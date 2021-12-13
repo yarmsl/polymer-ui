@@ -79,12 +79,12 @@ const styles: Record<string, SxProps> = {
     alignItems: "center",
   },
   listButton: {
-    fontSize: "20px",
+    fontSize: "16px",
     color: "#515759",
     letterSpacing: "0.31em",
     textTransform: "uppercase",
     lineHeight: 1.8,
-    p: "12px 0",
+    p: "18px 24px",
   },
 };
 
