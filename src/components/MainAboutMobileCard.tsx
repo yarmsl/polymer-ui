@@ -43,7 +43,7 @@ const styles: Record<string, SxProps> = {
     },
   },
   title: {
-    fontSize: "16px",
+    fontSize: { xs: "14px", sm: "16px" },
     letterSpacing: "0.24em",
     fontWeight: 400,
     textTransform: "uppercase",

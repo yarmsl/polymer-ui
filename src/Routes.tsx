@@ -4,15 +4,27 @@ import Loading from "./layouts/Loading";
 import MainLayout from "./layouts/MainLayout";
 import ScrollToTop from "./lib/ScrollToTop";
 import NotFound from "./pages/404";
-import About from "./pages/About";
-import Contacts from "./pages/Contacts";
-import Customer from "./pages/Customer";
-import Home from "./pages/Home";
-import IndDesEngineering from "./pages/IndDesEngineering";
-import Production from "./pages/Production";
-import Project from "./pages/Project";
-import Projects from "./pages/Projects";
-import Tags from "./pages/Tags";
+
+// import About from "./pages/About";
+// import Contacts from "./pages/Contacts";
+// import Customer from "./pages/Customer";
+// import Home from "./pages/Home";
+// import IndDesEngineering from "./pages/IndDesEngineering";
+// import Production from "./pages/Production";
+// import Project from "./pages/Project";
+// import Projects from "./pages/Projects";
+// import Tags from "./pages/Tags";
+
+const Home = lazy(() => import("./pages/Home"));
+const About = lazy(() => import("./pages/About"));
+const Contacts = lazy(() => import("./pages/Contacts"));
+const Customer = lazy(() => import("./pages/Customer"));
+const IndDesEngineering = lazy(() => import("./pages/IndDesEngineering"));
+const Production = lazy(() => import("./pages/Production"));
+const Project = lazy(() => import("./pages/Project"));
+const Projects = lazy(() => import("./pages/Projects"));
+const Tags = lazy(() => import("./pages/Tags"));
+
 
 const Auth = lazy(() => import("./pages/Auth"));
 const ControlPanelLayout = lazy(() => import("./layouts/ControlPanelLayout"));
@@ -53,21 +65,23 @@ const Routes = ({ isAuth, role }: IRoutesProps): ReactElement => {
       >
         <MainLayout>
           <ScrollToTop />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route
-              exact
-              path="/indastrial_design_and_engineering"
-              component={IndDesEngineering}
-            />
-            <Route exact path="/production" component={Production} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/contacts" component={Contacts} />
-            <Route exact path="/projects" component={Projects} />
-            <Route exact path="/customer/:slug" component={Customer} />
-            <Route exact path="/project/:slug" component={Project} />
-            <Route exact path="/tag/:slug" component={Tags} />
-          </Switch>
+          <Suspense fallback={<Loading />}>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route
+                exact
+                path="/indastrial_design_and_engineering"
+                component={IndDesEngineering}
+              />
+              <Route exact path="/production" component={Production} />
+              <Route exact path="/about" component={About} />
+              <Route exact path="/contacts" component={Contacts} />
+              <Route exact path="/projects" component={Projects} />
+              <Route exact path="/customer/:slug" component={Customer} />
+              <Route exact path="/project/:slug" component={Project} />
+              <Route exact path="/tag/:slug" component={Tags} />
+            </Switch>
+          </Suspense>
         </MainLayout>
       </Route>
 

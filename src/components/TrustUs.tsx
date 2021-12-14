@@ -44,7 +44,7 @@ const styles: Record<string, SxProps> = {
     maxWidth: "900px",
     width: "100%",
     display: "flex",
-    padding: "50px 0",
+    p: {xs: '50px 10px', md: "50px 0"},
     flexDirection: "column",
     alignItems: "center",
     "& .swiper": {
