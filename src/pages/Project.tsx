@@ -9,7 +9,7 @@ import { useMedia } from "../lib/useMedia";
 
 const Project = (): ReactElement => {
   const router = useHistory();
-  const { matchesMobile } = useMedia();
+  const { matchesHead } = useMedia();
   const { data, isLoading } = useGetProjectsDataQuery("");
   const project = useMemo(() => {
     if (!isLoading && router?.location?.pathname != null && data != null) {
@@ -34,13 +34,13 @@ const Project = (): ReactElement => {
       <HelmetTitle title={project?.title || "Проект"} />
       <Container sx={styles.root} maxWidth="md">
         <Box sx={styles.main}>
-          {!matchesMobile && (
+          {matchesHead && (
             <Typography sx={styles.year}>{project?.year}</Typography>
           )}
           <img src={`${SERVER_URL}/${project?.images[0]}`} alt="Проект" />
         </Box>
         <Box sx={styles.info}>
-          {matchesMobile && (
+          {!matchesHead && (
             <Typography sx={styles.yearMob}>{project?.year}</Typography>
           )}
           <Typography sx={styles.title} variant="h3">
@@ -119,7 +119,7 @@ const styles: Record<string, SxProps> = {
     fontSize: "144px",
     fontWeight: 700,
     lineHeight: 1,
-    right: { sm: "-125px", md: "-175px" },
+    right: "-175px",
     userSelect: "none",
   },
   yearMob: {

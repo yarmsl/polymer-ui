@@ -51,7 +51,8 @@ const Tags = (): ReactElement => {
 const styles: Record<string, SxProps> = {
   root: {
     width: "100%",
-    padding: "50px 0px 100px",
+    pt: "50px",
+    pb: '80px',
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

@@ -16,7 +16,7 @@ const App = (): ReactElement => {
   useNotifier();
   const dispatch = useAppDispatch();
   const { isAuth, token, role } = useAppSelector((st) => st.auth);
-  const skipQuery = useMemo(() => !!token && isAuth === true, [isAuth, token]);
+  const skipQuery = useMemo(() => !token, [token]);
   const { data, isError } = useCheckAuthQuery("", {
     skip: skipQuery,
   });
