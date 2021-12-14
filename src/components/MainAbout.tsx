@@ -69,7 +69,7 @@ const styles: Record<string, SxProps> = {
   },
   icon: {
     height: "124px",
-    maxWidth: "24%",
+    maxWidth: "25%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
