@@ -40,7 +40,7 @@ const UserItem = ({ customer }: ICustomerItemProps) => {
     <TableRow>
       <TableCell>
         {customer.author != null
-          ? `${customer.author.name} <${customer.author.email}>`
+          ? customer.author.name
           : ""}
       </TableCell>
       <TableCell>
@@ -95,6 +95,24 @@ const UserItem = ({ customer }: ICustomerItemProps) => {
             }
           >
             {customer.description ? customer.description : "Добавить"}
+          </Button>
+        </Tooltip>
+      </TableCell>
+      <TableCell >
+        <Tooltip arrow title="Изменить">
+          <Button
+            sx={styles.long}
+            size="small"
+            color="info"
+            onClick={() =>
+              dispatch(
+                openModal(
+                  <CustomerItemDialog customer={customer} edit="order" />
+                )
+              )
+            }
+          >
+            {customer.order ? customer.order : "Добавить"}
           </Button>
         </Tooltip>
       </TableCell>

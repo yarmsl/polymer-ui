@@ -24,17 +24,15 @@ const BannerCard = ({ banner }: IBannerCardProps): JSX.Element => {
   const [editBanner, { isLoading: isEditingLoading }] = useEditBannerMutation();
   const [deleteBanner, { isLoading: isDeletingLoading }] =
     useDeleteBannerMutation();
-  const { handleSubmit, control, reset } = useForm<{
-    text: string;
-  }>({
-    defaultValues: { text: banner.text },
+  const { handleSubmit, control, reset } = useForm<IEditBannerData>({
+    defaultValues: { text: banner.text, order: banner.order },
   });
 
   const handleEditBanner = handleSubmit(async (data) => {
     try {
       const res = await editBanner({ id: banner._id, data }).unwrap();
-      reset({ text: res.text });
-      dispatch(showSuccessSnackbar(`Содержание слайда успешно изменено`));
+      reset({ text: res.text, order: res.order });
+      dispatch(showSuccessSnackbar("Слайд успешно изменен"));
     } catch (e) {
       dispatch(
         showErrorSnackbar(
@@ -92,7 +90,33 @@ const BannerCard = ({ banner }: IBannerCardProps): JSX.Element => {
             required: "Введите Текст для слайда",
           }}
         />
+
         <Box sx={styles.actions}>
+          <Controller
+            name="order"
+            control={control}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <TextField
+                size="small"
+                color={"info"}
+                tabIndex={1}
+                label="Порядковый номер баннера"
+                type="text"
+                autoComplete="off"
+                value={value}
+                onChange={onChange}
+                error={!!error}
+                helperText={error ? error.message : null}
+              />
+            )}
+            rules={{
+              required: "Введите порядковый номер",
+              pattern: {
+                value: /^[0-9]*$/,
+                message: "Только цифры",
+              },
+            }}
+          />
           <Button
             variant="contained"
             color="success"
@@ -162,7 +186,7 @@ const styles: Record<string, SxProps> = {
   actions: {
     width: "100%",
     display: "flex",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
   },
 };
 

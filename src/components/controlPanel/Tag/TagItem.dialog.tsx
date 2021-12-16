@@ -20,7 +20,7 @@ import { useEditTagMutation } from "../../../store/Tag";
 
 interface ITagItemDialogProps {
   tag: ITagFull;
-  edit: "name" | "slug";
+  edit: "name" | "slug" | "order";
 }
 
 const TagItemDialog = ({ tag, edit }: ITagItemDialogProps): JSX.Element => {
@@ -93,6 +93,36 @@ const TagItemDialog = ({ tag, edit }: ITagItemDialogProps): JSX.Element => {
           />
         )}
 
+        {edit === "order" && (
+          <Controller
+            name="order"
+            control={control}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <TextField
+                size="small"
+                color={"info"}
+                tabIndex={3}
+                sx={styles.input}
+                label="Порядковый номер тега"
+                fullWidth
+                type="text"
+                autoComplete="off"
+                value={value}
+                onChange={onChange}
+                error={!!error}
+                helperText={error ? error.message : null}
+              />
+            )}
+            rules={{
+              required: "Введите порядковый номер",
+              pattern: {
+                value: /^[0-9]*$/,
+                message: "Только цифры",
+              },
+            }}
+          />
+        )}
+
         <Box sx={styles.actions}>
           <Button
             variant="contained"
@@ -131,10 +161,10 @@ const styles: Record<string, SxProps> = {
     padding: "24px",
   },
   form: {
-    width: '300px',
+    width: "300px",
     "&>*:not(:last-child)": {
-        mb: '12px'
-    }
+      mb: "12px",
+    },
   },
   input: {
     height: "60px",

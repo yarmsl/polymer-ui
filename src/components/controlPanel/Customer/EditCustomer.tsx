@@ -31,6 +31,7 @@ const EditCustomer = (): JSX.Element => {
               <TableCell>Заказчик</TableCell>
               <TableCell>URL slug</TableCell>
               <TableCell>Описание</TableCell>
+              <TableCell>Порядковый номер</TableCell>
               <TableCell>Создан</TableCell>
               <TableCell>Изменен</TableCell>
               <TableCell>Удалить</TableCell>

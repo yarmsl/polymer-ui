@@ -19,7 +19,7 @@ import {
 const AddTag = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const { handleSubmit, control, reset } = useForm<IAddTag>({
-    defaultValues: { name: "", slug: "" },
+    defaultValues: { name: "", slug: "", order: "" as unknown as number },
   });
   const [newTag, { isLoading }] = useAddTagMutation();
 
@@ -89,6 +89,33 @@ const AddTag = (): JSX.Element => {
             pattern: {
               value: /^[a-zA-Zа-яА-Я0-9_-]*$/,
               message: "URL slug может содержать только буквы, цифры, - и _",
+            },
+          }}
+        />
+        <Controller
+          name="order"
+          control={control}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <TextField
+              size="small"
+              color={"info"}
+              tabIndex={1}
+              sx={styles.input}
+              label="Порядковый номер тега"
+              fullWidth
+              type="text"
+              autoComplete="off"
+              value={value}
+              onChange={onChange}
+              error={!!error}
+              helperText={error ? error.message : null}
+            />
+          )}
+          rules={{
+            required: "Введите порядковый номер",
+            pattern: {
+              value: /^[0-9]*$/,
+              message: "Только цифры",
             },
           }}
         />

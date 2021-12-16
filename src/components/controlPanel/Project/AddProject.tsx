@@ -43,6 +43,7 @@ const AddProject = (): JSX.Element => {
       images: [],
       tags: [],
       customer: "",
+      order: "" as unknown as number,
     },
   });
   const [newProject, { isLoading }] = useAddProjectMutation();
@@ -97,6 +98,7 @@ const AddProject = (): JSX.Element => {
       sendData.append("done", data.done);
       sendData.append("year", `${data.year}`);
       sendData.append("slug", data.slug);
+      sendData.append("order", `${data.slug}`);
       if (data.customer) {
         sendData.append("customer", data.customer);
       }
@@ -325,7 +327,33 @@ const AddProject = (): JSX.Element => {
             },
           }}
         />
-
+        <Controller
+          name="order"
+          control={control}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <TextField
+              size="small"
+              color={"info"}
+              tabIndex={1}
+              sx={styles.input}
+              label="Порядковый номер Проекта"
+              fullWidth
+              type="text"
+              autoComplete="off"
+              value={value}
+              onChange={onChange}
+              error={!!error}
+              helperText={error ? error.message : null}
+            />
+          )}
+          rules={{
+            required: "Введите порядковый номер",
+            pattern: {
+              value: /^[0-9]*$/,
+              message: "Только цифры",
+            },
+          }}
+        />
         <Controller
           name="slug"
           control={control}

@@ -6,6 +6,7 @@ interface ITag {
   slug: string;
   createdAt: string;
   updatedAt: string;
+  order: number;
 }
 
 interface ITagFull {
@@ -16,11 +17,13 @@ interface ITagFull {
   slug: string;
   createdAt: string;
   updatedAt: string;
+  order: number;
 }
 
 interface IAddTag {
   name: string;
   slug: string;
+  order: number;
 }
 
 interface IEditTag {
@@ -31,4 +34,5 @@ interface IEditTag {
 interface IEditTagData {
   name?: string;
   slug?: string;
+  order?: number;
 }

@@ -37,7 +37,7 @@ const UserItem = ({ tag }: ITagItemProps) => {
   return (
     <TableRow>
       <TableCell>
-        {tag.author != null ? `${tag.author.name} <${tag.author.email}>` : ""}
+        {tag.author != null ? tag.author.name : ""}
       </TableCell>
       <TableCell>
         <Tooltip arrow title="Изменить">
@@ -62,6 +62,19 @@ const UserItem = ({ tag }: ITagItemProps) => {
             }
           >
             {tag.slug}
+          </Button>
+        </Tooltip>
+      </TableCell>
+      <TableCell>
+        <Tooltip arrow title="Изменить">
+          <Button
+            size="small"
+            color="info"
+            onClick={() =>
+              dispatch(openModal(<TagItemDialog tag={tag} edit="order" />))
+            }
+          >
+            {tag.order}
           </Button>
         </Tooltip>
       </TableCell>

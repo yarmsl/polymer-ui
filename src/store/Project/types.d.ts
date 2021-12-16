@@ -8,6 +8,7 @@ interface Project {
   slug: string;
   createdAt: string;
   updatedAt: string;
+  order: number;
 }
 
 interface IProject extends Project {
@@ -32,6 +33,7 @@ interface IProjectFull {
   tags: ITag[];
   createdAt: string;
   updatedAt: string;
+  order: number;
 }
 interface IEditProject {
   id: string;
@@ -46,4 +48,5 @@ interface ISendProjectData {
   images?: string[];
   tags?: string[];
   slug?: string;
+  order?: number;
 }

@@ -34,7 +34,8 @@ export type projEditTypes =
   | "year"
   | "customer"
   | "addImgs"
-  | "editImgs";
+  | "editImgs"
+  | "order";
 
 interface IProjectDialogProps {
   project: IProjectFull;
@@ -119,6 +120,14 @@ const ProjectItemDialog = ({
             message: "URL slug может содержать только буквы, цифры, - и _",
           },
         };
+      case "order":
+        return {
+          required: "Введите порядковый номер",
+          pattern: {
+            value: /^[0-9]*$/,
+            message: "Только цифры",
+          },
+        };
       default:
         return undefined;
     }
@@ -158,7 +167,10 @@ const ProjectItemDialog = ({
       <Box sx={styles.form} component="form">
         <Typography>Редактирование Проекта</Typography>
 
-        {(edit === "done" || edit === "year" || edit === "slug") && (
+        {(edit === "done" ||
+          edit === "year" ||
+          edit === "slug" ||
+          edit === "order") && (
           <Controller
             name={edit}
             control={control}

@@ -27,14 +27,15 @@ export const SkeletonCustomerCard = (): JSX.Element => {
 const CustomerCard: FC<ICustomCardProps> = ({ customer }) => {
   const router = useHistory();
   const images = useMemo(() => {
-    const imgArrs = customer?.projects?.map((proj) => proj.images);
-    if (imgArrs.length > 0) {
-      const res = imgArrs.map((img) => img[0]);
-      if (res.length > 4) {
-        return res.slice(0,4);
-      } else {
-        return res;
-      }
+    if (
+      customer &&
+      Array.isArray(customer.projects) &&
+      customer.projects.length > 0
+    ) {
+      return [...customer.projects]
+        .sort((a, b) => a.order - b.order)
+        .map((proj) => (proj.images.length > 0 ? proj.images[0] : ""))
+        .slice(0, 4);
     } else {
       return [];
     }

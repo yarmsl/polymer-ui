@@ -4,6 +4,7 @@ interface ICustomer extends IAddCustomer {
   projects: string[];
   createdAt: string;
   updatedAt: string;
+  order: number;
 }
 
 interface ICustomerFull extends IAddCustomer {
@@ -12,6 +13,7 @@ interface ICustomerFull extends IAddCustomer {
   projects: IProject[];
   createdAt: string;
   updatedAt: string;
+  order: number;
 }
 interface IEditCustomer {
   id: string;
@@ -22,10 +24,12 @@ interface IEditCustomerData {
   name?: string;
   description?: string;
   slug?: string;
+  order?: number;
 }
 interface IAddCustomer {
   name: string;
   logo: string;
   description: string;
   slug: string;
+  order: number;
 }

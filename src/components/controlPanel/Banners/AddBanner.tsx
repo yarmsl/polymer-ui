@@ -28,11 +28,8 @@ const AddBanner = (): JSX.Element => {
   const [upLoading, setUpLoading] = useState(false);
   const [preview, setPreview] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
-  const { handleSubmit, control, reset, setValue } = useForm<{
-    image: string;
-    text: string;
-  }>({
-    defaultValues: { text: "", image: "" },
+  const { handleSubmit, control, reset, setValue } = useForm<IAddBanner>({
+    defaultValues: { text: "", image: "", order: "" as unknown as number },
   });
   const [newBanner, { isLoading }] = useAddBannerMutation();
 
@@ -173,6 +170,33 @@ const AddBanner = (): JSX.Element => {
             required: "Введите Текст для слайда",
           }}
         />
+        <Controller
+          name="order"
+          control={control}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <TextField
+              size="small"
+              color={"info"}
+              tabIndex={1}
+              sx={styles.input}
+              label="Порядковый номер баннера"
+              fullWidth
+              type="text"
+              autoComplete="off"
+              value={value}
+              onChange={onChange}
+              error={!!error}
+              helperText={error ? error.message : null}
+            />
+          )}
+          rules={{
+            required: "Введите порядковый номер",
+            pattern: {
+              value: /^[0-9]*$/,
+              message: "Только цифры",
+            },
+          }}
+        />
 
         <Button
           variant="contained"
@@ -228,8 +252,8 @@ const styles: Record<string, SxProps> = {
     color: "error.main",
   },
   input: {
-      mt: '20px',
-  }
+    mt: "20px",
+  },
 };
 
 export default AddBanner;

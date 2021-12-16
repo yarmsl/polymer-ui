@@ -12,7 +12,6 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { SxProps } from "@mui/system";
 import { Controller, useForm } from "react-hook-form";
 import { useAppDispatch } from "../../../store";
-
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import {
   showErrorSnackbar,
@@ -29,7 +28,13 @@ const AddCustomer = (): JSX.Element => {
   const [preview, setPreview] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const { handleSubmit, control, reset, setValue } = useForm<IAddCustomer>({
-    defaultValues: { name: "", slug: "", logo: "", description: "" },
+    defaultValues: {
+      name: "",
+      slug: "",
+      logo: "",
+      description: "",
+      order: "" as unknown as number,
+    },
   });
   const [newCustomer, { isLoading }] = useAddCustomerMutation();
 
@@ -70,6 +75,7 @@ const AddCustomer = (): JSX.Element => {
       sendData.append("name", data.name);
       sendData.append("description", data.description);
       sendData.append("slug", data.slug);
+      sendData.append("order", `${data.order}`);
       sendData.append("logo", file as Blob);
       const res = await newCustomer(sendData).unwrap();
       dispatch(showSuccessSnackbar(`Заказчик ${res.name} успешно создан`));
@@ -182,6 +188,33 @@ const AddCustomer = (): JSX.Element => {
           )}
         />
         <Controller
+          name="order"
+          control={control}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <TextField
+              size="small"
+              color={"info"}
+              tabIndex={1}
+              sx={styles.input}
+              label="Порядковый номер Заказчика"
+              fullWidth
+              type="text"
+              autoComplete="off"
+              value={value}
+              onChange={onChange}
+              error={!!error}
+              helperText={error ? error.message : null}
+            />
+          )}
+          rules={{
+            required: "Введите порядковый номер",
+            pattern: {
+              value: /^[0-9]*$/,
+              message: "Только цифры",
+            },
+          }}
+        />
+        <Controller
           name="slug"
           control={control}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
@@ -260,7 +293,7 @@ const styles: Record<string, SxProps> = {
   },
   error: {
     width: "100%",
-    height: '18px',
+    height: "18px",
     pl: "14px",
     fontSize: "12px",
     color: "error.main",

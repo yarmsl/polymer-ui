@@ -34,6 +34,7 @@ const EditProject = (): JSX.Element => {
               <TableCell>Что сделано</TableCell>
               <TableCell>Год выполнения</TableCell>
               <TableCell>URL slug</TableCell>
+              <TableCell>Порядковый номер</TableCell>
               <TableCell>Создан</TableCell>
               <TableCell>Изменен</TableCell>
               <TableCell>Удалить</TableCell>

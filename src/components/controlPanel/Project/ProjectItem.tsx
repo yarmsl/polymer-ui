@@ -123,6 +123,13 @@ const ProjectItem = ({ project }: IProjectItemProps) => {
           edit="slug"
         />
       </TableCell>
+      <TableCell>
+        <TextCellWithEdit<projEditTypes>
+          val={project.order}
+          openModal={openEditModal}
+          edit="order"
+        />
+      </TableCell>
       <TableCell sx={{ whiteSpace: "nowrap" }}>
         {str2rusDate(project.createdAt)}
       </TableCell>

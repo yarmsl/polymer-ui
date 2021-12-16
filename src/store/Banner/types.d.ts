@@ -2,6 +2,7 @@ interface IBanner {
   _id: string;
   text: string;
   image: string;
+  order: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -13,11 +14,22 @@ interface IBottomBanner {
   updatedAt: string;
 }
 
+interface IAddBanner {
+  text: string;
+  image: string;
+  order: number;
+}
+
 interface IEditBanner {
   id: string;
-  data: { text: string };
+  data: IEditBannerData;
+}
+
+interface IEditBannerData {
+  text: string;
+  order: number;
 }
 
 interface IEditBottomBanner {
-  projects: string[]
+  projects: string[];
 }

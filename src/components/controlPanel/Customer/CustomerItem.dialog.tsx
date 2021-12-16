@@ -20,7 +20,7 @@ import { useEditCustomerMutation } from "../../../store/Customer";
 
 interface ITagItemDialogProps {
   customer: ICustomerFull;
-  edit: "name" | "slug" | "description";
+  edit: "name" | "slug" | "description" | "order";
 }
 
 const CustomerItemDialog = ({
@@ -28,7 +28,7 @@ const CustomerItemDialog = ({
   edit,
 }: ITagItemDialogProps): JSX.Element => {
   const dispatch = useAppDispatch();
-  const [editCustomer, { isLoading }] = useEditCustomerMutation()
+  const [editCustomer, { isLoading }] = useEditCustomerMutation();
   const { handleSubmit, control } = useForm<IEditCustomerData>();
 
   const handleEditCustomer = handleSubmit(async (data) => {
@@ -53,6 +53,14 @@ const CustomerItemDialog = ({
             message: "URL slug может содержать только буквы, цифры, - и _",
           },
         };
+      case "order":
+        return {
+          required: "Введите порядковый номер",
+          pattern: {
+            value: /^[0-9]*$/,
+            message: "Только цифры",
+          },
+        };
       default:
         return undefined;
     }
@@ -74,7 +82,7 @@ const CustomerItemDialog = ({
               sx={styles.input}
               label={edit}
               fullWidth
-              multiline={edit === 'description'}
+              multiline={edit === "description"}
               maxRows={3}
               type="text"
               value={value}

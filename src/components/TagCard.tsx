@@ -30,14 +30,11 @@ export const SkeletonTagCard = (): JSX.Element => {
 const TagCard: FC<ITagCardProps> = ({ tag }) => {
   const router = useHistory();
   const images = useMemo(() => {
-    const imgArrs = tag?.projects?.map((proj) => proj.images);
-    if (imgArrs.length > 0) {
-      const res = imgArrs.map((img) => img[0]);
-      if (res.length > 4) {
-        return res.slice(0, 4);
-      } else {
-        return res;
-      }
+    if (tag && Array.isArray(tag.projects) && tag.projects.length > 0) {
+      return [...tag.projects]
+        .sort((a, b) => a.order - b.order)
+        .map((proj) => (proj.images.length > 0 ? proj.images[0] : ""))
+        .slice(0, 4);
     } else {
       return [];
     }
@@ -67,7 +64,7 @@ const TagCard: FC<ITagCardProps> = ({ tag }) => {
 
 const styles: Record<string, SxProps> = {
   root: {
-    minWidth: '270px',
+    minWidth: "270px",
     width: "270px",
     maxWidth: "270px",
     boxSizing: "border-box",
