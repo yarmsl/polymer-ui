@@ -1,11 +1,9 @@
-#!/bin/bash
-
 if ! [ -x "$(command -v docker-compose)" ]; then
   echo 'Error: docker-compose is not installed.' >&2
   exit 1
 fi
 
-domains=(example.org www.example.org)
+domains=(polidor.ru www.polidor.ru)
 rsa_key_size=4096
 data_path="./data/certbot"
 email="ural.polymer.dev@gmail.com"
