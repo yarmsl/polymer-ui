@@ -3,7 +3,7 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   exit 1
 fi
 
-domains=(polidor.ru)
+domains=(polidor.ru www.polidor.ru)
 rsa_key_size=4096
 data_path="./data/certbot"
 email="ural.polymer.dev@gmail.com"
