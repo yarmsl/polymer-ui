@@ -376,3 +376,4 @@
 65.154.226.165 - - [19/Dec/2021:07:44:04 +0000] "GET /api/banner/bottom HTTP/1.1" 200 160 "https://polidor.ru/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.71 Safari/537.36" "-"
 131.153.143.50 - - [19/Dec/2021:07:45:00 +0000] "GET / HTTP/1.1" 301 162 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:95.0) Gecko/20100101 Firefox/95.0" "-"
 131.153.143.50 - - [19/Dec/2021:07:45:00 +0000] "GET / HTTP/1.1" 200 1810 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:95.0) Gecko/20100101 Firefox/95.0" "-"
+192.241.212.182 - - [19/Dec/2021:07:57:53 +0000] "GET /ecp/Current/exporttool/microsoft.exchange.ediscovery.exporttool.application HTTP/1.1" 200 1810 "-" "Mozilla/5.0 zgrab/0.x" "-"
