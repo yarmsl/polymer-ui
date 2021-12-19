@@ -279,3 +279,52 @@
 2021/12/19 08:09:41 [emerg] 1#1: cannot load certificate "/etc/letsencrypt/live/example.org/fullchain.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/etc/letsencrypt/live/example.org/fullchain.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
 2021/12/19 08:09:48 [emerg] 1#1: cannot load certificate "/etc/letsencrypt/live/example.org/fullchain.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/etc/letsencrypt/live/example.org/fullchain.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
 2021/12/19 08:10:02 [emerg] 1#1: cannot load certificate "/etc/letsencrypt/live/example.org/fullchain.pem": BIO_new_file() failed (SSL: error:02001002:system library:fopen:No such file or directory:fopen('/etc/letsencrypt/live/example.org/fullchain.pem','r') error:2006D080:BIO routines:BIO_new_file:no such file)
+2021/12/19 10:21:21 [notice] 1#1: using the "epoll" event method
+2021/12/19 10:21:21 [notice] 1#1: nginx/1.21.0
+2021/12/19 10:21:21 [notice] 1#1: built by gcc 10.2.1 20201203 (Alpine 10.2.1_pre1) 
+2021/12/19 10:21:21 [notice] 1#1: OS: Linux 5.4.0-29-generic
+2021/12/19 10:21:21 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/12/19 10:21:21 [notice] 1#1: start worker processes
+2021/12/19 10:21:21 [notice] 1#1: start worker process 9
+2021/12/19 10:21:43 [notice] 10#10: signal process started
+2021/12/19 10:21:43 [notice] 1#1: signal 1 (SIGHUP) received from 10, reconfiguring
+2021/12/19 10:21:43 [notice] 1#1: reconfiguring
+2021/12/19 10:21:43 [notice] 1#1: using the "epoll" event method
+2021/12/19 10:21:43 [notice] 1#1: start worker processes
+2021/12/19 10:21:43 [notice] 1#1: start worker process 16
+2021/12/19 10:21:43 [notice] 9#9: gracefully shutting down
+2021/12/19 10:21:43 [notice] 9#9: exiting
+2021/12/19 10:21:43 [notice] 9#9: exit
+2021/12/19 10:21:43 [notice] 1#1: signal 17 (SIGCHLD) received from 9
+2021/12/19 10:21:43 [notice] 1#1: worker process 9 exited with code 0
+2021/12/19 10:21:43 [notice] 1#1: signal 29 (SIGIO) received
+2021/12/19 10:23:20 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2021/12/19 10:23:20 [notice] 16#16: gracefully shutting down
+2021/12/19 10:23:20 [notice] 16#16: exiting
+2021/12/19 10:23:20 [notice] 16#16: exit
+2021/12/19 10:23:20 [notice] 1#1: signal 17 (SIGCHLD) received from 16
+2021/12/19 10:23:20 [notice] 1#1: worker process 16 exited with code 0
+2021/12/19 10:23:20 [notice] 1#1: exit
+2021/12/19 10:23:26 [notice] 1#1: using the "epoll" event method
+2021/12/19 10:23:26 [notice] 1#1: nginx/1.21.0
+2021/12/19 10:23:26 [notice] 1#1: built by gcc 10.2.1 20201203 (Alpine 10.2.1_pre1) 
+2021/12/19 10:23:26 [notice] 1#1: OS: Linux 5.4.0-29-generic
+2021/12/19 10:23:26 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/12/19 10:23:26 [notice] 1#1: start worker processes
+2021/12/19 10:23:26 [notice] 1#1: start worker process 9
+2021/12/19 10:41:30 [crit] 9#9: *41 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 107.178.231.244, server: 0.0.0.0:443
+2021/12/19 10:41:37 [crit] 9#9: *54 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 35.203.251.56, server: 0.0.0.0:443
+2021/12/19 10:42:20 [crit] 9#9: *65 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 107.178.200.195, server: 0.0.0.0:443
+2021/12/19 15:28:01 [crit] 9#9: *214 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 5.8.10.202, server: 0.0.0.0:443
+2021/12/19 16:23:26 [notice] 10#10: signal process started
+2021/12/19 16:23:26 [notice] 1#1: signal 1 (SIGHUP) received from 10, reconfiguring
+2021/12/19 16:23:26 [notice] 1#1: reconfiguring
+2021/12/19 16:23:26 [notice] 1#1: using the "epoll" event method
+2021/12/19 16:23:26 [notice] 1#1: start worker processes
+2021/12/19 16:23:26 [notice] 1#1: start worker process 12
+2021/12/19 16:23:26 [notice] 9#9: gracefully shutting down
+2021/12/19 16:23:26 [notice] 9#9: exiting
+2021/12/19 16:23:26 [notice] 9#9: exit
+2021/12/19 16:23:26 [notice] 1#1: signal 17 (SIGCHLD) received from 9
+2021/12/19 16:23:26 [notice] 1#1: worker process 9 exited with code 0
+2021/12/19 16:23:26 [notice] 1#1: signal 29 (SIGIO) received
