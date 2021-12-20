@@ -16,12 +16,16 @@ const ProjectSlide = ({
     <Box sx={styles.slide}>
       {showDescription && (
         <Box sx={styles.description}>
-          <Typography color="white" variant="body2">
-            Заказчик: {project.customer.name}
-          </Typography>
-          <Typography color="white" variant="body2">
-            {project.customer.description}
-          </Typography>
+          {project.customer && (
+            <>
+              <Typography color="white" variant="body2">
+                Заказчик: {project.customer?.name || ""}
+              </Typography>
+              <Typography color="white" variant="body2">
+                {project.customer?.description || ""}
+              </Typography>
+            </>
+          )}
           <Typography color="white" variant="body2">
             Проект: {project.title}
           </Typography>

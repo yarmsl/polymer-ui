@@ -29,7 +29,7 @@ const VacanciesDrawer = (): JSX.Element => {
       {isLoading ? (
         <Skeleton variant="text" width="100%" height="30px" />
       ) : (
-        <Typography sx={styles.title} variant="h5">
+        data && data?.length > 0 && <Typography sx={styles.title} variant="h5">
           Вакансии
         </Typography>
       )}
