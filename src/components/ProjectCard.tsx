@@ -66,6 +66,7 @@ const styles: Record<string, SxProps> = {
   title: {
     height: "42px",
     lineHeight: 1.2,
+    overflow: 'hidden'
   },
   link: {
     color: "primary.main",

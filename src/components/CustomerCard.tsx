@@ -47,12 +47,42 @@ const CustomerCard: FC<ICustomCardProps> = ({ customer }) => {
         <img src={`${SERVER_URL}/${customer.logo}`} alt={customer.name} />
       </Box>
       <Typography sx={styles.title}>{customer.name}</Typography>
-      <Box sx={styles.photoes}>
-        {images?.map((img, i) => (
-          <Box sx={styles.photo} key={i}>
-            {<img src={`${SERVER_URL}/${img}`} alt="Проект" />}
+      <Box sx={styles.phWrapper}>
+        {images.length === 4 && (
+          <Box sx={styles.photoes4}>
+            {images?.map((img, i) => (
+              <Box sx={styles.photo4} key={i}>
+                {<img src={`${SERVER_URL}/${img}`} alt="Проект" />}
+              </Box>
+            ))}
           </Box>
-        ))}
+        )}
+
+        {images.length === 3 && (
+          <Box sx={styles.photoes3}>
+            {images?.map((img, i) => (
+              <Box sx={styles.photo3} key={i}>
+                {<img src={`${SERVER_URL}/${img}`} alt="Проект" />}
+              </Box>
+            ))}
+          </Box>
+        )}
+
+        {images.length === 2 && (
+          <Box sx={styles.photoes2}>
+            {images?.map((img, i) => (
+              <Box sx={styles.photo2} key={i}>
+                {<img src={`${SERVER_URL}/${img}`} alt="Проект" />}
+              </Box>
+            ))}
+          </Box>
+        )}
+
+        {images.length === 1 && (
+          <Box sx={styles.photo1}>
+            <img src={`${SERVER_URL}/${images[0]}`} alt="Проект" />
+          </Box>
+        )}
       </Box>
       <Button
         fullWidth
@@ -96,16 +126,84 @@ const styles: Record<string, SxProps> = {
     textAlign: "center",
     fontSize: "11px",
   },
-  photoes: {
+  phWrapper: {
     width: "100%",
     height: "210px",
     mb: "30px",
+  },
+  photo1: {
+    width: "100%",
+    height: "100%",
+    borderRadius: "5px",
+    overflow: "hidden",
+    "& img": {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      objectPosition: "center",
+    },
+  },
+  photoes2: {
+    width: "100%",
+    height: "100%",
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-between",
     alignContent: "space-between",
   },
-  photo: {
+  photo2: {
+    width: "100%",
+    height: "100px",
+    borderRadius: "5px",
+    overflow: "hidden",
+    "& img": {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      objectPosition: "center",
+    },
+  },
+  photoes3: {
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    alignContent: "space-between",
+    "&>div:first-of-type": {
+      width: "100%",
+      height: "100px",
+      borderRadius: "5px",
+      overflow: "hidden",
+      "& img": {
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        objectPosition: "center",
+      },
+    },
+    "&>div:not(:first-of-type)": {
+      width: "100px",
+      height: "100px",
+      borderRadius: "5px",
+      overflow: "hidden",
+      "& img": {
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        objectPosition: "center",
+      },
+    },
+  },
+  photoes4: {
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    alignContent: "space-between",
+  },
+  photo4: {
     width: "100px",
     height: "100px",
     borderRadius: "5px",
