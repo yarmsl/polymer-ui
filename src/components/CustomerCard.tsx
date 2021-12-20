@@ -14,10 +14,12 @@ export const SkeletonCustomerCard = (): JSX.Element => {
       <Skeleton variant="rectangular" width={210} height={60} />
       <Skeleton variant="text" width={210} />
       <Skeleton variant="text" width={210} />
-      <Box sx={styles.photoes}>
-        {[0, 1, 2, 3].map((ph) => (
-          <Skeleton sx={styles.photo} key={ph} variant="rectangular" />
-        ))}
+      <Box sx={styles.phWrapper}>
+        <Box sx={styles.photoes4}>
+          {[0, 1, 2, 3].map((ph) => (
+            <Skeleton sx={styles.photo4} key={ph} variant="rectangular" />
+          ))}
+        </Box>
       </Box>
       <Skeleton variant="rectangular" width={210} height={36} />
     </Box>
