@@ -96,8 +96,8 @@ const ProjectItem = ({ project }: IProjectItemProps) => {
 
       <TableCell>
         <ImgCellWithEdit
-          val={project.customer.name}
-          imgPath={project.customer.logo}
+          val={project.customer?.name || ""}
+          imgPath={project.customer?.logo || ""}
           openModal={openEditModal}
           edit="customer"
         />
