@@ -39,11 +39,9 @@ const UserItem = ({ customer }: ICustomerItemProps) => {
   return (
     <TableRow>
       <TableCell>
-        {customer.author != null
-          ? customer.author.name
-          : ""}
+        {customer.author != null ? customer.author.name : ""}
       </TableCell>
-      <TableCell>
+      <TableCell sx={styles.logo}>
         {<img src={`${SERVER_URL}/${customer.logo}`} alt="Лого" />}
       </TableCell>
       <TableCell>
@@ -80,7 +78,7 @@ const UserItem = ({ customer }: ICustomerItemProps) => {
           </Button>
         </Tooltip>
       </TableCell>
-      <TableCell >
+      <TableCell>
         <Tooltip arrow title="Изменить">
           <Button
             sx={styles.long}
@@ -98,7 +96,7 @@ const UserItem = ({ customer }: ICustomerItemProps) => {
           </Button>
         </Tooltip>
       </TableCell>
-      <TableCell >
+      <TableCell>
         <Tooltip arrow title="Изменить">
           <Button
             sx={styles.long}
@@ -142,6 +140,14 @@ const styles: Record<string, SxProps> = {
     textOverflow: "ellipsis",
     wordBreak: "break-all",
     whiteSpace: "nowrap",
+  },
+  logo: {
+    maxWidth: "300px",
+    "& img": {
+      width: "100%",
+      objectFit: "contain",
+      objectPosition: "center",
+    },
   },
 };
 
