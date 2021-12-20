@@ -23,7 +23,6 @@ const Contacts = (): ReactElement => {
             <Typography>+7 (351) 269-97-91</Typography>
             <Typography>Info@polidor.ru</Typography>
             <Typography>avm@polidor.ru</Typography>
-            <Typography>Адрес:</Typography>
           </Box>
           {!matchesMobile && (
             <Box sx={styles.rb}>
