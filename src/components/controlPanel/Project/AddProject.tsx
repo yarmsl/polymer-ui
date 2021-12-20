@@ -98,7 +98,7 @@ const AddProject = (): JSX.Element => {
       sendData.append("done", data.done);
       sendData.append("year", `${data.year}`);
       sendData.append("slug", data.slug);
-      sendData.append("order", `${data.slug}`);
+      sendData.append("order", `${data.order}`);
       if (data.customer) {
         sendData.append("customer", data.customer);
       }
