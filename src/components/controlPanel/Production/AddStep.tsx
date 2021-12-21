@@ -68,8 +68,8 @@ const AddStep = (): JSX.Element => {
         ) {
           const res = await file2optiFile(
             inputRef.current.files[0],
-            500,
-            0.75,
+            800,
+            0.85,
             "webp"
           );
           setFile(res);

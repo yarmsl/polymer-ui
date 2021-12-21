@@ -50,7 +50,7 @@ const ArticleItemDialog = ({
           inputRef.current.files.length > 0
         ) {
           const resBlobs = Array.from(inputRef.current.files)?.map((file) => {
-            return file2optiFile(file, 500, 0.75, "webp");
+            return file2optiFile(file, 800, 0.85, "webp");
           });
           const res = await Promise.all(resBlobs);
           setFiles((p) => p.concat(res));
