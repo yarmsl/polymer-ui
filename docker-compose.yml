@@ -5,12 +5,11 @@ services:
     image: docker.pkg.github.com/yarmsl/backend-ural_polymer/backend-uralpolymer:develop
     volumes:
       - pldr_volume:/app/uploads
-    container_name: polydor-server-container
     build:
       context: ../backend-ural_polymer
     restart: always
     ports:
-      - 5000:5000
+      - 5000-5005:5000
     networks: 
       - pldr_network
   nginx:
