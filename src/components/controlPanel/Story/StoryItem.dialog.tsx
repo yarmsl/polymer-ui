@@ -82,8 +82,8 @@ const StoryItemDialog = ({ story, edit }: IStoryDialogProps): JSX.Element => {
                 label={edit}
                 fullWidth
                 multiline={edit === "content"}
-                minRows={3}
-                maxRows={8}
+                minRows={5}
+                maxRows={12}
                 type="text"
                 value={value}
                 onChange={onChange}
@@ -133,7 +133,7 @@ const styles: Record<string, SxProps> = {
     padding: "24px",
   },
   form: {
-    width: "300px",
+    width: { sm: "300px", md: "600px" },
     "&>*:not(:last-child)": {
       mb: "12px",
     },
