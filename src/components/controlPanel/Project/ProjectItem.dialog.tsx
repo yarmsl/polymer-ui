@@ -28,6 +28,7 @@ import ImagesPreview from "../ImagesPreview";
 import { file2optiDataurl, file2optiFile } from "../../../lib/imageOptimaze";
 
 export type projEditTypes =
+  | "title"
   | "tags"
   | "slug"
   | "done"
@@ -167,7 +168,8 @@ const ProjectItemDialog = ({
       <Box sx={styles.form} component="form">
         <Typography>Редактирование Проекта</Typography>
 
-        {(edit === "done" ||
+        {(edit === "title" ||
+          edit === "done" ||
           edit === "year" ||
           edit === "slug" ||
           edit === "order") && (

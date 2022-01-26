@@ -75,7 +75,13 @@ const ProjectItem = ({ project }: IProjectItemProps) => {
       <TableCell>
         {project.author != null ? `${project.author.name}` : ""}
       </TableCell>
-      <TableCell>{project.title}</TableCell>
+      <TableCell>
+        <TextCellWithEdit<projEditTypes>
+          val={project.title}
+          openModal={openEditModal}
+          edit="title"
+        />
+      </TableCell>
       <TableCell>
         <Box sx={{ display: "flex", "&>*": { m: "0 4px" } }}>
           <IconButton onClick={() => openEditModal("addImgs")} size="small">
