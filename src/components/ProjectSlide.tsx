@@ -70,6 +70,8 @@ const styles: Record<string, SxProps> = {
     "&>p": {
       width: "180px",
       maxHeight: "100px",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
     },
   },
   blackout: {

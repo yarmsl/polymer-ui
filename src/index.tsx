@@ -6,10 +6,10 @@ import { PersistGate } from "redux-persist/integration/react";
 import App from "./App";
 import appStore, { persistor } from "./store";
 import { SnackbarProvider } from "notistack";
-import "swiper/swiper.scss";
-import "swiper/modules/pagination/pagination.scss";
-import "swiper/modules/navigation/navigation.scss";
-import "swiper/modules/effect-fade/effect-fade.scss";
+import "swiper/swiper.min.css";
+import "swiper/modules/pagination/pagination.min.css";
+import "swiper/modules/navigation/navigation.min.css";
+import "swiper/modules/effect-fade/effect-fade.min.css";
 
 ReactDOM.render(
   <StrictMode>

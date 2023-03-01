@@ -1,0 +1,18 @@
+.swiper-pagination-bullets-dynamic {
+  width: 100%!important;
+  max-width: 900px!important;
+  z-index: 3!important;
+  display: flex!important;
+  justify-content: flex-start!important;
+  padding-left: 48px!important;
+  bottom: 30px!important;
+}
+
+.swiper-pagination-bullet {
+  background-color: #fff!important;
+  opacity: 1!important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #d13239!important;
+}
