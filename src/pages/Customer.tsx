@@ -33,7 +33,9 @@ const Customer = (): ReactElement => {
               Совместные проекты:
             </Typography>
             <Typography variant="h3">{customer?.name}</Typography>
-            <Typography variant="subtitle1">{customer?.description}</Typography>
+            <Typography textAlign="justify" variant="subtitle1">
+              {customer?.description}
+            </Typography>
           </Box>
           <Box sx={styles.logo}>
             <img src={`${SERVER_URL}/${customer?.logo}`} alt="Лого" />
@@ -83,8 +85,9 @@ const styles: Record<string, SxProps> = {
     lineHeight: 1,
   },
   logo: {
+    display: "flex",
     order: { xs: 0, md: 1 },
-    width: { xs: "100%", md: "25%" },
+    minWidth: { xs: "100%", md: "25%" },
     p: { xs: "0 15%", sm: "0 20%", md: "0" },
     mb: { xs: "18px", md: "" },
     "& img": {
