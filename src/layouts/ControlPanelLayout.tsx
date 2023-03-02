@@ -30,7 +30,6 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import TagIcon from "@mui/icons-material/Tag";
 import { useHistory, useRouteMatch } from "react-router";
 import { useAppDispatch, useAppSelector } from "../store";
-import { SxProps } from "@mui/system";
 import { ReactComponent as Logo } from "../assets/Logo.svg";
 import { logout } from "../store/Auth";
 
@@ -183,7 +182,7 @@ const ControlPanelLayout = ({ children }: Child): ReactElement => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     height: "auto",

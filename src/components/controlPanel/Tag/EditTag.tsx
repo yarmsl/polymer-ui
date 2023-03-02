@@ -10,7 +10,6 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useGetAllTagsQuery } from "../../../store/Tag";
 import TagItem from "./TagItem";
 
@@ -47,7 +46,7 @@ const EditTag = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",

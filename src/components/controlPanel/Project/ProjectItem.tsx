@@ -15,7 +15,6 @@ import {
 } from "../../../store/Notifications";
 import { openModal } from "../../../store/ModalStack";
 import { useAppDispatch } from "../../../store";
-import { SxProps } from "@mui/system";
 import { SERVER_URL } from "../../../lib/constants";
 import { useDeleteProjectMutation } from "../../../store/Project";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
@@ -159,7 +158,7 @@ const ProjectItem = ({ project }: IProjectItemProps) => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   textCell: {
     maxWidth: "150px",
     width: "100%",

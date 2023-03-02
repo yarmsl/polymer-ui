@@ -15,7 +15,6 @@ import {
   showSuccessSnackbar,
 } from "../../../store/Notifications";
 import { closeModalAction } from "../../../store/ModalStack";
-import { SxProps } from "@mui/system";
 import { useEditTagMutation } from "../../../store/Tag";
 
 interface ITagItemDialogProps {
@@ -151,7 +150,7 @@ const TagItemDialog = ({ tag, edit }: ITagItemDialogProps): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   actions: {
     width: "100%",
     display: "flex",

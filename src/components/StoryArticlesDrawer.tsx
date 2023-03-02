@@ -1,5 +1,4 @@
 import { Box, Skeleton } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useGetStoryArticlesDataQuery } from "../store/Data";
 import StoryArticleCard from "../components/StoryArticleCard";
 
@@ -20,7 +19,7 @@ const StoryArticlesDrawer = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     display: "flex",
     flexDirection: "column",

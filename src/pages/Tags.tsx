@@ -1,7 +1,6 @@
 import { ReactElement, useMemo } from "react";
 import HelmetTitle from "../layouts/Helmet";
 import { Button, Container, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useGetProjectsDataQuery, useGetTagsDataQuery } from "../store/Data";
 import { useHistory } from "react-router";
 import ProjectsDrawer from "../components/ProjectsDrawer";
@@ -48,11 +47,11 @@ const Tags = (): ReactElement => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     pt: "50px",
-    pb: '80px',
+    pb: "80px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

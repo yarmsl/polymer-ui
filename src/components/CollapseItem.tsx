@@ -1,5 +1,4 @@
 import { Box, Collapse, Divider, IconButton, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { memo, useState, useCallback, useMemo } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import StepCardItem from "./StepCardItem";
@@ -24,7 +23,7 @@ const CollapseItem = ({ article, open }: ICollapseItem): JSX.Element => {
   );
   return (
     <Box sx={styles.root}>
-      <Box sx={styles.header} onClick={handleCollapse} >
+      <Box sx={styles.header} onClick={handleCollapse}>
         <Typography sx={styles.title} variant="h6">
           {article.title}
         </Typography>
@@ -52,7 +51,7 @@ const CollapseItem = ({ article, open }: ICollapseItem): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
   },

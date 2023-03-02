@@ -15,7 +15,6 @@ import {
   showSuccessSnackbar,
 } from "../../../store/Notifications";
 import { closeModalAction } from "../../../store/ModalStack";
-import { SxProps } from "@mui/system";
 import { useEditVacancyMutation } from "../../../store/Vacancy";
 
 export type vacancyEditTypes = "title" | "requirements" | "wage";
@@ -121,7 +120,7 @@ const VacancyItemDialog = ({
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   actions: {
     width: "100%",
     display: "flex",

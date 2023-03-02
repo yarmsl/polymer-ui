@@ -12,7 +12,6 @@ import {
 } from "@mui/material";
 import { useGetAllUsersQuery } from "../../../store/Users";
 import UserItem from "./UserItem";
-import { SxProps } from "@mui/system";
 
 const EditUsers = (): JSX.Element => {
   const { data, isLoading } = useGetAllUsersQuery("");
@@ -47,7 +46,7 @@ const EditUsers = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",

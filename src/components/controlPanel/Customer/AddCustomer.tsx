@@ -9,7 +9,6 @@ import {
   Typography,
 } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { SxProps } from "@mui/system";
 import { Controller, useForm } from "react-hook-form";
 import { useAppDispatch } from "../../../store";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
@@ -265,7 +264,7 @@ const AddCustomer = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   form: {
     width: "100%",
     display: "flex",

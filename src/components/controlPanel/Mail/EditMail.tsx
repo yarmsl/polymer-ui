@@ -5,7 +5,6 @@ import {
   IconButton,
   CircularProgress,
 } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useDeleteMailsMutation, useGetMailsQuery } from "../../../store/Mail";
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
 import {
@@ -48,7 +47,7 @@ const EditMail = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",

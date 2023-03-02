@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { memo } from "react";
 
 interface IStoryCardProps {
@@ -19,7 +18,7 @@ const StoryCard = ({ story }: IStoryCardProps): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     p: "30px",

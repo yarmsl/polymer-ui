@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { memo } from "react";
 
 interface IVacancyCardProps {
@@ -28,7 +27,7 @@ const VacancyCard = ({ vacancy }: IVacancyCardProps): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     p: "30px",

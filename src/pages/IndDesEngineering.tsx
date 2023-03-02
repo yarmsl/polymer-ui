@@ -1,7 +1,6 @@
 import { ReactElement } from "react";
 import HelmetTitle from "../layouts/Helmet";
 import { Box, Button, Container } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useHistory } from "react-router";
 import { useGetArticlesDataQuery, useGetTagsDataQuery } from "../store/Data";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
@@ -72,7 +71,7 @@ const IndDesEngineering = (): ReactElement => {
     </>
   );
 };
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     maxWidth: "900px",
     width: "100%",

@@ -23,5 +23,7 @@ interface IQueryError {
 }
 
 interface IMessage {
-  message: string
+  message: string;
 }
+
+type TStyles = Record<string, import("@mui/material").SxProps>;

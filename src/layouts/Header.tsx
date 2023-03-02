@@ -1,5 +1,4 @@
 import { AppBar, Button, Container, IconButton } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useHistory, useRouteMatch } from "react-router";
 import PhoneEnabledIcon from "@mui/icons-material/PhoneEnabled";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -74,7 +73,7 @@ const Header = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   header: {
     width: "100%",
     height: "62px",

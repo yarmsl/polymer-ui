@@ -11,7 +11,6 @@ import {
   Typography,
 } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { SxProps } from "@mui/system";
 import { Controller, useForm } from "react-hook-form";
 import { useAppDispatch } from "../../../store";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
@@ -298,7 +297,7 @@ const AddStep = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",
@@ -335,8 +334,8 @@ const styles: Record<string, SxProps> = {
     mt: "20px",
   },
   field: {
-    minHeight: '120px'
-  }
+    minHeight: "120px",
+  },
 };
 
 export default AddStep;

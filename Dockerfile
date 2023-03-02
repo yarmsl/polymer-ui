@@ -1,11 +1,10 @@
 FROM node:14-alpine AS builder
-ENV NODE_ENV production
 WORKDIR /web
 ADD package.json package.json
-ADD package-lock.json package-lock.json
-RUN npm install
+ADD yarn.lock yarn.lock
+RUN yarn install
 ADD . .
-RUN npm run build
+RUN yarn build
 
 FROM nginx:1.21.0-alpine as production
 ENV NODE_ENV production

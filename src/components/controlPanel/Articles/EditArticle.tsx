@@ -10,12 +10,11 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useGetAllArticlesQuery } from "../../../store/Article";
 import ArticleItem from "./ArticleItem";
 
 const EditArticle = (): JSX.Element => {
-  const { data, isLoading } = useGetAllArticlesQuery("")
+  const { data, isLoading } = useGetAllArticlesQuery("");
 
   return (
     <Container sx={styles.root} maxWidth="md">
@@ -35,14 +34,18 @@ const EditArticle = (): JSX.Element => {
               <TableCell>Удалить</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>{data?.map((article) => <ArticleItem key={article._id} article={article} /> )}</TableBody>
+          <TableBody>
+            {data?.map((article) => (
+              <ArticleItem key={article._id} article={article} />
+            ))}
+          </TableBody>
         </Table>
       </TableContainer>
     </Container>
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",

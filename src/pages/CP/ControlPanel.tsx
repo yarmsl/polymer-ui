@@ -1,7 +1,6 @@
 import { ReactElement } from "react";
 import HelmetTitle from "../../layouts/Helmet";
 import { Container, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 
 const ControlPanel = (): ReactElement => {
   return (
@@ -50,7 +49,7 @@ const ControlPanel = (): ReactElement => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     flexDirection: "column",

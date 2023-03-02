@@ -1,5 +1,4 @@
 import { Box, Divider } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { ReactElement } from "react";
 import AddProductionArticle from "../../components/controlPanel/Production/AddProductionArticle";
 import AddStep from "../../components/controlPanel/Production/AddStep";
@@ -15,7 +14,7 @@ const ProductionCP = (): ReactElement => {
       <Box sx={styles.root}>
         <AddProductionArticle />
         <EditProductionArticle />
-        <Divider sx={styles.divider}/>
+        <Divider sx={styles.divider} />
         <AddStep />
         <EditStep />
       </Box>
@@ -23,7 +22,7 @@ const ProductionCP = (): ReactElement => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",
@@ -34,9 +33,9 @@ const styles: Record<string, SxProps> = {
     },
   },
   divider: {
-    width: '100%',
-    m: '50px 0'
-  }
+    width: "100%",
+    m: "50px 0",
+  },
 };
 
 export default ProductionCP;

@@ -1,5 +1,4 @@
 import { Box, Button, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useHistory } from "react-router";
 import { ReactComponent as Logotype } from "../assets/Logo.svg";
 
@@ -27,7 +26,7 @@ const Logo = ({ closeBurger }: ILogoProps): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     minWidth: "160px",
     height: "100%",

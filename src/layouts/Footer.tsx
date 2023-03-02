@@ -1,5 +1,4 @@
 import { Box, Container, Link, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { Link as RouterLink } from "react-router-dom";
 import GetPresentationByEmail from "../components/GetPresentationByEmail";
 import { pages } from "./MainLayout";
@@ -40,7 +39,7 @@ const Footer = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     backgroundColor: "secondary.light",

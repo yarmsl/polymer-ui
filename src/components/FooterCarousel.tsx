@@ -1,5 +1,4 @@
 import { Box, Skeleton } from "@mui/material";
-import { SxProps } from "@mui/system";
 import FeedBackDownload from "./FeedBackDownload";
 import { useRouteMatch } from "react-router";
 import FadeCarousel from "../UI/FadeCarousel/FadeCarousel";
@@ -59,7 +58,7 @@ const FooterCarousel = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     overflow: "hidden",

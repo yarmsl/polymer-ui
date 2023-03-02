@@ -17,7 +17,6 @@ import {
   showSuccessSnackbar,
 } from "../../../store/Notifications";
 import { closeModalAction } from "../../../store/ModalStack";
-import { SxProps } from "@mui/system";
 import { useEditProductionStepMutation } from "../../../store/Production";
 import { useGetProductionArticlesDataQuery } from "../../../store/Data";
 
@@ -160,7 +159,7 @@ const StepItemDialog = ({ step, edit }: IStepDialogProps): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   actions: {
     width: "100%",
     display: "flex",

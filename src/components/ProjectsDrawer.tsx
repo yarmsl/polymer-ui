@@ -1,7 +1,6 @@
 import { memo } from "react";
 
 import { Box } from "@mui/material";
-import { SxProps } from "@mui/system";
 
 import ProjectCard, { SkeletonProjectCard } from "../components/ProjectCard";
 
@@ -25,12 +24,12 @@ const ProjectsDrawer = ({
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   cards: {
     width: "100%",
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: {xs: 'center', sm: 'flex-start'},
+    justifyContent: { xs: "center", sm: "flex-start" },
     mb: "50px",
   },
 };

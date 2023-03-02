@@ -14,7 +14,6 @@ import {
 } from "../../../store/Notifications";
 import { openModal } from "../../../store/ModalStack";
 import { useAppDispatch } from "../../../store";
-import { SxProps } from "@mui/system";
 import { SERVER_URL } from "../../../lib/constants";
 import ProjectItemDialog, { stepEditTypes } from "./StepItem.dialog";
 import { useDeleteProductionStepMutation } from "../../../store/Production";
@@ -112,7 +111,7 @@ const StepItem = ({ step }: IStepItemProps) => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   img: {
     width: "calc(100% - 36px)",
     minWidth: "80px",

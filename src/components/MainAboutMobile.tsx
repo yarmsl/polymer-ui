@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { abouts } from "../lib/about";
 import MainAboutMobileCard from "./MainAboutMobileCard";
 
@@ -13,7 +12,7 @@ const MainAboutMobile = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     backgroundColor: "#F9F9F9",

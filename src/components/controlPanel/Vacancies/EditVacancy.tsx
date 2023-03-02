@@ -10,7 +10,6 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useGetAllVacanciesQuery } from "../../../store/Vacancy";
 import VacancyItem from "./VacancyItem";
 
@@ -46,7 +45,7 @@ const EditVacancy = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",

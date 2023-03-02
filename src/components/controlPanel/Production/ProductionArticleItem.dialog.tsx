@@ -15,7 +15,6 @@ import {
   showSuccessSnackbar,
 } from "../../../store/Notifications";
 import { closeModalAction } from "../../../store/ModalStack";
-import { SxProps } from "@mui/system";
 import { useEditProductionArticleMutation } from "../../../store/Production";
 
 export type prodactionArticleEditTypes = "title" | "content" | "order";
@@ -120,7 +119,7 @@ const ProductionArticleItemDialog = ({
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   actions: {
     width: "100%",
     display: "flex",

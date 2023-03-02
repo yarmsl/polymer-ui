@@ -15,7 +15,6 @@ import {
 } from "../../../store/Notifications";
 import { openModal } from "../../../store/ModalStack";
 import { useAppDispatch } from "../../../store";
-import { SxProps } from "@mui/system";
 import CustomerItemDialog from "./CustomerItem.dialog";
 import { SERVER_URL } from "../../../lib/constants";
 import { useDeleteCustomerMutation } from "../../../store/Customer";
@@ -133,7 +132,7 @@ const UserItem = ({ customer }: ICustomerItemProps) => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   long: {
     maxWidth: "200px",
     overflow: "hidden",

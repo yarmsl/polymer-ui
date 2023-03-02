@@ -10,7 +10,6 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useGetAllCustomersQuery } from "../../../store/Customer";
 import CustomerItem from "./CustomerItem";
 
@@ -49,7 +48,7 @@ const EditCustomer = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",

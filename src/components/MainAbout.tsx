@@ -1,5 +1,4 @@
 import { Box, Button, Container, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { EffectFade } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
 import SwiperCore from "swiper";
@@ -55,7 +54,7 @@ const MainAbout = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     p: "60px 0",
     flexDirection: "column",
@@ -76,7 +75,7 @@ const styles: Record<string, SxProps> = {
     justifyContent: "flex-start",
     lineHeight: "17px",
     textTransform: "uppercase",
-    letterSpacing: { sm: '0.1em', md: "0.24em"},
+    letterSpacing: { sm: "0.1em", md: "0.24em" },
     "&>div": {
       width: "60px",
       height: "60px",

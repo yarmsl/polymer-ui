@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { ReactElement } from "react";
 import AddVacancy from "../../components/controlPanel/Vacancies/AddVacancy";
 import EditVacancy from "../../components/controlPanel/Vacancies/EditVacancy";
@@ -18,7 +17,7 @@ const VacancyCP = (): ReactElement => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",

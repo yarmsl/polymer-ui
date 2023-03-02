@@ -15,7 +15,6 @@ import {
   showSuccessSnackbar,
 } from "../../../store/Notifications";
 import { closeModalAction } from "../../../store/ModalStack";
-import { SxProps } from "@mui/system";
 import { useEditStoryArticleMutation } from "../../../store/StoryArticle";
 
 export type storyArticleEditTypes = "title" | "content";
@@ -113,7 +112,7 @@ const StoryArticleItemDialog = ({
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   actions: {
     width: "100%",
     display: "flex",

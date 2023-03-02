@@ -15,7 +15,6 @@ import {
   showSuccessSnackbar,
 } from "../../../store/Notifications";
 import { closeModalAction } from "../../../store/ModalStack";
-import { SxProps } from "@mui/system";
 import ImagesPreview from "../ImagesPreview";
 import { file2optiDataurl, file2optiFile } from "../../../lib/imageOptimaze";
 import { useEditArticleMutation } from "../../../store/Article";
@@ -130,7 +129,7 @@ const ArticleItemDialog = ({
   }, []);
 
   return (
-    <Container maxWidth='sm' sx={styles.dialog}>
+    <Container maxWidth="sm" sx={styles.dialog}>
       <Box sx={styles.form} component="form">
         <Typography>Редактирование Статьи</Typography>
 
@@ -225,7 +224,7 @@ const ArticleItemDialog = ({
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   actions: {
     width: "100%",
     display: "flex",

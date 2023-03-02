@@ -10,7 +10,6 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useMemo } from "react";
 import { useGetAllProductionArticlesQuery } from "../../../store/Production";
 import ProductionArticleItem from "./ProductionArticleItem";
@@ -56,7 +55,7 @@ const EditProductionArticle = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",

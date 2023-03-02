@@ -17,7 +17,6 @@ import {
   showSuccessSnackbar,
 } from "../../../store/Notifications";
 import { closeModalAction } from "../../../store/ModalStack";
-import { SxProps } from "@mui/system";
 
 interface IUserItemDialogProps {
   user: IUserResponse;
@@ -122,7 +121,7 @@ const UserItemDialog = ({ user }: IUserItemDialogProps): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   actions: {
     width: "100%",
     mt: "8px",

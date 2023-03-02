@@ -1,5 +1,4 @@
 import { Box, Button, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { SERVER_URL } from "../lib/constants";
 
 const FeedBackDownload = (): JSX.Element => {
@@ -20,7 +19,7 @@ const FeedBackDownload = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     maxWidth: "340px",

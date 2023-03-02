@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { Box, Skeleton, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useGetStoriesDataQuery } from "../store/Data";
 import StoryCard from "../components/StoryCard";
 import { useMedia } from "../lib/useMedia";
@@ -65,7 +64,7 @@ const StoriesDrawer = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   title: {
     width: "100%",
     fontWeight: 700,
