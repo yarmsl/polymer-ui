@@ -1,4 +1,4 @@
-import { createTheme, responsiveFontSizes } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 const defaultTheme = createTheme({
   breakpoints: {
@@ -11,37 +11,37 @@ const defaultTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: "PT Root UI",
+    fontFamily: 'PT Root UI',
     button: {
-      textTransform: "none",
+      textTransform: 'none',
     },
     h2: {
       fontSize: 48,
       lineHeight: 1.1,
       fontWeight: 700,
-      userSelect: "none",
+      userSelect: 'none',
     },
     h3: {
       fontSize: 36,
       lineHeight: 2,
       fontWeight: 700,
-      userSelect: "none",
+      userSelect: 'none',
     },
     h4: {
       fontSize: 30,
       lineHeight: 1,
       fontWeight: 700,
-      userSelect: "none",
+      userSelect: 'none',
     },
     h5: {
       fontSize: 24,
       fontWeight: 500,
-      userSelect: "none",
+      userSelect: 'none',
     },
     h6: {
       fontSize: 18,
       fontWeight: 500,
-      userSelect: "none",
+      userSelect: 'none',
     },
     body1: {
       fontSize: 14,
@@ -54,15 +54,15 @@ const defaultTheme = createTheme({
   palette: {
     primary: {
       // dark: "#00695f",
-      main: "#D13239",
-      light: "#FF1C26",
-      contrastText: "#fff",
+      main: '#D13239',
+      light: '#FF1C26',
+      contrastText: '#fff',
     },
     secondary: {
       // dark: "#00a152",
-      main: "#C4C4C4",
-      light: "#F9F9F9",
-      contrastText: "#fff",
+      main: '#C4C4C4',
+      light: '#F9F9F9',
+      contrastText: '#fff',
     },
   },
 
@@ -73,15 +73,15 @@ const defaultTheme = createTheme({
     MuiContainer: {
       styleOverrides: {
         root: {
-          display: "flex",
+          display: 'flex',
         },
       },
     },
     MuiButton: {
       styleOverrides: {
         containedPrimary: {
-          "&:hover": {
-            backgroundColor: "#FF1C26",
+          '&:hover': {
+            backgroundColor: '#FF1C26',
           },
         },
       },
@@ -89,58 +89,58 @@ const defaultTheme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          backgroundColor: "#fff",
+          backgroundColor: '#fff',
         },
       },
     },
     MuiLink: {
       styleOverrides: {
         root: {
-          textDecoration: "none",
+          textDecoration: 'none',
         },
       },
     },
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: "#fff",
+          backgroundColor: '#fff',
         },
       },
     },
     MuiCssBaseline: {
       styleOverrides: {
-        "::-webkit-scrollbar": {
-          width: "8px",
-          height: "8px",
+        '::-webkit-scrollbar': {
+          width: '8px',
+          height: '8px',
         },
-        "::-webkit-scrollbar-thumb": {
-          backgroundColor: "#e9e9e9",
-          borderRadius: "8px",
+        '::-webkit-scrollbar-thumb': {
+          backgroundColor: '#e9e9e9',
+          borderRadius: '8px',
         },
         html: {
-          width: "100%",
-          height: "100%",
-          WebkitFontSmoothing: "auto",
+          width: '100%',
+          height: '100%',
+          WebkitFontSmoothing: 'auto',
         },
         body: {
-          width: "100%",
-          height: "100%",
+          width: '100%',
+          height: '100%',
         },
         input: {
-          "&:-webkit-autofill": {
-            WebkitBoxShadow: "0 0 0 30px #fafafa inset !important",
+          '&:-webkit-autofill': {
+            WebkitBoxShadow: '0 0 0 30px #fafafa inset !important',
           },
         },
         img: {
-          pointerEvents: "none",
-          userSelect: "none",
+          pointerEvents: 'none',
+          userSelect: 'none',
         },
-        "#root": {
-          display: "flex",
-          flexDirection: "column",
-          width: "100%",
-          minWidth: "320px",
-          minHeight: "100%",
+        '#app': {
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%',
+          minWidth: '320px',
+          minHeight: '100%',
         },
       },
     },

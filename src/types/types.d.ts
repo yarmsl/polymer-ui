@@ -26,4 +26,4 @@ interface IMessage {
   message: string;
 }
 
-type TStyles = Record<string, import("@mui/material").SxProps>;
+type TStyles = Record<string, import('@mui/material').SxProps>;

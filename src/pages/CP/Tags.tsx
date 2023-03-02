@@ -1,32 +1,14 @@
-import { Box } from "@mui/material";
-import { ReactElement } from "react";
-import AddTag from "../../components/controlPanel/Tag/AddTag";
-import EditTag from "../../components/controlPanel/Tag/EditTag";
+import { FC } from 'react';
 
-import HelmetTitle from "../../layouts/Helmet";
+import Tag from '~/modules/ControlPanel/Tag';
+import ControlPanelPage from '~/UI/layouts/ControlPanelPage';
 
-const Tags = (): ReactElement => {
+const Tags: FC = () => {
   return (
-    <>
-      <HelmetTitle title="Теги" />
-      <Box sx={styles.root}>
-        <AddTag />
-        <EditTag />
-      </Box>
-    </>
+    <ControlPanelPage title='Теги'>
+      <Tag />
+    </ControlPanelPage>
   );
-};
-
-const styles: TStyles = {
-  root: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    "&>*": {
-      m: "24px 0",
-    },
-  },
 };
 
 export default Tags;

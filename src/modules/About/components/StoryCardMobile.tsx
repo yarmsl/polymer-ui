@@ -1,0 +1,57 @@
+import { memo, useCallback, useState } from 'react';
+
+import CloseIcon from '@mui/icons-material/Close';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { Box, Collapse, IconButton, Typography } from '@mui/material';
+
+interface IStoryCardProps {
+  story: IStory;
+}
+
+const StoryCardMobile = ({ story }: IStoryCardProps): JSX.Element => {
+  const [coll, setColl] = useState(false);
+  const handleCollapse = useCallback(() => (coll ? setColl(false) : setColl(true)), [coll]);
+  return (
+    <Box sx={styles.root}>
+      <Box sx={styles.header} onClick={handleCollapse}>
+        <Typography sx={styles.title}>
+          {story.to ? `${story.from} - ${story.to}` : story.from}
+        </Typography>
+        <IconButton size='small' onClick={handleCollapse}>
+          {coll ? <CloseIcon /> : <KeyboardArrowDownIcon />}
+        </IconButton>
+      </Box>
+      <Collapse in={coll}>
+        <Typography component='pre' sx={styles.content}>
+          {story.content}
+        </Typography>
+      </Collapse>
+    </Box>
+  );
+};
+
+const styles: TStyles = {
+  root: {
+    width: '100%',
+    p: '5px 20px',
+    backgroundColor: '#f8f8f8',
+    borderRadius: '10px',
+  },
+  header: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  title: {
+    color: 'primary.main',
+    fontSize: '30px',
+    fontWeight: 700,
+  },
+  content: {
+    color: '#777777',
+    whiteSpace: 'pre-wrap',
+    fontSize: '14px',
+  },
+};
+
+export default memo(StoryCardMobile);

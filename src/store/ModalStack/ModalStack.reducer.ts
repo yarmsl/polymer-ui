@@ -1,10 +1,11 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IModalStack, ModalStackTypes } from "./types";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { IModalStack, ModalStackTypes } from './types';
 
 const initialState: IModalStack[] = [];
 
 export const ModalStackSlice = createSlice({
-  name: "modal stack",
+  name: 'modal stack',
   initialState,
   reducers: {
     openModal: (state, action: PayloadAction<ModalStackTypes>) => {

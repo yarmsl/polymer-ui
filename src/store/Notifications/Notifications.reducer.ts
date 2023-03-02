@@ -1,13 +1,14 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { SnackbarKey } from "notistack";
-import { ICloseSnackbarAction, INotifications, ISnackbar } from "./types";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { SnackbarKey } from 'notistack';
+
+import { ICloseSnackbarAction, INotifications, ISnackbar } from './types';
 
 const initialState: INotifications = {
   notifications: [],
 };
 
 export const notificationsSlice = createSlice({
-  name: "notifications",
+  name: 'notifications',
   initialState: initialState,
   reducers: {
     enqueueSnackbar: (state, action: PayloadAction<ISnackbar>) => {
@@ -17,17 +18,16 @@ export const notificationsSlice = createSlice({
       state.notifications = state.notifications.map((notification) =>
         action.payload.dismissAll || notification.options.key === action.payload.key
           ? { ...notification, dismissed: true }
-          : { ...notification }
+          : { ...notification },
       );
     },
     removeSnackbar: (state, action: PayloadAction<SnackbarKey>) => {
       state.notifications = state.notifications.filter(
-        (notification) => notification.options.key !== action.payload
+        (notification) => notification.options.key !== action.payload,
       );
     },
   },
 });
 
-export const { enqueueSnackbar, closeSnackbar, removeSnackbar } =
-  notificationsSlice.actions;
-export const {reducer: notificationsReducer} = notificationsSlice
+export const { enqueueSnackbar, closeSnackbar, removeSnackbar } = notificationsSlice.actions;
+export const { reducer: notificationsReducer } = notificationsSlice;

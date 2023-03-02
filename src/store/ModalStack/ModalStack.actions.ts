@@ -1,4 +1,4 @@
-import { closeModal, removeModal } from ".";
+import { closeModal, removeModal } from '.';
 
 export const closeModalAction = () => {
   return (dispatch: (arg0: unknown) => void): void => {
