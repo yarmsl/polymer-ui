@@ -11,7 +11,6 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { SERVER_URL } from "../../../lib/constants";
@@ -155,7 +154,7 @@ const ChooseBottomBanner = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",

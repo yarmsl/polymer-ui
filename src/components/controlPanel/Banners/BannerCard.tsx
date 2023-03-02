@@ -1,5 +1,4 @@
 import { Box, Button, CircularProgress, TextField } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useAppDispatch } from "../../../store";
 import { Controller, useForm } from "react-hook-form";
 import {
@@ -153,7 +152,7 @@ const BannerCard = ({ banner }: IBannerCardProps): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     minWidth: "400px",

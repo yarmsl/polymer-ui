@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { memo } from "react";
 import { SERVER_URL } from "../lib/constants";
 
@@ -43,7 +42,7 @@ const ProjectSlide = ({
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   slide: {
     width: "100%",
     height: "100%",

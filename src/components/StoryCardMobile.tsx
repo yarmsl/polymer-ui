@@ -1,5 +1,4 @@
 import { Box, Collapse, IconButton, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { memo, useCallback, useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CloseIcon from "@mui/icons-material/Close";
@@ -33,7 +32,7 @@ const StoryCardMobile = ({ story }: IStoryCardProps): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     p: "5px 20px",

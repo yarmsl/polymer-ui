@@ -1,6 +1,5 @@
 import { ReactElement, Suspense, useMemo, lazy } from "react";
 import { Container } from "@mui/material";
-import { SxProps } from "@mui/system";
 import MainBanner from "../components/MainBanner";
 import { useRouteMatch } from "react-router";
 import Loading from "./Loading";
@@ -45,7 +44,7 @@ const MainLayout = ({ children }: Child): ReactElement => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     flexGrow: 1,
     flexDirection: "column",

@@ -1,5 +1,4 @@
 import { Box, Button, Skeleton, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { FC, memo, useMemo } from "react";
 import { useHistory } from "react-router";
 import { SERVER_URL } from "../lib/constants";
@@ -98,7 +97,7 @@ const CustomerCard: FC<ICustomCardProps> = ({ customer }) => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "270px",
     maxWidth: "270px",

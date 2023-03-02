@@ -1,6 +1,5 @@
 import { memo } from "react";
 import { Box, Skeleton, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { Link as RouterLink } from "react-router-dom";
 import { SERVER_URL } from "../lib/constants";
 
@@ -40,7 +39,7 @@ const ProjectCard = ({ project }: IProjectCardProps): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     height: { xs: "", sm: "300px" },

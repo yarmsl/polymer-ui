@@ -1,5 +1,4 @@
 import { Box, Skeleton } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useMemo } from "react";
 import { useGetAllBannersQuery } from "../store/Banner";
 import FadeCarousel from "../UI/FadeCarousel/FadeCarousel";
@@ -30,7 +29,7 @@ const MainSlider = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     height: "100%",

@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { ReactElement } from "react";
 import AddBanner from "../../components/controlPanel/Banners/AddBanner";
 import ChooseBottomBanner from "../../components/controlPanel/Banners/ChooseBottomBanner";
@@ -19,7 +18,7 @@ const BannersCP = (): ReactElement => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",

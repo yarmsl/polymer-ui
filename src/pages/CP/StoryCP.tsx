@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { ReactElement } from "react";
 import AddStory from "../../components/controlPanel/Story/AddStory";
 import EditStory from "../../components/controlPanel/Story/EditStory";
@@ -18,7 +17,7 @@ const StoryCP = (): ReactElement => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",

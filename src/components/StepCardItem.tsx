@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { memo } from "react";
 import { SERVER_URL } from "../lib/constants";
 import { useMedia } from "../lib/useMedia";
@@ -48,7 +47,7 @@ const StepCardItem = ({ step, reverse }: IStepCardItemProps): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     height: { xs: "", sm: "300px" },

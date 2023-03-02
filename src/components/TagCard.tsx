@@ -1,5 +1,4 @@
 import { Box, Button, Skeleton, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { FC, memo, useMemo } from "react";
 import { useHistory } from "react-router";
 import { SERVER_URL } from "../lib/constants";
@@ -62,7 +61,7 @@ const TagCard: FC<ITagCardProps> = ({ tag }) => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     minWidth: "270px",
     width: "270px",

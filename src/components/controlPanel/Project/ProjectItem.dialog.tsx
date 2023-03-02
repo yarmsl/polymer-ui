@@ -19,7 +19,6 @@ import {
   showSuccessSnackbar,
 } from "../../../store/Notifications";
 import { closeModalAction } from "../../../store/ModalStack";
-import { SxProps } from "@mui/system";
 import { useEditProjectMutation } from "../../../store/Project";
 import { useGetAllTagsQuery } from "../../../store/Tag";
 import { useGetAllCustomersQuery } from "../../../store/Customer";
@@ -342,7 +341,7 @@ const ProjectItemDialog = ({
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   actions: {
     width: "100%",
     display: "flex",

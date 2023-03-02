@@ -1,7 +1,6 @@
 import { ReactElement, useMemo } from "react";
 import HelmetTitle from "../layouts/Helmet";
 import { Box, Button, Container, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useHistory } from "react-router";
 import { useGetCustomersDataQuery } from "../store/Data";
 import { SERVER_URL } from "../lib/constants";
@@ -60,7 +59,7 @@ const Customer = (): ReactElement => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     pt: "80px",

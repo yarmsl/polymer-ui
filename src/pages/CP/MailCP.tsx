@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { ReactElement } from "react";
 import AddMail from "../../components/controlPanel/Mail/AddMail";
 import EditMail from "../../components/controlPanel/Mail/EditMail";
@@ -17,7 +16,7 @@ const MailCP = (): ReactElement => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",

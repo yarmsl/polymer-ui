@@ -1,7 +1,6 @@
 import { ReactElement } from "react";
 import HelmetTitle from "../layouts/Helmet";
 import { Button, Container } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useGetProjectsDataQuery } from "../store/Data";
 import { useHistory } from "react-router";
 import ProjectsDrawer from "../components/ProjectsDrawer";
@@ -26,7 +25,7 @@ const Projects = (): ReactElement => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     padding: "50px 0px 100px",

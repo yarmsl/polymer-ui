@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { ReactElement } from "react";
 import AddCustomer from "../../components/controlPanel/Customer/AddCustomer";
 import EditCustomer from "../../components/controlPanel/Customer/EditCustomer";
@@ -18,7 +17,7 @@ const CustomersCP = (): ReactElement => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",

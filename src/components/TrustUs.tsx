@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useGetCustomersDataQuery } from "../store/Data";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
 import { Navigation } from "swiper";
@@ -18,7 +17,6 @@ const TrustUs = (): JSX.Element => {
           spaceBetween={0}
           navigation={true}
           slidesPerView={matchesMobile ? 1 : matchesDesktop ? 3 : 2}
-          
         >
           {isLoading
             ? [0, 1, 2].map((ph) => (
@@ -39,12 +37,12 @@ const TrustUs = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     maxWidth: "900px",
     width: "100%",
     display: "flex",
-    p: {xs: '50px 10px', md: "50px 0"},
+    p: { xs: "50px 10px", md: "50px 0" },
     flexDirection: "column",
     alignItems: "center",
     "& .swiper": {

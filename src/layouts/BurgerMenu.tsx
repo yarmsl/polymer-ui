@@ -6,7 +6,6 @@ import {
   ListItemButton,
   SwipeableDrawer,
 } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { Fragment, memo } from "react";
 import { useHistory } from "react-router";
 import { SERVER_URL } from "../lib/constants";
@@ -70,7 +69,7 @@ const BurgerMenu = ({ open, handle }: IBurgerMenuProps): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     pt: "62px",

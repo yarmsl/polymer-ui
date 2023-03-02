@@ -15,7 +15,6 @@ import {
   showSuccessSnackbar,
 } from "../../../store/Notifications";
 import { closeModalAction } from "../../../store/ModalStack";
-import { SxProps } from "@mui/system";
 import { useEditCustomerMutation } from "../../../store/Customer";
 
 interface ITagItemDialogProps {
@@ -122,7 +121,7 @@ const CustomerItemDialog = ({
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   actions: {
     width: "100%",
     display: "flex",

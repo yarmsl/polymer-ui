@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { ReactElement } from "react";
 import AddPresFile from "../../components/controlPanel/PresentationFile/AddPresFile";
 import HelmetTitle from "../../layouts/Helmet";
@@ -15,7 +14,7 @@ const PresentationCP = (): ReactElement => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",

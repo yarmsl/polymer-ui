@@ -11,7 +11,6 @@ import HelmetTitle from "../layouts/Helmet";
 import { useAppDispatch } from "../store";
 import { setAuth, useSignInMutation } from "../store/Auth";
 import { showErrorSnackbar } from "../store/Notifications";
-import { SxProps } from "@mui/system";
 import bg from "../assets/production.webp";
 
 const Auth = (): JSX.Element => {
@@ -119,7 +118,7 @@ const Auth = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   wrapper: {
     flexGrow: 1,
     height: "100%",

@@ -1,7 +1,6 @@
 import { ReactElement } from "react";
 import HelmetTitle from "../layouts/Helmet";
 import { Box, Container, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import DownloadPres from "../components/DownloadPres";
 import { ReactComponent as Logotype } from "../assets/Logo.svg";
 import { useMedia } from "../lib/useMedia";
@@ -43,7 +42,7 @@ const Contacts = (): ReactElement => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     flexDirection: "column",

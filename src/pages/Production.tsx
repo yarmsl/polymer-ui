@@ -2,7 +2,6 @@ import { ReactElement, useMemo } from "react";
 import HelmetTitle from "../layouts/Helmet";
 import { Button, Container, Skeleton, Typography } from "@mui/material";
 import { useGetProductionArticlesDataQuery } from "../store/Data";
-import { SxProps } from "@mui/system";
 import { useHistory } from "react-router";
 import CollapseItem from "../components/CollapseItem";
 
@@ -51,7 +50,7 @@ const Production = (): ReactElement => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     pt: "50px",

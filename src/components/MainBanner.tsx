@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useRouteMatch } from "react-router";
 import MainSlider from "./MainSlider";
 import promdis from "../assets/promdis.webp";
@@ -66,7 +65,7 @@ const MainBanner = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     height: { xs: "300px", sm: "525px" },

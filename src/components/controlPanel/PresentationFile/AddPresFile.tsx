@@ -6,7 +6,6 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { ChangeEvent, useCallback, useRef, useState } from "react";
 import { useAppDispatch } from "../../../store";
 import {
@@ -145,7 +144,7 @@ const AddPresFile = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   wrapper: {
     flexDirection: "column",
   },

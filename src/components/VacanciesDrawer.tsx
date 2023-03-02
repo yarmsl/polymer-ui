@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { Box, Skeleton, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useGetVacanciesDataQuery } from "../store/Data";
 import VacancyCard from "../components/VacancyCard";
 import { useMedia } from "../lib/useMedia";
@@ -29,9 +28,12 @@ const VacanciesDrawer = (): JSX.Element => {
       {isLoading ? (
         <Skeleton variant="text" width="100%" height="30px" />
       ) : (
-        data && data?.length > 0 && <Typography sx={styles.title} variant="h5">
-          Вакансии
-        </Typography>
+        data &&
+        data?.length > 0 && (
+          <Typography sx={styles.title} variant="h5">
+            Вакансии
+          </Typography>
+        )
       )}
       {!matchesMobile && (
         <Box sx={styles.root}>
@@ -58,7 +60,7 @@ const VacanciesDrawer = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   title: {
     width: "100%",
     fontWeight: 700,

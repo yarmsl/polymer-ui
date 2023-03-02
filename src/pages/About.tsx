@@ -1,7 +1,6 @@
 import { ReactElement } from "react";
 import HelmetTitle from "../layouts/Helmet";
 import { Button, Container } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useHistory } from "react-router";
 import VacanciesDrawer from "../components/VacanciesDrawer";
 import StoryArticlesDrawer from "../components/StoryArticlesDrawer";
@@ -36,7 +35,7 @@ const About = (): ReactElement => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     display: "flex",
     flexDirection: "column",

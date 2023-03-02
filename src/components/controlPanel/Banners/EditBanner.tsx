@@ -1,5 +1,4 @@
 import { Box, Container, LinearProgress, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useGetAllBannersQuery } from "../../../store/Banner";
 import BannerCard from "./BannerCard";
 
@@ -19,7 +18,7 @@ const EditBanner = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",

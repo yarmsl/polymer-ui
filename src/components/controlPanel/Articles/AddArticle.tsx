@@ -6,7 +6,6 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { Controller, useForm } from "react-hook-form";
 import { useAppDispatch } from "../../../store";
 
@@ -88,11 +87,7 @@ const AddArticle = (): JSX.Element => {
       setPreviews([]);
       reset();
     } catch (e) {
-      dispatch(
-        showErrorSnackbar(
-          (e as IQueryError)?.data?.message || "fail"
-        )
-      );
+      dispatch(showErrorSnackbar((e as IQueryError)?.data?.message || "fail"));
     }
   });
 
@@ -115,7 +110,7 @@ const AddArticle = (): JSX.Element => {
   return (
     <Container maxWidth={"xs"}>
       <Box sx={styles.form} component="form">
-        <Typography align='center' variant="h6" sx={{ mb: "12px" }}>
+        <Typography align="center" variant="h6" sx={{ mb: "12px" }}>
           Новая статья на странице Промышленный дизайн и инжиниринг
         </Typography>
         <input
@@ -223,7 +218,7 @@ const AddArticle = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   form: {
     width: "100%",
     display: "flex",
@@ -244,8 +239,8 @@ const styles: Record<string, SxProps> = {
     minHeight: "68px",
   },
   field: {
-    minHeight: '120px'
-  }
+    minHeight: "120px",
+  },
 };
 
 export default AddArticle;

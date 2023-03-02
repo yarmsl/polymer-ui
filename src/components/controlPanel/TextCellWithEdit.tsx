@@ -1,6 +1,5 @@
 import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
-import { SxProps } from "@mui/system";
 
 interface ITextCellWithEditProps<T> {
   val: string | number | string[];
@@ -27,7 +26,7 @@ function TextCellWithEdit<T>({
   );
 }
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   textCell: {
     maxWidth: "150px",
     width: "100%",

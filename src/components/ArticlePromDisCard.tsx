@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { memo } from "react";
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react.js";
 import { Navigation } from "swiper";
@@ -63,7 +62,7 @@ const ArticlesPromDisCard = ({
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",

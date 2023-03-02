@@ -14,7 +14,6 @@ import {
   showSuccessSnackbar,
 } from "../../../store/Notifications";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import { SxProps } from "@mui/system";
 
 const CreateUser = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -140,7 +139,7 @@ const CreateUser = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     display: "flex",
     flexDirection: "column",

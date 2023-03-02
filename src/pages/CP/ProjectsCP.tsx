@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { ReactElement } from "react";
 import AddProject from "../../components/controlPanel/Project/AddProject";
 import EditProject from "../../components/controlPanel/Project/EditProject";
@@ -17,7 +16,7 @@ const ProjectsCP = (): ReactElement => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",

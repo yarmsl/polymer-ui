@@ -5,7 +5,6 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { Controller, useForm } from "react-hook-form";
 import { useAppDispatch } from "../store";
 import { useSendFileToMailMutation } from "../store/Mail";
@@ -77,7 +76,7 @@ const GetPresentationByEmail = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "195px",
     display: "flex",

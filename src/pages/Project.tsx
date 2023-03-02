@@ -1,7 +1,6 @@
 import { ReactElement, useMemo } from "react";
 import HelmetTitle from "../layouts/Helmet";
 import { Box, Button, Container, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useGetProjectsDataQuery } from "../store/Data";
 import { useHistory } from "react-router";
 import { SERVER_URL } from "../lib/constants";
@@ -89,7 +88,7 @@ const Project = (): ReactElement => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     p: "30px 0 80px",

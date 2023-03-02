@@ -2,7 +2,6 @@ import { Box, IconButton, Paper } from "@mui/material";
 import { memo } from "react";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import SortRoundedIcon from "@mui/icons-material/SortRounded";
-import { SxProps } from "@mui/system";
 import { SERVER_URL } from "../../lib/constants";
 
 interface IImagesPreviewProps {
@@ -25,7 +24,7 @@ const ImgItem = ({
   n,
   remove,
   firstPlace,
-  path
+  path,
 }: IImgItemProps): JSX.Element => (
   <Box sx={styles.imgitem}>
     <IconButton onClick={() => remove(n)} sx={styles.remove} size="small">
@@ -44,7 +43,7 @@ const ImagesPreview = ({
   sources,
   remove,
   firstPlace,
-  path
+  path,
 }: IImagesPreviewProps): JSX.Element => (
   <Paper sx={styles.preview}>
     {sources.length > 0 &&
@@ -61,7 +60,7 @@ const ImagesPreview = ({
   </Paper>
 );
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   preview: {
     width: "100%",
     minHeight: "110px",

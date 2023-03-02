@@ -2,7 +2,6 @@ import { Box, Container, Typography } from "@mui/material";
 import HelmetTitle from "../layouts/Helmet";
 import MainLayout from "../layouts/MainLayout";
 import Leo404 from "../assets/leo404.webp";
-import { SxProps } from "@mui/system";
 import DownloadPres from "../components/DownloadPres";
 import { useMedia } from "../lib/useMedia";
 
@@ -46,7 +45,7 @@ const NotFound = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     display: "flex",
     flexDirection: "column",

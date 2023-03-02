@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { memo } from "react";
 import { SERVER_URL } from "../lib/constants";
-import { SxProps } from "@mui/system";
 
 interface IArticleSlide {
   text: string;
@@ -20,7 +19,7 @@ const ArticleSlide = ({ text, image }: IArticleSlide): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   slide: {
     width: "100%",
     height: "100%",

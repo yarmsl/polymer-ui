@@ -7,7 +7,6 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { SxProps } from "@mui/system";
 import { useForm, Controller } from "react-hook-form";
 import { useAppDispatch } from "../../../store";
 import { useAddMailsMutation } from "../../../store/Mail";
@@ -34,11 +33,7 @@ const AddMail = (): JSX.Element => {
       dispatch(showSuccessSnackbar(res.message || "Почтовые адреса добавлены"));
       reset();
     } catch (e) {
-      dispatch(
-        showErrorSnackbar(
-          (e as IQueryError)?.data?.message || "fail"
-        )
-      );
+      dispatch(showErrorSnackbar((e as IQueryError)?.data?.message || "fail"));
     }
   });
 
@@ -174,7 +169,7 @@ const AddMail = (): JSX.Element => {
   );
 };
 
-const styles: Record<string, SxProps> = {
+const styles: TStyles = {
   root: {
     width: "100%",
     display: "flex",
