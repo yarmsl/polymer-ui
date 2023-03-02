@@ -1,32 +1,15 @@
-import { Box } from "@mui/material";
-import { ReactElement } from "react";
-import AddVacancy from "../../components/controlPanel/Vacancies/AddVacancy";
-import EditVacancy from "../../components/controlPanel/Vacancies/EditVacancy";
+import { ReactElement } from 'react';
+import { FC } from 'react';
 
-import HelmetTitle from "../../layouts/Helmet";
+import Vacancies from '~/modules/ControlPanel/Vacancies';
+import ControlPanelPage from '~/UI/layouts/ControlPanelPage';
 
-const VacancyCP = (): ReactElement => {
+const VacancyCP: FC = () => {
   return (
-    <>
-      <HelmetTitle title="Вакансии" />
-      <Box sx={styles.root}>
-        <AddVacancy />
-        <EditVacancy />
-      </Box>
-    </>
+    <ControlPanelPage title='Вакансии'>
+      <Vacancies />
+    </ControlPanelPage>
   );
-};
-
-const styles: TStyles = {
-  root: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    "&>*": {
-      m: "24px 0",
-    },
-  },
 };
 
 export default VacancyCP;

@@ -1,4 +1,4 @@
-import { SnackbarKey, TransitionCloseHandler, VariantType } from "notistack";
+import { SnackbarKey, TransitionCloseHandler, VariantType } from 'notistack';
 
 export interface ISnackbar {
   dismissed: boolean;
@@ -12,10 +12,10 @@ export interface ISnackbar {
 }
 
 export interface INotifications {
-    notifications: ISnackbar[];
+  notifications: ISnackbar[];
 }
 
 export interface ICloseSnackbarAction {
-    dismissAll?: boolean;
-    key?: SnackbarKey;
+  dismissAll?: boolean;
+  key?: SnackbarKey;
 }

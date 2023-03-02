@@ -1,29 +1,14 @@
-import { Box } from "@mui/material";
-import { ReactElement } from "react";
-import AddPresFile from "../../components/controlPanel/PresentationFile/AddPresFile";
-import HelmetTitle from "../../layouts/Helmet";
+import { FC } from 'react';
 
-const PresentationCP = (): ReactElement => {
+import PresentationFile from '~/modules/ControlPanel/PresentationFile';
+import ControlPanelPage from '~/UI/layouts/ControlPanelPage';
+
+const PresentationCP: FC = () => {
   return (
-    <>
-      <HelmetTitle title="Файл презентации" />
-      <Box sx={styles.root}>
-        <AddPresFile />
-      </Box>
-    </>
+    <ControlPanelPage title='Файл презентации'>
+      <PresentationFile />
+    </ControlPanelPage>
   );
-};
-
-const styles: TStyles = {
-  root: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    "&>*": {
-      m: "24px 0",
-    },
-  },
 };
 
 export default PresentationCP;

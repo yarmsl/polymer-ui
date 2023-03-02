@@ -1,31 +1,15 @@
-import { Box } from "@mui/material";
-import { ReactElement } from "react";
-import AddProject from "../../components/controlPanel/Project/AddProject";
-import EditProject from "../../components/controlPanel/Project/EditProject";
-import HelmetTitle from "../../layouts/Helmet";
+import { ReactElement } from 'react';
+import { FC } from 'react';
 
-const ProjectsCP = (): ReactElement => {
+import Project from '~/modules/ControlPanel/Project';
+import ControlPanelPage from '~/UI/layouts/ControlPanelPage';
+
+const ProjectsCP: FC = () => {
   return (
-    <>
-      <HelmetTitle title="Проекты" />
-      <Box sx={styles.root}>
-        <AddProject />
-        <EditProject />
-      </Box>
-    </>
+    <ControlPanelPage title='Проекты'>
+      <Project />
+    </ControlPanelPage>
   );
-};
-
-const styles: TStyles = {
-  root: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    "&>*": {
-      m: "24px 0",
-    },
-  },
 };
 
 export default ProjectsCP;

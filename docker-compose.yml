@@ -1,8 +1,7 @@
-version: "3"
+version: '3'
 
 services:
   app:
-    image: docker.pkg.github.com/yarmsl/backend-ural_polymer/backend-uralpolymer:develop
     volumes:
       - pldr_volume:/app/uploads
     build:
@@ -10,10 +9,9 @@ services:
     restart: always
     ports:
       - 5000-5005:5000
-    networks: 
+    networks:
       - pldr_network
   nginx:
-    image: docker.pkg.github.com/yarmsl/frontend-ural_polymer/frontend-uralpolymer
     container_name: polydor-front-container
     build:
       context: .
@@ -24,10 +22,10 @@ services:
       - ./data/certbot/www:/var/www/certbot
       - ./data/nginx/log:/var/log/nginx
     ports:
-      - "80:80"
-      - "443:443"
-    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
-    networks: 
+      - '80:80'
+      - '443:443'
+    command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
+    networks:
       - pldr_network
   certbot:
     image: certbot/certbot:v0.36.0

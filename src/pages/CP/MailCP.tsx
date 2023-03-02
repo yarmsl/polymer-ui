@@ -1,31 +1,14 @@
-import { Box } from "@mui/material";
-import { ReactElement } from "react";
-import AddMail from "../../components/controlPanel/Mail/AddMail";
-import EditMail from "../../components/controlPanel/Mail/EditMail";
-import HelmetTitle from "../../layouts/Helmet";
+import { FC } from 'react';
 
-const MailCP = (): ReactElement => {
+import Mail from '~/modules/ControlPanel/Mail';
+import ControlPanelPage from '~/UI/layouts/ControlPanelPage';
+
+const MailCP: FC = () => {
   return (
-    <>
-      <HelmetTitle title="Почта" />
-      <Box sx={styles.root}>
-        <AddMail />
-        <EditMail />
-      </Box>
-    </>
+    <ControlPanelPage title='Почта'>
+      <Mail />
+    </ControlPanelPage>
   );
-};
-
-const styles: TStyles = {
-  root: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    "&>*": {
-      m: "24px 0",
-    },
-  },
 };
 
 export default MailCP;

@@ -1,27 +1,29 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { persistReducer, persistStore } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import { articleAPI } from "./Article";
-import { authReducer, authAPI } from "./Auth";
-import { bannerAPI } from "./Banner";
-import { customerAPI } from "./Customer";
-import { dataAPI } from "./Data";
-import { mailAPI } from "./Mail";
-import { ModalStackReducer } from "./ModalStack";
-import { notificationsReducer } from "./Notifications";
-import { fileAPI } from "./PresentationFile";
-import { productionAPI } from "./Production";
-import { projectAPI } from "./Project";
-import { storyAPI } from "./Story";
-import { storyArticleAPI } from "./StoryArticle";
-import { tagAPI } from "./Tag";
-import { usersAPI } from "./Users";
-import { vacancyAPI } from "./Vacancy";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+import { articleAPI } from '~/modules/ControlPanel/Articles/store';
+import { authReducer, authAPI } from '~/modules/ControlPanel/Auth/store';
+import { bannerAPI } from '~/modules/ControlPanel/Banners/store';
+import { customerAPI } from '~/modules/ControlPanel/Customer/store';
+import { mailAPI } from '~/modules/ControlPanel/Mail/store';
+import { fileAPI } from '~/modules/ControlPanel/PresentationFile/store';
+import { productionAPI } from '~/modules/ControlPanel/Production/store';
+import { projectAPI } from '~/modules/ControlPanel/Project/store';
+import { storyAPI } from '~/modules/ControlPanel/Story/store';
+
+import { dataAPI } from './Data';
+import { ModalStackReducer } from './ModalStack';
+import { notificationsReducer } from './Notifications';
+import { storyArticleAPI } from '../modules/ControlPanel/StoryArticle/store';
+import { tagAPI } from '../modules/ControlPanel/Tag/store';
+import { usersAPI } from '../modules/ControlPanel/User/store';
+import { vacancyAPI } from '../modules/ControlPanel/Vacancies/store';
 
 const authPersistConfig = {
-  key: "auth",
+  key: 'auth',
   storage: storage,
-  whitelist: ["token"],
+  whitelist: ['token'],
 };
 
 const rootReducer = combineReducers({
@@ -61,13 +63,13 @@ const appStore = configureStore({
       productionAPI.middleware,
       storyAPI.middleware,
       storyArticleAPI.middleware,
-      vacancyAPI.middleware
+      vacancyAPI.middleware,
     ),
 });
 
-export * from "./hooks";
+export * from './hooks';
 export const persistor = persistStore(appStore);
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppStore = typeof appStore;
-export type AppDispatch = AppStore["dispatch"];
+export type AppDispatch = AppStore['dispatch'];
 export default appStore;

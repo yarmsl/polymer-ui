@@ -1,23 +1,21 @@
-import { ReactElement, useEffect, useMemo } from "react";
-import Routes from "./Routes";
-import {
-  CssBaseline,
-  ThemeProvider,
-  StyledEngineProvider,
-} from "@mui/material";
-import { BrowserRouter as Router } from "react-router-dom";
-import theme from "./UI/theme";
-import { useAppSelector, useAppDispatch } from "./store";
-import { logout, setAuth, useCheckAuthQuery } from "./store/Auth";
-import useNotifier from "./lib/Notifer";
-import ModalStack from "./components/ModalStack";
+import { ReactElement, useEffect, useMemo } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import { CssBaseline, ThemeProvider, StyledEngineProvider } from '@mui/material';
+
+import { logout, setAuth, useCheckAuthQuery } from '~/modules/ControlPanel/Auth/store';
+import Routes from '~/Routes';
+import { useAppSelector, useAppDispatch } from '~/store';
+import ModalStack from '~/UI/atoms/ModalStack';
+import useNotifier from '~/UI/atoms/Notifer';
+import theme from '~/UI/theme';
 
 const App = (): ReactElement => {
   useNotifier();
   const dispatch = useAppDispatch();
   const { isAuth, token, role } = useAppSelector((st) => st.auth);
   const skipQuery = useMemo(() => !token, [token]);
-  const { data, isError } = useCheckAuthQuery("", {
+  const { data, isError } = useCheckAuthQuery('', {
     skip: skipQuery,
   });
   useEffect(() => {

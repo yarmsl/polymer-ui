@@ -1,32 +1,14 @@
-import { Box } from "@mui/material";
-import { ReactElement } from "react";
-import AddCustomer from "../../components/controlPanel/Customer/AddCustomer";
-import EditCustomer from "../../components/controlPanel/Customer/EditCustomer";
+import { FC } from 'react';
 
-import HelmetTitle from "../../layouts/Helmet";
+import Customer from '~/modules/ControlPanel/Customer';
+import ControlPanelPage from '~/UI/layouts/ControlPanelPage';
 
-const CustomersCP = (): ReactElement => {
+const CustomersCP: FC = () => {
   return (
-    <>
-      <HelmetTitle title="Заказчики" />
-      <Box sx={styles.root}>
-        <AddCustomer />
-        <EditCustomer />
-      </Box>
-    </>
+    <ControlPanelPage title='Заказчики'>
+      <Customer />
+    </ControlPanelPage>
   );
-};
-
-const styles: TStyles = {
-  root: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    "&>*": {
-      m: "24px 0",
-    },
-  },
 };
 
 export default CustomersCP;

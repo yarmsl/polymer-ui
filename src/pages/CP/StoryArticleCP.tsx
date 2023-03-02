@@ -1,32 +1,14 @@
-import { Box } from "@mui/material";
-import { ReactElement } from "react";
-import AddStoryArticle from "../../components/controlPanel/StoryArticle/AddStoryArticle";
-import EditStoryArticle from "../../components/controlPanel/StoryArticle/EditStoryArticle";
+import { FC } from 'react';
 
-import HelmetTitle from "../../layouts/Helmet";
+import StoryArticle from '~/modules/ControlPanel/StoryArticle';
+import ControlPanelPage from '~/UI/layouts/ControlPanelPage';
 
-const StoryArticleCP = (): ReactElement => {
+const StoryArticleCP: FC = () => {
   return (
-    <>
-      <HelmetTitle title="Статьи - О компании" />
-      <Box sx={styles.root}>
-        <AddStoryArticle />
-        <EditStoryArticle />
-      </Box>
-    </>
+    <ControlPanelPage title='Статьи - О компании'>
+      <StoryArticle />
+    </ControlPanelPage>
   );
-};
-
-const styles: TStyles = {
-  root: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    "&>*": {
-      m: "24px 0",
-    },
-  },
 };
 
 export default StoryArticleCP;
